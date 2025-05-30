@@ -1,0 +1,32 @@
+{
+  "app": {
+    "name": "SizeWise Suite",
+    "version": "0.1.0",
+    "environment": "production"
+  },
+  "features": {
+    "debugMode": false,
+    "analytics": true,
+    "offlineMode": true
+  },
+  "tools": {
+    "ductSizer": {
+      "enabled": true,
+      "maxCfm": 100000,
+      "maxDimension": 120
+    },
+    "greaseSizer": {
+      "enabled": false
+    },
+    "boilerSizer": {
+      "enabled": false
+    },
+    "engineSizer": {
+      "enabled": false
+    }
+  },
+  "validation": {
+    "strictMode": true,
+    "warningsAsErrors": true
+  }
+}
