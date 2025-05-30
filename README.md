@@ -11,15 +11,17 @@
 
 ## Table of Contents
 
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Quick Start](#-quick-start)
-- [Project Structure](#-project-structure)
+- [🚀 Features](#-features)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🚀 Quick Start](#-quick-start)
+- [📁 Project Structure](#-project-structure)
 - [Testing & Quality](#testing--quality)
-- [Roadmap](#-roadmap)
-- [Documentation](#-documentation)
-- [Contributing](#-contributing)
-- [Troubleshooting](#troubleshooting)
+- [🎯 Roadmap](#-roadmap)
+- [📚 Documentation](#-documentation)
+- [🤝 Contributing](#-contributing)
+- [Troubleshooting](#-troubleshooting)
+
+---
 
 ## 🖥️ System Requirements
 
@@ -40,12 +42,16 @@
 
 - **Air Duct Sizer** [`/app/tools/duct-sizer/`] *(📦 Phase 0.1)*:  
   Calculate duct dimensions, velocity, and pressure loss (SMACNA)
+
 - **Real-time Validation** [`/app/core/validators/`] *(📦 Phase 0.1)*:  
   Instant standards compliance and engineering warning checks
+
 - **Dark/Light Theme** [`/src/providers/ThemeProvider.tsx`, `/src/styles/`] *(📦 Phase 0.1)*:  
   Accessible, professional UI
+
 - **Offline Ready** [`/vite.config.ts`] *(📦 Phase 0.2)*:  
   Field-ready—works without an internet connection
+
 - **Mobile Responsive** [`/src/components/`] *(📦 Phase 0.1)*:  
   Optimized for use on any device, anywhere
 
@@ -63,21 +69,21 @@
 
 ## 📁 Project Structure
 
-```
+```text
 /
 ├── app/                    # Backend-independent domain modules
 │   ├── config/            # Env config, constants
 │   ├── core/              # Calculation logic, validators, standards logic
 │   ├── tools/             # Modular tool code (e.g. duct-sizer)
-│   ├── docs/              # All documentation, ADRs, architecture diagrams
+│   └── docs/              # All documentation, ADRs, architecture diagrams
 ├── src/                   # React UI/presentation
 │   ├── components/        # Reusable UI elements
 │   ├── pages/             # Top-level UI routes
 │   ├── providers/         # Context/state providers (theme, settings)
-│   ├── styles/            # Tailwind config, tokens, global styles
-├── tests/                 # Integration/E2E/visual tests (if present)
-└── ...
+│   └── styles/            # Tailwind config, tokens, global styles
+└── tests/                 # Integration/E2E/visual tests (if present)
 ```
+
 Each folder contains a README or index with rules, dependencies, and doc links.  
 See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
 
@@ -86,6 +92,7 @@ See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+ (use `nvm use`)
 - npm 8+ or yarn 1.22+
 - macOS, Windows 10+, or Ubuntu 22.04+
@@ -93,24 +100,29 @@ See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/engryamato/SizeWise_Suite.git
    cd SizeWise_Suite
    ```
 
-2. Install dependencies:
+1. Install dependencies:
+
    ```bash
-   nvm use      # ensure correct Node version
-   npm install  # or yarn
+   nvm use
+   npm install
    ```
 
-3. Start the development server:
+1. Start the development server:
+
    ```bash
    npm run dev
    ```
+
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-4. For production build:
+1. For production build:
+
    ```bash
    npm run build
    npm run preview
@@ -118,16 +130,22 @@ See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
 
 ---
 
-## 🧪 Testing & Quality
+## Testing & Quality
 
-- Minimum required test coverage: 85%
+### Minimum Required Test Coverage
+
+- 85%
 - All tool logic: `/app/tools/[tool]/__tests__/`
 - Shared logic: `/src/__tests__/`
-- Run tests:
+
+### Running Tests
+
 ```bash
 npm test
 ```
-Run with coverage:
+
+### Test Coverage
+
 ```bash
 npm test -- --coverage
 ```
@@ -151,15 +169,19 @@ npm test -- --coverage
 ## 🎯 Roadmap
 
 ### 📦 Phase 0.1 – Foundation ✅
+
 - Project setup, core UI, Duct Sizer MVP
 
 ### 📦 Phase 0.2 – Enhanced Duct Sizer
+
 - SMACNA integration, material/gauge selection, export
 
 ### 📦 Phase 0.3 – Additional Tools
+
 - Grease Duct Sizer (NFPA 96), Boiler Vent Sizer, Engine Exhaust Sizer
 
 ### 📦 Phase 1.0 – Advanced Features
+
 - Simulation canvas, multi-language, cloud sync, advanced reporting
 
 *(See `/app/docs/architecture/` for roadmap details.)*
@@ -182,6 +204,7 @@ npm test -- --coverage
 We welcome all contributions!
 
 **Workflow:**
+
 - Branch from `main` using naming like `feature/<desc>`, `fix/<desc>`, `docs/<desc>`
 - Use [Conventional Commits](https://www.conventionalcommits.org/)
 - Run `npm run lint` and `npm test` before PRs
@@ -216,10 +239,31 @@ See the [Contributing Guide](./CONTRIBUTING.md) for full details.
 ## ❓ Troubleshooting
 
 Common issues and solutions:
-- **Node version issues**: Ensure you're using Node.js 18+ (use `nvm use`)
-- **Dependency issues**: Try deleting `node_modules` and `package-lock.json`, then run `npm install`
-- **Build errors**: Check the console output for specific error messages
-- **Test failures**: Run `npm test -- --coverage` to identify test coverage gaps
+
+1. **Node.js Version Mismatch**
+   - **Issue**: Build errors related to Node.js version
+   - **Solution**: Ensure you're using Node.js 18+
+
+1. **Dependency Installation Issues**
+   - **Issue**: Errors during `npm install`
+   - **Solution**:
+     1. Delete `node_modules` and `package-lock.json`
+     1. Run `npm cache clean --force`
+     1. Run `npm install`
+
+1. **Build Errors**
+   - **Issue**: Build fails with TypeScript errors
+   - **Solution**:
+     1. Run `npm run type-check` to identify issues
+     1. Ensure all TypeScript types are properly defined
+     1. Check for any missing type definitions
+
+1. **Test Failures**
+   - **Issue**: Tests are failing
+   - **Solution**:
+     1. Run `npm test -- --watch` to run tests in watch mode
+     1. Check test output for specific failures
+     1. Update tests to match current implementation
 
 For additional help, please [open an issue](https://github.com/engryamato/SizeWise_Suite/issues).
 
@@ -243,4 +287,4 @@ For additional help, please [open an issue](https://github.com/engryamato/SizeWi
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

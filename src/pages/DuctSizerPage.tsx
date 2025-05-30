@@ -120,6 +120,7 @@ const DuctSizerPage: React.FC = () => {
                 Duct Shape
               </label>
               <select
+                aria-label="Select duct shape"
                 value={inputs.shape}
                 onChange={(e) => handleInputChange('shape', e.target.value as 'rectangular' | 'circular')}
                 className="input-field"

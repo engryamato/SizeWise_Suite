@@ -1,0 +1,44 @@
+{
+  "velocityLimits": {
+    "low": 500,    // fpm
+    "recommended": 1500, // fpm
+    "high": 2500    // fpm
+  },
+  "pressureLossLimits": {
+    "recommendedMax": 0.08,  // inches of water per 100ft
+    "absoluteMax": 0.15    // inches of water per 100ft
+  },
+  "gaugeThickness": {
+    "rectangular": [
+      { "maxDimension": 6, "gauge": 26 },
+      { "maxDimension": 12, "gauge": 24 },
+      { "maxDimension": 18, "gauge": 22 },
+      { "maxDimension": 30, "gauge": 20 },
+      { "maxDimension": 60, "gauge": 18 },
+      { "maxDimension": 120, "gauge": 16 },
+      { "maxDimension": Infinity, "gauge": 14 }
+    ],
+    "round": [
+      { "maxDiameter": 6, "gauge": 26 },
+      { "maxDiameter": 12, "gauge": 24 },
+      { "maxDiameter": 24, "gauge": 22 },
+      { "maxDiameter": 60, "gauge": 20 },
+      { "maxDiameter": 120, "gauge": 18 },
+      { "maxDiameter": Infinity, "gauge": 16 }
+    ]
+  },
+  "hangerSpacing": {
+    "rectangular": [
+      { "maxDimension": 36, "spacing": 8 },
+      { "maxDimension": 60, "spacing": 7 },
+      { "maxDimension": 120, "spacing": 6 },
+      { "maxDimension": Infinity, "spacing": 5 }
+    ],
+    "round": [
+      { "maxDiameter": 12, "spacing": 8 },
+      { "maxDiameter": 24, "spacing": 10 },
+      { "maxDiameter": 36, "spacing": 12 },
+      { "maxDiameter": Infinity, "spacing": 14 }
+    ]
+  }
+}
