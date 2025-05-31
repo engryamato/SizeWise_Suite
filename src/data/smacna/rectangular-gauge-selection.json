@@ -1,0 +1,72 @@
+{
+  "table": "SMACNA Table 5-1",
+  "description": "Minimum Metal Thickness for Galvanized Steel Rectangular Ducts by Width and Pressure Class (in. WG), per SMACNA 4th Edition",
+  "shape": "rectangular",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "pressure_classes": [
+    {
+      "pressure_class_in_wg": 1,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "gauge": 26 },
+        { "min_size_in": 13, "max_size_in": 18, "gauge": 26 },
+        { "min_size_in": 19, "max_size_in": 30, "gauge": 24 },
+        { "min_size_in": 31, "max_size_in": 42, "gauge": 22 },
+        { "min_size_in": 43, "max_size_in": 60, "gauge": 20 },
+        { "min_size_in": 61, "max_size_in": 84, "gauge": 18 },
+        { "min_size_in": 85, "max_size_in": 120, "gauge": 16 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 2,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "gauge": 26 },
+        { "min_size_in": 13, "max_size_in": 18, "gauge": 24 },
+        { "min_size_in": 19, "max_size_in": 30, "gauge": 22 },
+        { "min_size_in": 31, "max_size_in": 42, "gauge": 20 },
+        { "min_size_in": 43, "max_size_in": 60, "gauge": 18 },
+        { "min_size_in": 61, "max_size_in": 84, "gauge": 16 },
+        { "min_size_in": 85, "max_size_in": 120, "gauge": 14 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 4,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "gauge": 24 },
+        { "min_size_in": 13, "max_size_in": 18, "gauge": 22 },
+        { "min_size_in": 19, "max_size_in": 30, "gauge": 20 },
+        { "min_size_in": 31, "max_size_in": 42, "gauge": 18 },
+        { "min_size_in": 43, "max_size_in": 60, "gauge": 16 },
+        { "min_size_in": 61, "max_size_in": 84, "gauge": 14 },
+        { "min_size_in": 85, "max_size_in": 120, "gauge": 12 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 6,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "gauge": 22 },
+        { "min_size_in": 13, "max_size_in": 18, "gauge": 20 },
+        { "min_size_in": 19, "max_size_in": 30, "gauge": 18 },
+        { "min_size_in": 31, "max_size_in": 42, "gauge": 16 },
+        { "min_size_in": 43, "max_size_in": 60, "gauge": 14 },
+        { "min_size_in": 61, "max_size_in": 84, "gauge": 12 },
+        { "min_size_in": 85, "max_size_in": 120, "gauge": 10 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 10,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "gauge": 20 },
+        { "min_size_in": 13, "max_size_in": 18, "gauge": 18 },
+        { "min_size_in": 19, "max_size_in": 30, "gauge": 16 },
+        { "min_size_in": 31, "max_size_in": 42, "gauge": 14 },
+        { "min_size_in": 43, "max_size_in": 60, "gauge": 12 },
+        { "min_size_in": 61, "max_size_in": 120, "gauge": 10 }
+      ]
+    }
+  ],
+  "notes": [
+    "For galvanized steel rectangular ducts only. Use the larger dimension (width or height) to select gauge.",
+    "Verify values against your SMACNA manual for local code compliance."
+  ]
+}

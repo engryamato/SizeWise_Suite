@@ -1,6 +1,16 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Home } from '@/pages/Home';
-import { AirDuctSizerUI } from '@/tools/air-duct-sizer';
+
+// Lazy load components with proper default exports
+const Home = lazy(() => import('@/pages/Home'));
+const AirDuctSizerUI = lazy(() => import('@/tools/air-duct-sizer'));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
 
 function App() {
   return (
@@ -35,10 +45,12 @@ function App() {
         </nav>
 
         <main className="py-6">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/air-duct-sizer" element={<AirDuctSizerUI />} />
-          </Routes>
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/air-duct-sizer" element={<AirDuctSizerUI />} />
+            </Routes>
+          </Suspense>
         </main>
       </div>
     </Router>

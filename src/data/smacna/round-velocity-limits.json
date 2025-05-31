@@ -1,0 +1,33 @@
+{
+  "table": "SMACNA Table 1-3",
+  "description": "Recommended Maximum Air Velocity for Galvanized Steel Round Ducts, per SMACNA 4th Edition",
+  "shape": "round",
+  "unit": "feet_per_minute",
+  "application_types": [
+    {
+      "application": "Main Supply Duct",
+      "max_velocity_fpm": 2500
+    },
+    {
+      "application": "Branch Supply Duct",
+      "max_velocity_fpm": 1800
+    },
+    {
+      "application": "Main Return Duct",
+      "max_velocity_fpm": 2000
+    },
+    {
+      "application": "Branch Return Duct",
+      "max_velocity_fpm": 1700
+    },
+    {
+      "application": "Exhaust Duct",
+      "max_velocity_fpm": 1700
+    }
+  ],
+  "notes": [
+    "Velocity limits are for galvanized steel round ducts used in comfort HVAC.",
+    "Lower velocities reduce noise; higher velocities increase risk of noise and erosion.",
+    "Check SMACNA and specific project specs for specialized applications."
+  ]
+}

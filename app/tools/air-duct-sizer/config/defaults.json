@@ -1,0 +1,156 @@
+{
+  "tool": {
+    "name": "Air Duct Sizer",
+    "version": "0.1.0",
+    "description": "Size conditioned air ducts with SMACNA compliance",
+    "category": "HVAC Sizing",
+    "enabled": true
+  },
+  "features": {
+    "smacnaValidation": true,
+    "educatedMode": true,
+    "snapSummary": true,
+    "materialSelection": true,
+    "shapeConversion": true,
+    "exportResults": true
+  },
+  "defaults": {
+    "shape": "rectangular",
+    "material": "galvanized",
+    "application": "supply",
+    "units": "imperial"
+  },
+  "limits": {
+    "cfm": {
+      "min": 1,
+      "max": 100000,
+      "recommended": {
+        "min": 50,
+        "max": 50000
+      }
+    },
+    "dimensions": {
+      "rectangular": {
+        "width": { "min": 4, "max": 120 },
+        "height": { "min": 4, "max": 120 },
+        "aspectRatio": { "max": 8 }
+      },
+      "circular": {
+        "diameter": { "min": 4, "max": 120 }
+      }
+    },
+    "length": {
+      "min": 1,
+      "max": 1000,
+      "recommended": { "max": 500 }
+    }
+  },
+  "materials": {
+    "galvanized": {
+      "name": "Galvanized Steel",
+      "roughness": 0.0003,
+      "density": 490,
+      "costFactor": 1.0,
+      "corrosionResistance": "good",
+      "applications": ["supply", "return", "exhaust"]
+    },
+    "stainless": {
+      "name": "Stainless Steel",
+      "roughness": 0.00015,
+      "density": 500,
+      "costFactor": 3.5,
+      "corrosionResistance": "excellent",
+      "applications": ["exhaust", "corrosive"]
+    },
+    "aluminum": {
+      "name": "Aluminum",
+      "roughness": 0.00015,
+      "density": 170,
+      "costFactor": 2.0,
+      "corrosionResistance": "excellent",
+      "applications": ["supply", "return", "rooftop"]
+    }
+  },
+  "applications": {
+    "supply": {
+      "name": "Supply Air",
+      "velocityLimits": {
+        "min": 800,
+        "max": 2500,
+        "optimal": { "min": 1200, "max": 2000 }
+      },
+      "pressureLossLimit": 0.1,
+      "defaultMaterial": "galvanized"
+    },
+    "return": {
+      "name": "Return Air",
+      "velocityLimits": {
+        "min": 600,
+        "max": 2000,
+        "optimal": { "min": 800, "max": 1500 }
+      },
+      "pressureLossLimit": 0.08,
+      "defaultMaterial": "galvanized"
+    },
+    "exhaust": {
+      "name": "Exhaust Air",
+      "velocityLimits": {
+        "min": 1000,
+        "max": 3000,
+        "optimal": { "min": 1500, "max": 2500 }
+      },
+      "pressureLossLimit": 0.12,
+      "defaultMaterial": "galvanized"
+    }
+  },
+  "gaugeSelection": {
+    "pressureClasses": [
+      { "maxPressure": 1, "recommendedGauge": "26", "minimumGauge": "26" },
+      { "maxPressure": 2, "recommendedGauge": "24", "minimumGauge": "24" },
+      { "maxPressure": 4, "recommendedGauge": "22", "minimumGauge": "22" },
+      { "maxPressure": 6, "recommendedGauge": "20", "minimumGauge": "20" },
+      { "maxPressure": 10, "recommendedGauge": "18", "minimumGauge": "18" }
+    ]
+  },
+  "jointSpacing": {
+    "rectangular": {
+      "highVelocity": { "threshold": 2500, "spacing": 4 },
+      "mediumVelocity": { "threshold": 2000, "spacing": 6 },
+      "lowVelocity": { "threshold": 0, "spacing": 8 }
+    },
+    "circular": {
+      "highVelocity": { "threshold": 2500, "spacing": 6 },
+      "mediumVelocity": { "threshold": 2000, "spacing": 8 },
+      "lowVelocity": { "threshold": 0, "spacing": 10 }
+    }
+  },
+  "hangerSpacing": {
+    "byGauge": [
+      { "gauge": "26", "spacing": 6 },
+      { "gauge": "24", "spacing": 8 },
+      { "gauge": "22", "spacing": 10 },
+      { "gauge": "20", "spacing": 10 },
+      { "gauge": "18", "spacing": 12 }
+    ]
+  },
+  "validation": {
+    "strictMode": false,
+    "warningsAsErrors": false,
+    "educationalMode": true
+  },
+  "display": {
+    "precision": {
+      "velocity": 0,
+      "pressureLoss": 3,
+      "area": 3,
+      "hydraulicDiameter": 2
+    },
+    "units": {
+      "velocity": "ft/min",
+      "pressureLoss": "in. w.g.",
+      "area": "sq ft",
+      "length": "ft",
+      "dimensions": "in"
+    }
+  }
+}

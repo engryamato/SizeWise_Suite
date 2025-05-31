@@ -1,0 +1,59 @@
+{
+  "table": "SMACNA Table 2-1",
+  "description": "Transverse Joint Selection for Galvanized Steel Round Ducts by Diameter and Pressure Class (in. WG), per SMACNA 4th Edition",
+  "shape": "round",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "pressure_classes": [
+    {
+      "pressure_class_in_wg": 1,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 10, "joint_types": ["Slip Coupling", "Grooved Coupling", "Flanged", "Beaded"] },
+        { "min_diameter_in": 11, "max_diameter_in": 18, "joint_types": ["Grooved Coupling", "Flanged", "Beaded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "joint_types": ["Flanged", "Grooved Coupling", "Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "joint_types": ["Flanged", "Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 2,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 10, "joint_types": ["Grooved Coupling", "Flanged"] },
+        { "min_diameter_in": 11, "max_diameter_in": 18, "joint_types": ["Grooved Coupling", "Flanged", "Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "joint_types": ["Flanged", "Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "joint_types": ["Welded", "Flanged"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 4,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 10, "joint_types": ["Flanged"] },
+        { "min_diameter_in": 11, "max_diameter_in": 18, "joint_types": ["Flanged", "Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "joint_types": ["Welded", "Flanged"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "joint_types": ["Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 6,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 10, "joint_types": ["Flanged", "Welded"] },
+        { "min_diameter_in": 11, "max_diameter_in": 18, "joint_types": ["Welded", "Flanged"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "joint_types": ["Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "joint_types": ["Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 10,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 10, "joint_types": ["Welded"] },
+        { "min_diameter_in": 11, "max_diameter_in": 18, "joint_types": ["Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "joint_types": ["Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "joint_types": ["Welded"] }
+      ]
+    }
+  ],
+  "notes": [
+    "This table applies to galvanized steel round ducts only.",
+    "Joint types may vary with spiral, single-wall, or specialty round duct systems.",
+    "Always confirm joint selection with local code and SMACNA updates."
+  ]
+}

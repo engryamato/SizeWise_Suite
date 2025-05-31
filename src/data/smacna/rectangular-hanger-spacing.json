@@ -1,0 +1,51 @@
+{
+  "table": "SMACNA Table 2-3",
+  "description": "Maximum Hanger/Support Spacing for Galvanized Steel Rectangular Ducts by Size and Gauge, per SMACNA 4th Edition",
+  "shape": "rectangular",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "entries": [
+    {
+      "min_size_in": 0,
+      "max_size_in": 12,
+      "min_gauge": 26,
+      "max_spacing_ft": 10
+    },
+    {
+      "min_size_in": 13,
+      "max_size_in": 18,
+      "min_gauge": 24,
+      "max_spacing_ft": 10
+    },
+    {
+      "min_size_in": 19,
+      "max_size_in": 30,
+      "min_gauge": 22,
+      "max_spacing_ft": 10
+    },
+    {
+      "min_size_in": 31,
+      "max_size_in": 42,
+      "min_gauge": 20,
+      "max_spacing_ft": 10
+    },
+    {
+      "min_size_in": 43,
+      "max_size_in": 60,
+      "min_gauge": 18,
+      "max_spacing_ft": 10
+    },
+    {
+      "min_size_in": 61,
+      "max_size_in": 120,
+      "min_gauge": 16,
+      "max_spacing_ft": 10
+    }
+  ],
+  "notes": [
+    "Spacing is the maximum allowed between hangers/supports for horizontal runs.",
+    "Heavier duct gauges may allow longer spacing per SMACNA.",
+    "Always use at least one support at each joint and as close as practical to connections, per code.",
+    "Verify local code or special project requirements for exceptions."
+  ]
+}

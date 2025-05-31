@@ -1,0 +1,33 @@
+{
+  "table": "SMACNA Table 1-3",
+  "description": "Recommended Maximum Air Velocity for Galvanized Steel Rectangular Ducts, per SMACNA 4th Edition",
+  "shape": "rectangular",
+  "unit": "feet_per_minute",
+  "application_types": [
+    {
+      "application": "Main Supply Duct",
+      "max_velocity_fpm": 2000
+    },
+    {
+      "application": "Branch Supply Duct",
+      "max_velocity_fpm": 1600
+    },
+    {
+      "application": "Main Return Duct",
+      "max_velocity_fpm": 1800
+    },
+    {
+      "application": "Branch Return Duct",
+      "max_velocity_fpm": 1500
+    },
+    {
+      "application": "Exhaust Duct",
+      "max_velocity_fpm": 1500
+    }
+  ],
+  "notes": [
+    "Velocity limits are for general comfort HVAC applications.",
+    "Lower velocities may be required for low-noise or critical areas.",
+    "Consult SMACNA and project specifications for exceptions."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "table": "SMACNA Table 2-2",
+  "description": "Longitudinal Seam Selection for Galvanized Steel Round Ducts by Diameter and Pressure Class (in. WG), per SMACNA 4th Edition",
+  "shape": "round",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "pressure_classes": [
+    {
+      "pressure_class_in_wg": 1,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "seam_types": ["Lock Seam", "Snap Lock", "Welded"] },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "seam_types": ["Lock Seam", "Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "seam_types": ["Lock Seam", "Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "seam_types": ["Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 2,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "seam_types": ["Lock Seam", "Welded"] },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "seam_types": ["Lock Seam", "Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "seam_types": ["Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "seam_types": ["Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 4,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "seam_types": ["Lock Seam", "Welded"] },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "seam_types": ["Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "seam_types": ["Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "seam_types": ["Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 6,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "seam_types": ["Welded"] },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "seam_types": ["Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "seam_types": ["Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "seam_types": ["Welded"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 10,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "seam_types": ["Welded"] },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "seam_types": ["Welded"] },
+        { "min_diameter_in": 19, "max_diameter_in": 36, "seam_types": ["Welded"] },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "seam_types": ["Welded"] }
+      ]
+    }
+  ],
+  "notes": [
+    "Lock Seam is typically used for small diameter and low pressure; Welded seam is preferred for larger diameter and higher pressure.",
+    "Spiral seam may be approved if manufactured to SMACNA tolerances.",
+    "Always verify with your SMACNA standard for the exact seam requirements."
+  ]
+}

@@ -1,5 +1,22 @@
 import React from 'react';
-import { DuctCalculationResult } from '../../tools/air-duct-sizer/logic';
+
+interface ResultStatus {
+  value: number;
+  status: 'good' | 'high' | 'low' | 'critical';
+}
+
+interface Recommendation {
+  title: string;
+  description: string;
+}
+
+interface DuctCalculationResult {
+  velocity: ResultStatus;
+  pressureLoss: ResultStatus;
+  gaugeThickness: number;
+  hangerSpacing: number;
+  recommendations?: Recommendation[];
+}
 
 interface ResultsDisplayProps {
   result: DuctCalculationResult | null;
@@ -28,7 +45,6 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result, units })
   return (
     <div className="mt-8 p-6 bg-gray-50 rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Calculation Results</h2>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <h3 className="font-medium">Velocity</h3>
@@ -36,35 +52,31 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result, units })
             {result.velocity.value.toFixed(2)} {velocityUnit} - {result.velocity.status}
           </p>
         </div>
-        
         <div>
           <h3 className="font-medium">Pressure Loss</h3>
           <p className={getStatusClass(result.pressureLoss.status)}>
             {result.pressureLoss.value.toFixed(4)} {pressureUnit} - {result.pressureLoss.status}
           </p>
         </div>
-        
         <div>
           <h3 className="font-medium">Gauge Thickness</h3>
           <p className="text-gray-800">
-            {result.gaugeThickness.value} {gaugeUnit}
+            {result.gaugeThickness} {gaugeUnit}
           </p>
         </div>
-        
         <div>
           <h3 className="font-medium">Hanger Spacing</h3>
           <p className="text-gray-800">
-            {result.hangerSpacing.value} {spacingUnit}
+            {result.hangerSpacing} {spacingUnit}
           </p>
         </div>
       </div>
-      
       {result.recommendations && result.recommendations.length > 0 && (
         <div className="mt-6">
           <h3 className="font-medium mb-2">Recommendations</h3>
           <div className="space-y-2">
-            {result.recommendations.map((rec, index) => (
-              <div key={`${rec.title}-${index}`} className="p-3 bg-white rounded border">
+            {result.recommendations.map((rec) => (
+              <div key={`${rec.title}-${rec.description}`} className="p-3 bg-white rounded border">
                 <h4 className="font-medium">{rec.title}</h4>
                 <p className="text-sm text-gray-600">{rec.description}</p>
               </div>
@@ -72,14 +84,13 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result, units })
           </div>
         </div>
       )}
-      
       <div className="mt-6 text-sm text-gray-600">
         <h4 className="font-semibold mb-2">SMACNA Guidelines</h4>
         <ul className="list-disc pl-5 space-y-1">
-          <li>Recommended velocity: 1,500-2,000 fpm (7.5-10 m/s) for main ducts</li>
-          <li>Maximum velocity: 2,500 fpm (12.5 m/s) for low-pressure systems</li>
-          <li>Recommended pressure loss: 0.08 in wg/100ft (0.66 Pa/m) or less</li>
-          <li>Maximum pressure loss: 0.15 in wg/100ft (1.23 Pa/m)</li>
+          <li key="velocity-guideline">Recommended velocity: 1,500-2,000 fpm (7.5-10 m/s) for main ducts</li>
+          <li key="max-velocity-guideline">Maximum velocity: 2,500 fpm (12.5 m/s) for low-pressure systems</li>
+          <li key="pressure-loss-guideline">Recommended pressure loss: 0.08 in wg/100ft (0.66 Pa/m) or less</li>
+          <li key="max-pressure-loss-guideline">Maximum pressure loss: 0.15 in wg/100ft (1.23 Pa/m)</li>
         </ul>
       </div>
     </div>

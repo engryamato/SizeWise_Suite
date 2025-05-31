@@ -1,0 +1,69 @@
+{
+  "table": "SMACNA Table 2-1",
+  "description": "Transverse Joint Selection for Galvanized Steel Rectangular Ducts by Width and Pressure Class (in. WG), per SMACNA 4th Edition",
+  "shape": "rectangular",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "pressure_classes": [
+    {
+      "pressure_class_in_wg": 1,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "joint_types": ["S & Drive", "Snap Lock", "Pocket Lock", "Button Punch Snap Lock"] },
+        { "min_size_in": 13, "max_size_in": 18, "joint_types": ["S & Drive", "Snap Lock", "Pocket Lock"] },
+        { "min_size_in": 19, "max_size_in": 30, "joint_types": ["Pittsburgh Lock", "Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 31, "max_size_in": 42, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 43, "max_size_in": 60, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 61, "max_size_in": 120, "joint_types": ["Standing S", "Ductmate", "TDC", "Welded Flange"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 2,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "joint_types": ["S & Drive", "Snap Lock", "Pocket Lock"] },
+        { "min_size_in": 13, "max_size_in": 18, "joint_types": ["Pittsburgh Lock", "Standing S"] },
+        { "min_size_in": 19, "max_size_in": 30, "joint_types": ["Pittsburgh Lock", "Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 31, "max_size_in": 42, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 43, "max_size_in": 60, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 61, "max_size_in": 120, "joint_types": ["Standing S", "Ductmate", "TDC", "Welded Flange"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 4,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "joint_types": ["Pittsburgh Lock", "Standing S"] },
+        { "min_size_in": 13, "max_size_in": 18, "joint_types": ["Pittsburgh Lock", "Standing S", "Ductmate"] },
+        { "min_size_in": 19, "max_size_in": 30, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 31, "max_size_in": 42, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 43, "max_size_in": 60, "joint_types": ["Standing S", "Ductmate", "TDC", "Welded Flange"] },
+        { "min_size_in": 61, "max_size_in": 120, "joint_types": ["Welded Flange", "TDC"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 6,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "joint_types": ["Standing S", "Ductmate"] },
+        { "min_size_in": 13, "max_size_in": 18, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 19, "max_size_in": 30, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 31, "max_size_in": 42, "joint_types": ["Standing S", "Ductmate", "TDC", "Welded Flange"] },
+        { "min_size_in": 43, "max_size_in": 60, "joint_types": ["Welded Flange", "TDC"] },
+        { "min_size_in": 61, "max_size_in": 120, "joint_types": ["Welded Flange"] }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 10,
+      "entries": [
+        { "min_size_in": 0, "max_size_in": 12, "joint_types": ["Standing S", "Ductmate", "TDC"] },
+        { "min_size_in": 13, "max_size_in": 18, "joint_types": ["Standing S", "Ductmate", "TDC", "Welded Flange"] },
+        { "min_size_in": 19, "max_size_in": 30, "joint_types": ["Welded Flange", "TDC"] },
+        { "min_size_in": 31, "max_size_in": 42, "joint_types": ["Welded Flange"] },
+        { "min_size_in": 43, "max_size_in": 60, "joint_types": ["Welded Flange"] },
+        { "min_size_in": 61, "max_size_in": 120, "joint_types": ["Welded Flange"] }
+      ]
+    }
+  ],
+  "notes": [
+    "This table applies to galvanized steel rectangular ducts only.",
+    "Joint selection may vary with local code, size, material, and SMACNA updates.",
+    "TDC/TDF and proprietary connectors must be listed or approved for intended use."
+  ]
+}

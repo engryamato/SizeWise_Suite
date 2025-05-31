@@ -1,47 +1,61 @@
-import React from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import { Units } from '../../tools/air-duct-sizer/logic';
 
 interface LengthInputProps {
-  length: number;
+  length: string | number;
   units: Units;
-  errors: Record<string, string>;
-  lengthId: string;
+  error?: string;
   onLengthChange: (value: string) => void;
-  onErrorClear: (field: string) => void;
+  onErrorClear: () => void;
+  id: string;
 }
 
 export const LengthInput: React.FC<LengthInputProps> = ({
   length,
   units,
-  errors,
-  lengthId,
+  error,
   onLengthChange,
   onErrorClear,
-}) => (
-  <div className="form-control">
-    <label htmlFor={lengthId} className="label">
-      <span className="label-text">Length ({units === 'imperial' ? 'ft' : 'm'})</span>
-    </label>
-    <input
-      id={lengthId}
-      type="number"
-      className={`input input-bordered w-full ${errors.length ? 'input-error' : ''}`}
-      value={length ?? ''}
-      onChange={(e) => {
-        onLengthChange(e.target.value);
-        if (errors.length) {
-          onErrorClear('length');
-        }
-      }}
-      min="0.1"
-      step="0.1"
-      aria-invalid={errors.length ? 'true' : 'false'}
-      aria-describedby={errors.length ? `${lengthId}-error` : ''}
-    />
-    {errors.length && (
-      <label id={`${lengthId}-error`} className="label">
-        <span className="label-text-alt text-error">{errors.length}</span>
+  id,
+}) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    onLengthChange(value);
+    
+    if (error) {
+      onErrorClear();
+    }
+  }, [error, onErrorClear, onLengthChange]);
+
+  // Ensure we're working with string values for the input
+  const lengthValue = typeof length === 'number' ? length.toString() : length;
+  const hasError = !!error;
+  const errorId = hasError ? `${id}-error` : undefined;
+  const unitLabel = units === 'imperial' ? 'ft' : 'm';
+  const placeholder = units === 'imperial' ? 'e.g. 10' : 'e.g. 3';
+
+  return (
+    <div className="form-control w-full">
+      <label htmlFor={id} className="label">
+        <span className="label-text">Duct Length ({unitLabel})</span>
       </label>
-    )}
-  </div>
-);
+      <input
+        type="number"
+        id={id}
+        className={`input input-bordered w-full ${hasError ? 'input-error' : ''}`}
+        placeholder={placeholder}
+        value={lengthValue}
+        onChange={handleChange}
+        min="0.1"
+        step="0.1"
+        aria-invalid={hasError ? "true" : "false"}
+        aria-describedby={errorId}
+      />
+      {hasError && (
+        <label id={errorId} className="label">
+          <span className="label-text-alt text-error">{error}</span>
+        </label>
+      )}
+    </div>
+  );
+};

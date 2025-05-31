@@ -1,0 +1,45 @@
+{
+  "table": "SMACNA Table 2-3",
+  "description": "Maximum Hanger/Support Spacing for Galvanized Steel Round Ducts by Diameter and Gauge, per SMACNA 4th Edition",
+  "shape": "round",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "entries": [
+    {
+      "min_diameter_in": 0,
+      "max_diameter_in": 12,
+      "min_gauge": 26,
+      "max_spacing_ft": 12
+    },
+    {
+      "min_diameter_in": 13,
+      "max_diameter_in": 18,
+      "min_gauge": 24,
+      "max_spacing_ft": 12
+    },
+    {
+      "min_diameter_in": 19,
+      "max_diameter_in": 30,
+      "min_gauge": 22,
+      "max_spacing_ft": 12
+    },
+    {
+      "min_diameter_in": 31,
+      "max_diameter_in": 36,
+      "min_gauge": 20,
+      "max_spacing_ft": 12
+    },
+    {
+      "min_diameter_in": 37,
+      "max_diameter_in": 60,
+      "min_gauge": 18,
+      "max_spacing_ft": 12
+    }
+  ],
+  "notes": [
+    "Spacing is the maximum allowed between hangers/supports for horizontal runs of round ducts.",
+    "Heavier duct gauges or shorter spans may allow for increased loads per SMACNA.",
+    "Always support at each joint and close to any connections, branches, or changes in direction.",
+    "Check SMACNA and local code for exceptions and updates."
+  ]
+}

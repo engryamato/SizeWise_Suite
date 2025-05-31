@@ -7,7 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - 2024-05-30
+## [0.1.0] - 2024-05-30 - Phase 0.1 Complete
+
+### Added - Enhanced Air Duct Sizer (Phase 0.1)
+- **SMACNA-Based Validation**: Real-time compliance checking with SMACNA HVAC Duct Construction Standards
+- **Enhanced Calculation Engine**:
+  - Material roughness factors (galvanized, stainless, aluminum)
+  - Application-specific velocity limits (supply, return, exhaust)
+  - Enhanced Darcy-Weisbach pressure loss calculations
+  - Reynolds number-based friction factors
+- **Educational Mode**: Engineering notes and best practices
+- **Snap Summary Output**: Quick reference calculation strings
+- **Advanced Material Selection**: Three material types with different properties
+- **Comprehensive Validation**:
+  - Velocity warnings for out-of-range values
+  - Pressure loss optimization suggestions
+  - SMACNA gauge selection compliance
+  - Joint and hanger spacing validation
+
+### Enhanced Features
+- **Professional UI**: Color-coded results with status indicators
+- **Detailed Results Display**:
+  - Hydraulic diameter calculations
+  - Cross-sectional area and perimeter
+  - Material-specific engineering notes
+  - SMACNA compliance warnings
+- **Comprehensive Testing**: Full test suite for calculation accuracy
+- **Tool Documentation**: Complete README with usage examples and standards references
+
+### Technical Implementation
+- **Modular Architecture**: Separated logic, validation, and utilities
+- **TypeScript Interfaces**: Strongly typed calculation inputs and outputs
+- **Configuration System**: JSON-based tool configuration and limits
+- **Standards Compliance**: References to SMACNA tables and requirements
+
+## [0.0.0] - 2024-05-30 - Phase 0.0 Complete
 
 ### Added
 - **Foundation & Toolchain**

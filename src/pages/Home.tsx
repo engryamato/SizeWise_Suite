@@ -24,7 +24,7 @@ const ToolCard = ({ title, description, path, phase, icon }: ToolCardProps) => (
   </Link>
 );
 
-export function Home() {
+const Home = () => {
   const tools: ToolCardProps[] = [
     {
       title: 'Air Duct Sizer',
@@ -48,8 +48,8 @@ export function Home() {
       <div className="mb-12">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Available Tools</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map((tool, index) => (
-            <ToolCard key={index} {...tool} />
+          {tools.map((tool) => (
+            <ToolCard key={tool.path} {...tool} />
           ))}
         </div>
       </div>
@@ -59,10 +59,10 @@ export function Home() {
         <p className="text-blue-700 mb-4">
           Select a tool from above to begin your calculations. Each tool is designed to help you with specific HVAC engineering tasks.
         </p>
-        <p className="text-sm text-blue-600">
-          Need help? Check out our documentation or contact support.
-        </p>
+        <p className="text-sm text-blue-600">Need help? Check out our documentation or contact support.</p>
       </div>
     </div>
   );
-}
+};
+
+export default Home;

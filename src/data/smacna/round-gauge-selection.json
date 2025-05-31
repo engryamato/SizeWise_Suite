@@ -1,0 +1,64 @@
+{
+  "table": "SMACNA Table 6-1",
+  "description": "Minimum Metal Thickness for Galvanized Steel Round Ducts by Diameter and Pressure Class (in. WG), per SMACNA 4th Edition",
+  "shape": "round",
+  "unit": "inches",
+  "material": "galvanized steel",
+  "pressure_classes": [
+    {
+      "pressure_class_in_wg": 1,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "gauge": 26 },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "gauge": 24 },
+        { "min_diameter_in": 19, "max_diameter_in": 30, "gauge": 22 },
+        { "min_diameter_in": 31, "max_diameter_in": 36, "gauge": 20 },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "gauge": 18 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 2,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "gauge": 26 },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "gauge": 24 },
+        { "min_diameter_in": 19, "max_diameter_in": 30, "gauge": 22 },
+        { "min_diameter_in": 31, "max_diameter_in": 36, "gauge": 20 },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "gauge": 18 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 4,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "gauge": 24 },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "gauge": 22 },
+        { "min_diameter_in": 19, "max_diameter_in": 30, "gauge": 20 },
+        { "min_diameter_in": 31, "max_diameter_in": 36, "gauge": 18 },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "gauge": 16 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 6,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "gauge": 22 },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "gauge": 20 },
+        { "min_diameter_in": 19, "max_diameter_in": 30, "gauge": 18 },
+        { "min_diameter_in": 31, "max_diameter_in": 36, "gauge": 16 },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "gauge": 14 }
+      ]
+    },
+    {
+      "pressure_class_in_wg": 10,
+      "entries": [
+        { "min_diameter_in": 0, "max_diameter_in": 12, "gauge": 20 },
+        { "min_diameter_in": 13, "max_diameter_in": 18, "gauge": 18 },
+        { "min_diameter_in": 19, "max_diameter_in": 30, "gauge": 16 },
+        { "min_diameter_in": 31, "max_diameter_in": 36, "gauge": 14 },
+        { "min_diameter_in": 37, "max_diameter_in": 60, "gauge": 12 }
+      ]
+    }
+  ],
+  "notes": [
+    "For galvanized steel round ducts only.",
+    "Diameter refers to nominal inside diameter.",
+    "Always verify against your official SMACNA reference for local code compliance."
+  ]
+}
