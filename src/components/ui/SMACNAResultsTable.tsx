@@ -1,5 +1,10 @@
 import React from 'react';
-import { StatusIndicator, StatusType, getVelocityStatus, getPressureLossStatus } from './StatusIndicator';
+import {
+  StatusIndicator,
+  StatusType,
+  getVelocityStatus,
+  getPressureLossStatus,
+} from './StatusIndicator';
 
 interface ResultRow {
   parameter: string;
@@ -36,17 +41,17 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
 
   const hasNonCompliant = statusCounts.noncompliant > 0;
   const hasWarnings = statusCounts.warning > 0;
-  const overallStatus: StatusType = hasNonCompliant 
-    ? 'noncompliant' 
-    : hasWarnings 
-    ? 'warning' 
-    : 'compliant';
+  const overallStatus: StatusType = hasNonCompliant
+    ? 'noncompliant'
+    : hasWarnings
+      ? 'warning'
+      : 'compliant';
 
   const summaryMessage = hasNonCompliant
     ? 'Parameters require attention for SMACNA compliance'
     : hasWarnings
-    ? 'All parameters within limits, some approaching thresholds'
-    : 'All parameters comply with SMACNA standards';
+      ? 'All parameters within limits, some approaching thresholds'
+      : 'All parameters comply with SMACNA standards';
 
   return (
     <div className={`card ${className}`}>
@@ -54,24 +59,18 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
       <div className="border-b border-gray-200 dark:border-gray-700 p-6 pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {title}
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
             {subtitle && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                {subtitle}
-              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{subtitle}</p>
             )}
           </div>
           <StatusIndicator status={overallStatus} showIcon showText />
         </div>
-        
+
         {/* Snap Summary */}
         {snapSummary && (
           <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <p className="text-sm font-mono text-gray-700 dark:text-gray-300">
-              {snapSummary}
-            </p>
+            <p className="text-sm font-mono text-gray-700 dark:text-gray-300">{snapSummary}</p>
           </div>
         )}
       </div>
@@ -118,15 +117,11 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
                     {row.parameter}
                   </div>
                   {row.reference && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      {row.reference}
-                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">{row.reference}</div>
                   )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900 dark:text-white font-mono">
-                    {row.value}
-                  </div>
+                  <div className="text-sm text-gray-900 dark:text-white font-mono">{row.value}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-500 dark:text-gray-400 font-mono">
@@ -134,9 +129,9 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
-                  <StatusIndicator 
-                    status={row.status} 
-                    showIcon 
+                  <StatusIndicator
+                    status={row.status}
+                    showIcon
                     size="sm"
                     className={row.tooltip ? 'cursor-help' : ''}
                     title={row.tooltip}
@@ -151,9 +146,7 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
       {/* Summary Footer */}
       <div className="border-t border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-800">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {summaryMessage}
-          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{summaryMessage}</p>
           <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
             {statusCounts.compliant > 0 && (
               <span className="flex items-center">
@@ -211,6 +204,7 @@ export function createDuctSizerResults(
     length: number;
     material: string;
     application: string;
+    pressureClass?: string;
   },
   results: {
     velocity: number;
@@ -222,9 +216,13 @@ export function createDuctSizerResults(
     area: number;
   }
 ): ResultRow[] {
-  const velocityStatus = getVelocityStatus(results.velocity, inputs.application);
-  const pressureStatus = getPressureLossStatus(results.pressureLoss);
-  
+  const velocityStatus = getVelocityStatus(
+    results.velocity,
+    inputs.application,
+    inputs.pressureClass
+  );
+  const pressureStatus = getPressureLossStatus(results.pressureLoss, inputs.pressureClass);
+
   // Determine gauge status based on pressure
   const gaugeNum = parseInt(results.gauge);
   let gaugeStatus: StatusType = 'compliant';
@@ -232,9 +230,10 @@ export function createDuctSizerResults(
   else if (results.pressureLoss > 2 && gaugeNum > 22) gaugeStatus = 'noncompliant';
   else if (results.pressureLoss > 1 && gaugeNum > 24) gaugeStatus = 'warning';
 
-  const shapeDesc = inputs.shape === 'rectangular' 
-    ? `${inputs.width}" × ${inputs.height}"` 
-    : `${inputs.diameter}"⌀`;
+  const shapeDesc =
+    inputs.shape === 'rectangular'
+      ? `${inputs.width}" × ${inputs.height}"`
+      : `${inputs.diameter}"⌀`;
 
   return [
     {
@@ -252,18 +251,18 @@ export function createDuctSizerResults(
     {
       parameter: 'Velocity',
       value: `${results.velocity.toLocaleString()} ft/min`,
-      limit: getVelocityLimit(inputs.application),
+      limit: getVelocityLimit(inputs.application, inputs.pressureClass),
       status: velocityStatus,
       reference: 'SMACNA Table 2-1',
-      tooltip: getVelocityTooltip(results.velocity, inputs.application),
+      tooltip: getVelocityTooltip(results.velocity, inputs.application, inputs.pressureClass),
     },
     {
       parameter: 'Pressure Loss',
       value: `${results.pressureLoss.toFixed(3)} in. w.g.`,
-      limit: '≤ 0.100 in. w.g.',
+      limit: getPressureLossLimit(inputs.pressureClass),
       status: pressureStatus,
       reference: 'SMACNA recommended',
-      tooltip: getPressureTooltip(results.pressureLoss),
+      tooltip: getPressureTooltip(results.pressureLoss, inputs.pressureClass),
     },
     {
       parameter: 'Material Gauge',
@@ -291,25 +290,57 @@ export function createDuctSizerResults(
 }
 
 // Helper functions for limits and tooltips
-function getVelocityLimit(application: string): string {
-  const limits = {
+function getVelocityLimit(application: string, pressureClass?: string): string {
+  const baseLimits = {
     supply: '800-2500 ft/min',
     return: '600-2000 ft/min',
     exhaust: '1000-3000 ft/min',
   };
-  return limits[application as keyof typeof limits] || limits.supply;
+
+  if (pressureClass === 'medium') {
+    const mediumLimits = {
+      supply: '800-3500 ft/min',
+      return: '600-3000 ft/min',
+      exhaust: '1000-4000 ft/min',
+    };
+    return mediumLimits[application as keyof typeof mediumLimits] || mediumLimits.supply;
+  } else if (pressureClass === 'high') {
+    const highLimits = {
+      supply: '800-4500 ft/min',
+      return: '600-4000 ft/min',
+      exhaust: '1000-5000 ft/min',
+    };
+    return highLimits[application as keyof typeof highLimits] || highLimits.supply;
+  }
+
+  return baseLimits[application as keyof typeof baseLimits] || baseLimits.supply;
 }
 
-function getVelocityTooltip(velocity: number, application: string): string {
-  if (velocity > 2500) return 'High velocity may increase noise levels';
-  if (velocity < 800) return 'Low velocity may cause poor air mixing';
-  return 'Velocity within recommended range';
+function getPressureLossLimit(pressureClass?: string): string {
+  if (pressureClass === 'medium') return '≤ 0.250 in. w.g.';
+  if (pressureClass === 'high') return '≤ 0.500 in. w.g.';
+  return '≤ 0.100 in. w.g.';
 }
 
-function getPressureTooltip(pressureLoss: number): string {
-  if (pressureLoss > 0.1) return 'High pressure loss increases energy costs';
-  if (pressureLoss > 0.08) return 'Approaching maximum recommended pressure loss';
-  return 'Pressure loss within acceptable range';
+function getVelocityTooltip(velocity: number, application: string, pressureClass?: string): string {
+  const limits = pressureClass === 'high' ? 4500 : pressureClass === 'medium' ? 3500 : 2500;
+  const minLimit = 800;
+
+  if (velocity > limits)
+    return `High velocity may increase noise levels in ${pressureClass || 'low'}-pressure systems`;
+  if (velocity < minLimit) return 'Low velocity may cause poor air mixing';
+  return `Velocity within recommended range for ${pressureClass || 'low'}-pressure systems`;
+}
+
+function getPressureTooltip(pressureLoss: number, pressureClass?: string): string {
+  const maxLimit = pressureClass === 'high' ? 0.5 : pressureClass === 'medium' ? 0.25 : 0.1;
+  const warningLimit = maxLimit * 0.8;
+
+  if (pressureLoss > maxLimit)
+    return `High pressure loss exceeds ${pressureClass || 'low'}-pressure system limits`;
+  if (pressureLoss > warningLimit)
+    return `Approaching maximum recommended pressure loss for ${pressureClass || 'low'}-pressure systems`;
+  return `Pressure loss within acceptable range for ${pressureClass || 'low'}-pressure systems`;
 }
 
 function getGaugeLimit(pressureLoss: number): string {
