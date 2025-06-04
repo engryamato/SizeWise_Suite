@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.2.0] - 2024-06-01 - Phase 0.0 Estimating Core Setup
+### Added
+- Estimating App scaffolding with schemas and tests
+- Engine Exhaust Sizer directory
+- Documentation updates for new structure
+
 
 ### Added - Modern Field-Friendly Results Display
 

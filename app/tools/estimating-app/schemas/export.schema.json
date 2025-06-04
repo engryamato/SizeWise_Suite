@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExportOptions",
+  "type": "object",
+  "properties": {
+    "format": { "enum": ["excel", "pdf", "csv"] }
+  },
+  "required": ["format"],
+  "additionalProperties": false
+}
