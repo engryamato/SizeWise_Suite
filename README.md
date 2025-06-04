@@ -1,4 +1,4 @@
-# SizeWise Suite
+{NEW}# SizeWise Suite
 
 [![CI Status](https://github.com/engryamato/SizeWise_Suite/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/engryamato/SizeWise_Suite/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -43,6 +43,7 @@
 - **Air Duct Sizer** [`/app/tools/duct-sizer/`] *(📦 Phase 0.1)*:  
   Calculate duct dimensions, velocity, and pressure loss (SMACNA)
 
+- **Estimating App** [`/app/tools/estimating-app/`] *(📦 Phase 0.0)*: Takeoff, labor and material costing, export to Excel/PDF
 - **Real-time Validation** [`/app/core/validators/`] *(📦 Phase 0.1)*:  
   Instant standards compliance and engineering warning checks
 
@@ -71,31 +72,36 @@
 
 ```text
 /
-├── app/                    # Backend-independent domain modules
-│   ├── config/            # Env config, constants
-│   ├── core/              # Calculation logic, validators, standards logic
-│   ├── tools/             # Modular tool code (e.g. duct-sizer)
-│   └── docs/              # All documentation, ADRs, architecture diagrams
-├── src/                   # React UI/presentation
-│   ├── components/        # Reusable UI elements
-│   ├── pages/             # Top-level UI routes
-│   ├── providers/         # Context/state providers (theme, settings)
-│   └── styles/            # Tailwind config, tokens, global styles
-└── tests/                 # Integration/E2E/visual tests (if present)
+├── app/
+│   ├── assets/
+│   ├── config/
+│   ├── core/
+│   ├── data/
+│   ├── docs/
+│   ├── hooks/
+│   ├── i18n/
+│   ├── plugins/
+│   ├── services/
+│   ├── simulations/
+│   ├── static/
+│   ├── templates/
+│   ├── tests/
+│   └── tools/
+│       ├── duct-sizer/
+│       ├── grease-sizer/
+│       ├── boiler-sizer/
+│       ├── engine-exhaust/
+│       └── estimating-app/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── providers/
+│   └── styles/
+└── tests/
 ```
+Each folder contains a README or index with rules, dependencies, and doc links.
 
-Each folder contains a README or index with rules, dependencies, and doc links.  
 See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 18+ (use `nvm use`)
-- npm 8+ or yarn 1.22+
-- macOS, Windows 10+, or Ubuntu 22.04+
 
 ### Installation
 
@@ -167,6 +173,8 @@ npm test -- --coverage
 ---
 
 ## 🎯 Roadmap
+### 📦 Phase 0.0 – Estimating Core Setup
+- Initial folder scaffolding, schemas, and export stubs
 
 ### 📦 Phase 0.1 – Foundation ✅
 
