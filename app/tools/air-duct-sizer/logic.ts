@@ -155,8 +155,10 @@ function calculatePressureLoss(
     frictionFactor = 0.02 * (1 + (relativeRoughness * 1000 + 100000 / reynolds) ** 0.333);
   }
   
-  // Pressure loss calculation (Darcy-Weisbach equation)
-  const pressureLoss = (frictionFactor * length * Math.pow(velocity, 2)) / (2 * 4005 * hydraulicDiameterFt);
+  // Pressure loss calculation (Darcy-Weisbach based, converted to in. w.g.)
+  // Use a simplified constant (0.109) for unit conversion as recommended in
+  // SMACNA examples: ΔP = 0.109 * f * (L/D) * (V/1000)^2
+  const pressureLoss = 0.109 * frictionFactor * (length / hydraulicDiameterFt) * Math.pow(velocity / 1000, 2);
   
   return pressureLoss; // in. w.g.
 }

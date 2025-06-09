@@ -43,9 +43,9 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
       const results = calculateDuctSizing(inputs);
 
       expect(results.velocity).toBeGreaterThan(2500);
-      expect(results.warnings).toContain(
-        expect.stringContaining('Velocity exceeds recommended 2500 ft/min')
-      );
+      expect(
+        results.warnings.some(w => w.includes('exceeds SMACNA maximum of 2500 ft/min'))
+      ).toBe(true);
     });
 
     test('validates low velocity warnings', () => {
@@ -62,9 +62,9 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
       const results = calculateDuctSizing(inputs);
 
       expect(results.velocity).toBeLessThan(800);
-      expect(results.warnings).toContain(
-        expect.stringContaining('Velocity below 800 ft/min may cause stratification')
-      );
+      expect(
+        results.warnings.some(w => w.includes('below SMACNA minimum of 800 ft/min'))
+      ).toBe(true);
     });
   });
 

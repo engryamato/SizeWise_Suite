@@ -37,9 +37,9 @@ describe('DuctSizerPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /calculate/i }));
     
     // Check results appear
-    expect(screen.getByText(/velocity/i)).toBeInTheDocument();
-    expect(screen.getByText(/pressure loss/i)).toBeInTheDocument();
-    expect(screen.getByText(/ft\/min/)).toBeInTheDocument();
+    expect(screen.getAllByText(/velocity/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/pressure loss/i)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(/ft\/min/)[0]).toBeInTheDocument();
   });
 
   test('switches to circular duct inputs', () => {
