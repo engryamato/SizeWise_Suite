@@ -1,5 +1,6 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { testFunction } from '@/test-alias';
 
 // Lazy load components with proper default exports
 const Home = lazy(() => import('@/pages/Home'));
@@ -13,6 +14,10 @@ const LoadingFallback = () => (
 );
 
 function App() {
+  useEffect(() => {
+    console.log(testFunction());
+  }, []);
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
