@@ -20,27 +20,27 @@ interface ValidationInputs {
 export function validateSMACNA(inputs: ValidationInputs): SMACNAValidation {
   const warnings: string[] = [];
   const educationalNotes: string[] = [];
-  
+
   // Velocity validation per SMACNA Table 2-1
   const velocityValidation = validateVelocity(inputs.velocity, inputs.application);
   warnings.push(...velocityValidation.warnings);
   educationalNotes.push(...velocityValidation.educationalNotes);
-  
+
   // Pressure loss validation
   const pressureValidation = validatePressureLoss(inputs.pressureLoss);
   warnings.push(...pressureValidation.warnings);
   educationalNotes.push(...pressureValidation.educationalNotes);
-  
+
   // Gauge validation
   const gaugeValidation = validateGauge(inputs.gauge, inputs.pressureLoss);
   warnings.push(...gaugeValidation.warnings);
   educationalNotes.push(...gaugeValidation.educationalNotes);
-  
+
   // Joint spacing validation
   const jointValidation = validateJointSpacing(inputs.jointSpacing, inputs.velocity);
   warnings.push(...jointValidation.warnings);
   educationalNotes.push(...jointValidation.educationalNotes);
-  
+
   // Hanger spacing validation
   const hangerValidation = validateHangerSpacing(inputs.hangerSpacing, inputs.gauge);
   warnings.push(...hangerValidation.warnings);
@@ -53,7 +53,7 @@ export function validateSMACNA(inputs: ValidationInputs): SMACNAValidation {
     jointSpacingCompliant: jointValidation.compliant,
     hangerSpacingCompliant: hangerValidation.compliant,
     warnings: warnings.filter(w => w.length > 0),
-    educationalNotes: educationalNotes.filter(n => n.length > 0)
+    educationalNotes: educationalNotes.filter(n => n.length > 0),
   };
 }
 
@@ -69,21 +69,28 @@ function validateVelocity(velocity: number, application: string) {
   const velocityLimits = {
     supply: { min: 800, max: 2500, optimal: { min: 1200, max: 2000 } },
     return: { min: 600, max: 2000, optimal: { min: 800, max: 1500 } },
-    exhaust: { min: 1000, max: 3000, optimal: { min: 1500, max: 2500 } }
+    exhaust: { min: 1000, max: 3000, optimal: { min: 1500, max: 2500 } },
   };
 
-  const limits = velocityLimits[application as keyof typeof velocityLimits] || velocityLimits.supply;
+  const limits =
+    velocityLimits[application as keyof typeof velocityLimits] || velocityLimits.supply;
 
   if (velocity < limits.min) {
-    warnings.push(`Velocity ${velocity} ft/min is below SMACNA minimum of ${limits.min} ft/min for ${application} air`);
+    warnings.push(
+      `Velocity ${velocity} ft/min is below SMACNA minimum of ${limits.min} ft/min for ${application} air`
+    );
     educationalNotes.push('Low velocities may cause air stratification and poor mixing');
     compliant = false;
   } else if (velocity > limits.max) {
-    warnings.push(`Velocity ${velocity} ft/min exceeds SMACNA maximum of ${limits.max} ft/min for ${application} air`);
+    warnings.push(
+      `Velocity ${velocity} ft/min exceeds SMACNA maximum of ${limits.max} ft/min for ${application} air`
+    );
     educationalNotes.push('High velocities increase noise levels and pressure losses');
     compliant = false;
   } else if (velocity < limits.optimal.min || velocity > limits.optimal.max) {
-    educationalNotes.push(`Consider optimizing velocity to ${limits.optimal.min}-${limits.optimal.max} ft/min range for best performance`);
+    educationalNotes.push(
+      `Consider optimizing velocity to ${limits.optimal.min}-${limits.optimal.max} ft/min range for best performance`
+    );
   }
 
   return { compliant, warnings, educationalNotes };
@@ -101,8 +108,12 @@ function validatePressureLoss(pressureLoss: number) {
   const pressureLossLimit = 0.1; // in. w.g. per 100 ft
 
   if (pressureLoss > pressureLossLimit) {
-    warnings.push(`Pressure loss ${pressureLoss} in. w.g. exceeds recommended ${pressureLossLimit} in. w.g. per 100 ft`);
-    educationalNotes.push('High pressure losses increase fan energy consumption and operating costs');
+    warnings.push(
+      `Pressure loss ${pressureLoss} in. w.g. exceeds recommended ${pressureLossLimit} in. w.g. per 100 ft`
+    );
+    educationalNotes.push(
+      'High pressure losses increase fan energy consumption and operating costs'
+    );
     compliant = false;
   } else if (pressureLoss > pressureLossLimit * 0.8) {
     educationalNotes.push('Pressure loss is approaching maximum recommended values');
@@ -124,7 +135,7 @@ function validateGauge(gauge: string, pressureLoss: number) {
   let compliant = true;
 
   const gaugeNum = parseInt(gauge);
-  
+
   // SMACNA gauge requirements based on pressure class
   if (pressureLoss <= 1 && gaugeNum < 26) {
     educationalNotes.push('Lighter gauge material may be suitable for low-pressure applications');
@@ -139,7 +150,9 @@ function validateGauge(gauge: string, pressureLoss: number) {
     compliant = false;
   }
 
-  educationalNotes.push(`${gauge} gauge material selected based on ${pressureLoss} in. w.g. pressure loss`);
+  educationalNotes.push(
+    `${gauge} gauge material selected based on ${pressureLoss} in. w.g. pressure loss`
+  );
 
   return { compliant, warnings, educationalNotes };
 }
@@ -163,12 +176,18 @@ function validateJointSpacing(spacing: number, velocity: number) {
   }
 
   if (spacing > maxSpacing) {
-    warnings.push(`Joint spacing ${spacing} ft exceeds SMACNA maximum of ${maxSpacing} ft for ${velocity} ft/min velocity`);
-    educationalNotes.push('Closer joint spacing required for high-velocity applications to prevent duct separation');
+    warnings.push(
+      `Joint spacing ${spacing} ft exceeds SMACNA maximum of ${maxSpacing} ft for ${velocity} ft/min velocity`
+    );
+    educationalNotes.push(
+      'Closer joint spacing required for high-velocity applications to prevent duct separation'
+    );
     compliant = false;
   }
 
-  educationalNotes.push(`Joint spacing of ${spacing} ft recommended for ${velocity} ft/min velocity`);
+  educationalNotes.push(
+    `Joint spacing of ${spacing} ft recommended for ${velocity} ft/min velocity`
+  );
 
   return { compliant, warnings, educationalNotes };
 }
@@ -182,7 +201,7 @@ function validateHangerSpacing(spacing: number, gauge: string) {
   let compliant = true;
 
   const gaugeNum = parseInt(gauge);
-  
+
   // SMACNA hanger spacing requirements based on gauge
   let maxSpacing: number;
   if (gaugeNum >= 24) {
@@ -194,8 +213,12 @@ function validateHangerSpacing(spacing: number, gauge: string) {
   }
 
   if (spacing > maxSpacing) {
-    warnings.push(`Hanger spacing ${spacing} ft exceeds SMACNA maximum of ${maxSpacing} ft for ${gauge} gauge material`);
-    educationalNotes.push('Closer hanger spacing required for lighter gauge materials to prevent sagging');
+    warnings.push(
+      `Hanger spacing ${spacing} ft exceeds SMACNA maximum of ${maxSpacing} ft for ${gauge} gauge material`
+    );
+    educationalNotes.push(
+      'Closer hanger spacing required for lighter gauge materials to prevent sagging'
+    );
     compliant = false;
   }
 

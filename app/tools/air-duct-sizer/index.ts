@@ -18,7 +18,7 @@ export interface AirDuctSizerConfig {
 export interface DuctInputs {
   cfm: number;
   shape: 'rectangular' | 'circular';
-  width?: number;  // inches (for rectangular)
+  width?: number; // inches (for rectangular)
   height?: number; // inches (for rectangular)
   diameter?: number; // inches (for circular)
   length: number; // feet

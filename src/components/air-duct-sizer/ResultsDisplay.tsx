@@ -28,12 +28,15 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result, units })
 
   const getStatusClass = (status: string) => {
     switch (status) {
-      case 'good': return 'text-green-600';
-      case 'high': return 'text-yellow-600';
+      case 'good':
+        return 'text-green-600';
+      case 'high':
+        return 'text-yellow-600';
       case 'low':
       case 'critical':
         return 'text-red-600';
-      default: return '';
+      default:
+        return '';
     }
   };
 
@@ -75,7 +78,7 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result, units })
         <div className="mt-6">
           <h3 className="font-medium mb-2">Recommendations</h3>
           <div className="space-y-2">
-            {result.recommendations.map((rec) => (
+            {result.recommendations.map(rec => (
               <div key={`${rec.title}-${rec.description}`} className="p-3 bg-white rounded border">
                 <h4 className="font-medium">{rec.title}</h4>
                 <p className="text-sm text-gray-600">{rec.description}</p>
@@ -87,10 +90,18 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result, units })
       <div className="mt-6 text-sm text-gray-600">
         <h4 className="font-semibold mb-2">SMACNA Guidelines</h4>
         <ul className="list-disc pl-5 space-y-1">
-          <li key="velocity-guideline">Recommended velocity: 1,500-2,000 fpm (7.5-10 m/s) for main ducts</li>
-          <li key="max-velocity-guideline">Maximum velocity: 2,500 fpm (12.5 m/s) for low-pressure systems</li>
-          <li key="pressure-loss-guideline">Recommended pressure loss: 0.08 in wg/100ft (0.66 Pa/m) or less</li>
-          <li key="max-pressure-loss-guideline">Maximum pressure loss: 0.15 in wg/100ft (1.23 Pa/m)</li>
+          <li key="velocity-guideline">
+            Recommended velocity: 1,500-2,000 fpm (7.5-10 m/s) for main ducts
+          </li>
+          <li key="max-velocity-guideline">
+            Maximum velocity: 2,500 fpm (12.5 m/s) for low-pressure systems
+          </li>
+          <li key="pressure-loss-guideline">
+            Recommended pressure loss: 0.08 in wg/100ft (0.66 Pa/m) or less
+          </li>
+          <li key="max-pressure-loss-guideline">
+            Maximum pressure loss: 0.15 in wg/100ft (1.23 Pa/m)
+          </li>
         </ul>
       </div>
     </div>

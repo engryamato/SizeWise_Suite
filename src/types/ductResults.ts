@@ -7,37 +7,37 @@ export interface DuctResults {
   ductId: string;
   ductName: string;
   shape: DuctShape;
-  
+
   // Dimensions
   dimensions: {
-    width?: number;  // inches or mm
+    width?: number; // inches or mm
     height?: number; // inches or mm
     diameter?: number; // inches or mm
   };
-  
+
   // Airflow and velocity
   airflow: number; // CFM or L/s
   velocity: number; // FPM or m/s
   maxVelocity: number; // FPM or m/s
-  
+
   // Pressure
   pressureDrop: number; // in. WG or Pa
   pressureClass: number; // in. WG or Pa
-  
+
   // Material and construction
   materialGauge: number; // gauge number
   minRequiredGauge: number; // gauge number
   transverseJoints: string[];
   seamTypes: string[];
-  
+
   // Support
   hangerSpacing: number; // ft or m
   maxHangerSpacing: number; // ft or m
-  
+
   // Metadata
   timestamp: Date;
   notes?: string[];
-  
+
   // Units
   units: {
     length: 'in' | 'mm';
@@ -62,37 +62,37 @@ export interface DuctResultsProps {
   ductId: string;
   ductName: string;
   shape: DuctShape;
-  
+
   // Dimensions
   dimensions: {
-    width?: number;  // inches or mm
+    width?: number; // inches or mm
     height?: number; // inches or mm
     diameter?: number; // inches or mm
   };
-  
+
   // Airflow and velocity
   airflow: number; // CFM or L/s
   velocity: number; // FPM or m/s
   maxVelocity: number; // FPM or m/s
-  
+
   // Pressure
   pressureDrop: number; // in. WG or Pa
   pressureClass: number; // in. WG or Pa
-  
+
   // Material and construction
   materialGauge: number; // gauge number
   minRequiredGauge: number; // gauge number
   transverseJoints: string[];
   seamTypes: string[];
-  
+
   // Support
   hangerSpacing: number; // ft or m
   maxHangerSpacing: number; // ft or m
-  
+
   // Metadata
   timestamp: Date;
   notes?: string[];
-  
+
   // Units
   units: {
     length: 'in' | 'mm';

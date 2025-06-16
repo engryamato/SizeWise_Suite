@@ -28,7 +28,8 @@ const Home = () => {
   const tools: ToolCardProps[] = [
     {
       title: 'Air Duct Sizer',
-      description: 'Calculate duct dimensions, velocity, and pressure loss based on SMACNA standards.',
+      description:
+        'Calculate duct dimensions, velocity, and pressure loss based on SMACNA standards.',
       path: '/air-duct-sizer',
       phase: 'Phase 0.1',
       icon: '🌬️',
@@ -41,14 +42,15 @@ const Home = () => {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4 text-gray-900">Welcome to SizeWise Suite</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Your professional HVAC engineering toolkit for accurate duct sizing, pressure loss analysis, and system design.
+          Your professional HVAC engineering toolkit for accurate duct sizing, pressure loss
+          analysis, and system design.
         </p>
       </div>
 
       <div className="mb-12">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">Available Tools</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map((tool) => (
+          {tools.map(tool => (
             <ToolCard key={tool.path} {...tool} />
           ))}
         </div>
@@ -57,9 +59,12 @@ const Home = () => {
       <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
         <h2 className="text-xl font-semibold mb-3 text-blue-800">Getting Started</h2>
         <p className="text-blue-700 mb-4">
-          Select a tool from above to begin your calculations. Each tool is designed to help you with specific HVAC engineering tasks.
+          Select a tool from above to begin your calculations. Each tool is designed to help you
+          with specific HVAC engineering tasks.
         </p>
-        <p className="text-sm text-blue-600">Need help? Check out our documentation or contact support.</p>
+        <p className="text-sm text-blue-600">
+          Need help? Check out our documentation or contact support.
+        </p>
       </div>
     </div>
   );

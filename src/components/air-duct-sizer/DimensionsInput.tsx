@@ -21,8 +21,6 @@ interface DimensionsInputProps {
   diameterId: string;
 }
 
-
-
 export const DimensionsInput: React.FC<DimensionsInputProps> = ({
   shape,
   width,
@@ -43,29 +41,38 @@ export const DimensionsInput: React.FC<DimensionsInputProps> = ({
     return typeof value === 'string' ? value : value.toString();
   };
 
-  const handleWidthChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onWidthChange(value);
-    if (errors.width) {
-      onErrorClear('width');
-    }
-  }, [errors.width, onErrorClear, onWidthChange]);
+  const handleWidthChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onWidthChange(value);
+      if (errors.width) {
+        onErrorClear('width');
+      }
+    },
+    [errors.width, onErrorClear, onWidthChange]
+  );
 
-  const handleHeightChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onHeightChange(value);
-    if (errors.height) {
-      onErrorClear('height');
-    }
-  }, [errors.height, onErrorClear, onHeightChange]);
+  const handleHeightChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onHeightChange(value);
+      if (errors.height) {
+        onErrorClear('height');
+      }
+    },
+    [errors.height, onErrorClear, onHeightChange]
+  );
 
-  const handleDiameterChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onDiameterChange(value);
-    if (errors.diameter) {
-      onErrorClear('diameter');
-    }
-  }, [errors.diameter, onErrorClear, onDiameterChange]);
+  const handleDiameterChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onDiameterChange(value);
+      if (errors.diameter) {
+        onErrorClear('diameter');
+      }
+    },
+    [errors.diameter, onErrorClear, onDiameterChange]
+  );
 
   // Ensure we're working with string values for inputs
   const widthValue = getStringValue(width);
@@ -92,7 +99,7 @@ export const DimensionsInput: React.FC<DimensionsInputProps> = ({
             onChange={handleWidthChange}
             min="0.1"
             step="0.1"
-            aria-invalid={hasWidthError ? "true" : "false"}
+            aria-invalid={hasWidthError ? 'true' : 'false'}
             aria-describedby={hasWidthError ? `${widthId}-error` : undefined}
           />
           {hasWidthError && (
@@ -114,7 +121,7 @@ export const DimensionsInput: React.FC<DimensionsInputProps> = ({
             onChange={handleHeightChange}
             min="0.1"
             step="0.1"
-            aria-invalid={hasHeightError ? "true" : "false"}
+            aria-invalid={hasHeightError ? 'true' : 'false'}
             aria-describedby={hasHeightError ? `${heightId}-error` : undefined}
           />
           {hasHeightError && (
@@ -142,7 +149,7 @@ export const DimensionsInput: React.FC<DimensionsInputProps> = ({
         onChange={handleDiameterChange}
         min="0.1"
         step="0.1"
-        aria-invalid={hasDiameterError ? "true" : "false"}
+        aria-invalid={hasDiameterError ? 'true' : 'false'}
         aria-describedby={hasDiameterError ? `${diameterId}-error` : undefined}
       />
       {hasDiameterError && (

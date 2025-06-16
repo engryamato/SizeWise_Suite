@@ -1,5 +1,10 @@
 import React from 'react';
-import { StatusIndicator, StatusType, getVelocityStatus, getPressureLossStatus } from './StatusIndicator';
+import {
+  StatusIndicator,
+  StatusType,
+  getVelocityStatus,
+  getPressureLossStatus,
+} from './StatusIndicator';
 
 interface ResultRow {
   parameter: string;
@@ -36,17 +41,17 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
 
   const hasNonCompliant = statusCounts.noncompliant > 0;
   const hasWarnings = statusCounts.warning > 0;
-  const overallStatus: StatusType = hasNonCompliant 
-    ? 'noncompliant' 
-    : hasWarnings 
-    ? 'warning' 
-    : 'compliant';
+  const overallStatus: StatusType = hasNonCompliant
+    ? 'noncompliant'
+    : hasWarnings
+      ? 'warning'
+      : 'compliant';
 
   const summaryMessage = hasNonCompliant
     ? 'Parameters require attention for SMACNA compliance'
     : hasWarnings
-    ? 'All parameters within limits, some approaching thresholds'
-    : 'All parameters comply with SMACNA standards';
+      ? 'All parameters within limits, some approaching thresholds'
+      : 'All parameters comply with SMACNA standards';
 
   return (
     <div className={`card ${className}`}>
@@ -54,24 +59,18 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
       <div className="border-b border-gray-200 dark:border-gray-700 p-6 pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              {title}
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
             {subtitle && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                {subtitle}
-              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{subtitle}</p>
             )}
           </div>
           <StatusIndicator status={overallStatus} showIcon showText />
         </div>
-        
+
         {/* Snap Summary */}
         {snapSummary && (
           <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <p className="text-sm font-mono text-gray-700 dark:text-gray-300">
-              {snapSummary}
-            </p>
+            <p className="text-sm font-mono text-gray-700 dark:text-gray-300">{snapSummary}</p>
           </div>
         )}
       </div>
@@ -118,15 +117,11 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
                     {row.parameter}
                   </div>
                   {row.reference && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      {row.reference}
-                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">{row.reference}</div>
                   )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900 dark:text-white font-mono">
-                    {row.value}
-                  </div>
+                  <div className="text-sm text-gray-900 dark:text-white font-mono">{row.value}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-500 dark:text-gray-400 font-mono">
@@ -134,9 +129,9 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
-                  <StatusIndicator 
-                    status={row.status} 
-                    showIcon 
+                  <StatusIndicator
+                    status={row.status}
+                    showIcon
                     size="sm"
                     className={row.tooltip ? 'cursor-help' : ''}
                     title={row.tooltip}
@@ -151,9 +146,7 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
       {/* Summary Footer */}
       <div className="border-t border-gray-200 dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-800">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {summaryMessage}
-          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{summaryMessage}</p>
           <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
             {statusCounts.compliant > 0 && (
               <span className="flex items-center">
@@ -224,7 +217,7 @@ export function createDuctSizerResults(
 ): ResultRow[] {
   const velocityStatus = getVelocityStatus(results.velocity, inputs.application);
   const pressureStatus = getPressureLossStatus(results.pressureLoss);
-  
+
   // Determine gauge status based on pressure
   const gaugeNum = parseInt(results.gauge);
   let gaugeStatus: StatusType = 'compliant';
@@ -232,9 +225,10 @@ export function createDuctSizerResults(
   else if (results.pressureLoss > 2 && gaugeNum > 22) gaugeStatus = 'noncompliant';
   else if (results.pressureLoss > 1 && gaugeNum > 24) gaugeStatus = 'warning';
 
-  const shapeDesc = inputs.shape === 'rectangular' 
-    ? `${inputs.width}" × ${inputs.height}"` 
-    : `${inputs.diameter}"⌀`;
+  const shapeDesc =
+    inputs.shape === 'rectangular'
+      ? `${inputs.width}" × ${inputs.height}"`
+      : `${inputs.diameter}"⌀`;
 
   return [
     {

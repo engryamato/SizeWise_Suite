@@ -18,14 +18,17 @@ export const FlowRateInput: React.FC<FlowRateInputProps> = ({
   onErrorClear,
   id,
 }) => {
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onFlowRateChange(value);
-    
-    if (error) {
-      onErrorClear();
-    }
-  }, [error, onErrorClear, onFlowRateChange]);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onFlowRateChange(value);
+
+      if (error) {
+        onErrorClear();
+      }
+    },
+    [error, onErrorClear, onFlowRateChange]
+  );
 
   // Ensure we're working with string values for the input
   const flowRateValue = typeof flowRate === 'number' ? flowRate.toString() : flowRate;
@@ -46,7 +49,7 @@ export const FlowRateInput: React.FC<FlowRateInputProps> = ({
         onChange={handleChange}
         min="0.1"
         step="0.1"
-        aria-invalid={hasError ? "true" : "false"}
+        aria-invalid={hasError ? 'true' : 'false'}
         aria-describedby={errorId}
       />
       {hasError && (

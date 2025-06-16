@@ -1,8 +1,4 @@
-import { 
-  RoundGaugeTable, 
-  RectangularGaugeTable, 
-  DuctShape
-} from '@/types/smacna';
+import { RoundGaugeTable, RectangularGaugeTable, DuctShape } from '@/types/smacna';
 import roundGaugeData from '@/data/smacna/round-gauge-selection.json';
 import rectangularGaugeData from '@/data/smacna/rectangular-gauge-selection.json';
 
@@ -29,7 +25,7 @@ export function findDuctGauge(
   pressureClassInWg: number = 2
 ): GaugeResult {
   const table = shape === 'round' ? roundGaugeTable : rectangularGaugeTable;
-  
+
   // Find the matching pressure class
   const pressureClass = table.pressure_classes.find(
     pc => pc.pressure_class_in_wg === pressureClassInWg
@@ -41,19 +37,18 @@ export function findDuctGauge(
   }
 
   // For round ducts, use diameter. For rectangular, use the larger dimension
-  const size = 'diameter' in dimensions 
-    ? dimensions.diameter 
-    : Math.max(dimensions.width, dimensions.height);
+  const size =
+    'diameter' in dimensions ? dimensions.diameter : Math.max(dimensions.width, dimensions.height);
 
   // Find the matching gauge entry
-  const gaugeEntry = pressureClass.entries.find(entry => 
-    size >= entry.min_size_in && size <= entry.max_size_in
+  const gaugeEntry = pressureClass.entries.find(
+    entry => size >= entry.min_size_in && size <= entry.max_size_in
   );
 
   return {
     gauge: gaugeEntry ? (shape === 'rectangular' ? gaugeEntry.min_gauge : gaugeEntry.gauge) : null,
     table: table.table,
-    notes: table.notes
+    notes: table.notes,
   };
 }
 

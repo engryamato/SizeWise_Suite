@@ -18,14 +18,17 @@ export const LengthInput: React.FC<LengthInputProps> = ({
   onErrorClear,
   id,
 }) => {
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    onLengthChange(value);
-    
-    if (error) {
-      onErrorClear();
-    }
-  }, [error, onErrorClear, onLengthChange]);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onLengthChange(value);
+
+      if (error) {
+        onErrorClear();
+      }
+    },
+    [error, onErrorClear, onLengthChange]
+  );
 
   // Ensure we're working with string values for the input
   const lengthValue = typeof length === 'number' ? length.toString() : length;
@@ -48,7 +51,7 @@ export const LengthInput: React.FC<LengthInputProps> = ({
         onChange={handleChange}
         min="0.1"
         step="0.1"
-        aria-invalid={hasError ? "true" : "false"}
+        aria-invalid={hasError ? 'true' : 'false'}
         aria-describedby={errorId}
       />
       {hasError && (

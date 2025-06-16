@@ -9,17 +9,16 @@ import { DuctInputs, DuctResults } from './index';
  * Generate snap summary string for quick reference
  */
 export function generateSnapSummary(inputs: DuctInputs, results: DuctResults): string {
-  const shapeDesc = inputs.shape === 'rectangular' 
-    ? `${inputs.width}"×${inputs.height}"` 
-    : `${inputs.diameter}"⌀`;
-    
+  const shapeDesc =
+    inputs.shape === 'rectangular' ? `${inputs.width}"×${inputs.height}"` : `${inputs.diameter}"⌀`;
+
   const summary = [
     `${inputs.cfm} CFM`,
     shapeDesc,
     `${results.velocity} ft/min`,
     `${results.pressureLoss}" w.g.`,
     `${results.gauge} ga`,
-    `${inputs.length}' long`
+    `${inputs.length}' long`,
   ].join(' • ');
 
   return summary;
@@ -28,7 +27,10 @@ export function generateSnapSummary(inputs: DuctInputs, results: DuctResults): s
 /**
  * Format velocity with appropriate units and color coding
  */
-export function formatVelocity(velocity: number, application: string = 'supply'): {
+export function formatVelocity(
+  velocity: number,
+  application: string = 'supply'
+): {
   value: string;
   unit: string;
   status: 'optimal' | 'acceptable' | 'warning' | 'error';
@@ -37,11 +39,12 @@ export function formatVelocity(velocity: number, application: string = 'supply')
   const velocityLimits = {
     supply: { min: 800, max: 2500, optimal: { min: 1200, max: 2000 } },
     return: { min: 600, max: 2000, optimal: { min: 800, max: 1500 } },
-    exhaust: { min: 1000, max: 3000, optimal: { min: 1500, max: 2500 } }
+    exhaust: { min: 1000, max: 3000, optimal: { min: 1500, max: 2500 } },
   };
 
-  const limits = velocityLimits[application as keyof typeof velocityLimits] || velocityLimits.supply;
-  
+  const limits =
+    velocityLimits[application as keyof typeof velocityLimits] || velocityLimits.supply;
+
   let status: 'optimal' | 'acceptable' | 'warning' | 'error';
   let color: string;
 
@@ -60,7 +63,7 @@ export function formatVelocity(velocity: number, application: string = 'supply')
     value: velocity.toLocaleString(),
     unit: 'ft/min',
     status,
-    color
+    color,
   };
 }
 
@@ -94,7 +97,7 @@ export function formatPressureLoss(pressureLoss: number): {
     value: pressureLoss.toFixed(3),
     unit: 'in. w.g.',
     status,
-    color
+    color,
   };
 }
 
@@ -108,22 +111,22 @@ export function getMaterialProperties(material: string) {
       roughness: 0.0003, // feet
       density: 490, // lb/ft³
       cost: 1.0, // relative cost factor
-      corrosionResistance: 'good'
+      corrosionResistance: 'good',
     },
     stainless: {
       name: 'Stainless Steel',
       roughness: 0.00015,
       density: 500,
       cost: 3.5,
-      corrosionResistance: 'excellent'
+      corrosionResistance: 'excellent',
     },
     aluminum: {
       name: 'Aluminum',
       roughness: 0.00015,
       density: 170,
       cost: 2.0,
-      corrosionResistance: 'excellent'
-    }
+      corrosionResistance: 'excellent',
+    },
   };
 
   return materials[material as keyof typeof materials] || materials.galvanized;
@@ -134,7 +137,7 @@ export function getMaterialProperties(material: string) {
  */
 export function calculateEquivalentDiameter(width: number, height: number): number {
   // Equivalent diameter formula: De = 1.3 * (a*b)^0.625 / (a+b)^0.25
-  return 1.3 * Math.pow(width * height, 0.625) / Math.pow(width + height, 0.25);
+  return (1.3 * Math.pow(width * height, 0.625)) / Math.pow(width + height, 0.25);
 }
 
 /**
@@ -151,26 +154,26 @@ export function convertDuctShape(
     if (!dimensions.width || !dimensions.height) {
       throw new Error('Width and height required for rectangular to circular conversion');
     }
-    
+
     const area = dimensions.width * dimensions.height;
-    const diameter = Math.sqrt(4 * area / Math.PI);
-    
+    const diameter = Math.sqrt((4 * area) / Math.PI);
+
     return { diameter: Math.round(diameter * 100) / 100 };
   } else if (fromShape === 'circular' && toShape === 'rectangular') {
     if (!dimensions.diameter) {
       throw new Error('Diameter required for circular to rectangular conversion');
     }
-    
-    const area = Math.PI * Math.pow(dimensions.diameter, 2) / 4;
-    
+
+    const area = (Math.PI * Math.pow(dimensions.diameter, 2)) / 4;
+
     // Use common aspect ratios for rectangular ducts
     const aspectRatio = 1.5; // width:height ratio
     const height = Math.sqrt(area / aspectRatio);
     const width = area / height;
-    
+
     return {
       width: Math.round(width * 100) / 100,
-      height: Math.round(height * 100) / 100
+      height: Math.round(height * 100) / 100,
     };
   }
 
@@ -185,29 +188,43 @@ export function generateEducationalContent(inputs: DuctInputs, results: DuctResu
 
   // Velocity education
   if (results.velocity > 2000) {
-    content.push('High velocity systems provide compact ductwork but may increase noise levels. Consider acoustic treatment.');
+    content.push(
+      'High velocity systems provide compact ductwork but may increase noise levels. Consider acoustic treatment.'
+    );
   } else if (results.velocity < 1000) {
-    content.push('Low velocity systems are quieter but require larger ductwork. Ensure adequate air mixing.');
+    content.push(
+      'Low velocity systems are quieter but require larger ductwork. Ensure adequate air mixing.'
+    );
   }
 
   // Pressure loss education
   if (results.pressureLoss > 0.1) {
-    content.push('High pressure losses increase fan energy consumption. Consider larger duct sizes to reduce operating costs.');
+    content.push(
+      'High pressure losses increase fan energy consumption. Consider larger duct sizes to reduce operating costs.'
+    );
   }
 
   // Material education
   const material = inputs.material || 'galvanized';
   if (material === 'stainless') {
-    content.push('Stainless steel provides excellent corrosion resistance for harsh environments but increases material costs.');
+    content.push(
+      'Stainless steel provides excellent corrosion resistance for harsh environments but increases material costs.'
+    );
   } else if (material === 'aluminum') {
-    content.push('Aluminum offers good corrosion resistance and lighter weight, ideal for rooftop installations.');
+    content.push(
+      'Aluminum offers good corrosion resistance and lighter weight, ideal for rooftop installations.'
+    );
   }
 
   // Shape education
   if (inputs.shape === 'circular') {
-    content.push('Circular ducts provide the lowest pressure loss per unit area but may be more expensive to fabricate.');
+    content.push(
+      'Circular ducts provide the lowest pressure loss per unit area but may be more expensive to fabricate.'
+    );
   } else {
-    content.push('Rectangular ducts are easier to fabricate and install in tight spaces but have higher pressure losses.');
+    content.push(
+      'Rectangular ducts are easier to fabricate and install in tight spaces but have higher pressure losses.'
+    );
   }
 
   return content;
@@ -257,13 +274,15 @@ export function validateInputRanges(inputs: Partial<DuctInputs>): {
     if (inputs.length <= 0) {
       errors.push('Length must be greater than 0');
     } else if (inputs.length > 1000) {
-      suggestions.push('Very long duct runs may require intermediate supports and expansion joints');
+      suggestions.push(
+        'Very long duct runs may require intermediate supports and expansion joints'
+      );
     }
   }
 
   return {
     valid: errors.length === 0,
     errors,
-    suggestions
+    suggestions,
   };
 }

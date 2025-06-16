@@ -131,4 +131,9 @@ export interface VelocityTable {
   notes: string[];
 }
 
-export type AnySmacnaTable = AnyGaugeTable | AnyJointTable | AnySeamTable | AnyHangerTable | VelocityTable;
+export type AnySmacnaTable =
+  | AnyGaugeTable
+  | AnyJointTable
+  | AnySeamTable
+  | AnyHangerTable
+  | VelocityTable;

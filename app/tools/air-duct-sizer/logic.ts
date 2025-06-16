@@ -23,23 +23,28 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
 
   // Calculate cross-sectional area and perimeter
   const { area, perimeter } = calculateGeometry(inputs);
-  
+
   // Calculate hydraulic diameter
   const hydraulicDiameter = calculateHydraulicDiameter(area, perimeter);
-  
+
   // Calculate velocity
   const velocity = calculateVelocity(inputs.cfm, area);
-  
+
   // Calculate pressure loss using SMACNA methods
-  const pressureLoss = calculatePressureLoss(velocity, hydraulicDiameter, inputs.length, inputs.material);
-  
+  const pressureLoss = calculatePressureLoss(
+    velocity,
+    hydraulicDiameter,
+    inputs.length,
+    inputs.material
+  );
+
   // Determine material gauge based on pressure and application
   const gauge = determineGauge(pressureLoss, inputs.application);
-  
+
   // Calculate joint and hanger spacing per SMACNA
   const jointSpacing = calculateJointSpacing(velocity, inputs.shape);
   const hangerSpacing = calculateHangerSpacing(inputs.shape, gauge);
-  
+
   // SMACNA validation
   const validation = validateSMACNA({
     velocity,
@@ -47,7 +52,7 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
     gauge,
     jointSpacing,
     hangerSpacing,
-    application: inputs.application || 'supply'
+    application: inputs.application || 'supply',
   });
 
   const results: DuctResults = {
@@ -70,8 +75,8 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
       area: Math.round(area * 1000) / 1000,
       perimeter: Math.round(perimeter * 100) / 100,
       warnings: validation.warnings,
-      snapSummary: ''
-    })
+      snapSummary: '',
+    }),
   };
 
   return results;
@@ -85,19 +90,19 @@ function calculateGeometry(inputs: DuctInputs): { area: number; perimeter: numbe
     if (!inputs.width || !inputs.height) {
       throw new Error('Width and height required for rectangular ducts');
     }
-    
+
     const area = (inputs.width * inputs.height) / 144; // Convert sq inches to sq feet
-    const perimeter = 2 * (inputs.width + inputs.height) / 12; // Convert inches to feet
-    
+    const perimeter = (2 * (inputs.width + inputs.height)) / 12; // Convert inches to feet
+
     return { area, perimeter };
   } else {
     if (!inputs.diameter) {
       throw new Error('Diameter required for circular ducts');
     }
-    
+
     const area = (Math.PI * Math.pow(inputs.diameter, 2)) / (4 * 144); // Convert sq inches to sq feet
     const perimeter = (Math.PI * inputs.diameter) / 12; // Convert inches to feet
-    
+
     return { area, perimeter };
   }
 }
@@ -107,7 +112,7 @@ function calculateGeometry(inputs: DuctInputs): { area: number; perimeter: numbe
  * Dh = 4 * Area / Perimeter
  */
 function calculateHydraulicDiameter(area: number, perimeter: number): number {
-  return (4 * area) / perimeter * 12; // Convert back to inches
+  return ((4 * area) / perimeter) * 12; // Convert back to inches
 }
 
 /**
@@ -123,27 +128,28 @@ function calculateVelocity(cfm: number, area: number): number {
  * Enhanced with material roughness factors
  */
 function calculatePressureLoss(
-  velocity: number, 
-  hydraulicDiameter: number, 
-  length: number, 
+  velocity: number,
+  hydraulicDiameter: number,
+  length: number,
   material: string = 'galvanized'
 ): number {
   // Material roughness factors (SMACNA Table 2-1)
   const roughnessFactors = {
     galvanized: 0.0003, // feet
     stainless: 0.00015,
-    aluminum: 0.00015
+    aluminum: 0.00015,
   };
-  
-  const roughness = roughnessFactors[material as keyof typeof roughnessFactors] || roughnessFactors.galvanized;
-  
+
+  const roughness =
+    roughnessFactors[material as keyof typeof roughnessFactors] || roughnessFactors.galvanized;
+
   // Reynolds number calculation
   const kinematicViscosity = 1.6e-4; // ft²/s for air at standard conditions
   const velocityFps = velocity / 60; // Convert ft/min to ft/s
   const hydraulicDiameterFt = hydraulicDiameter / 12; // Convert inches to feet
-  
+
   const reynolds = (velocityFps * hydraulicDiameterFt) / kinematicViscosity;
-  
+
   // Friction factor calculation (Colebrook-White equation approximation)
   let frictionFactor: number;
   if (reynolds < 2300) {
@@ -154,12 +160,13 @@ function calculatePressureLoss(
     const relativeRoughness = roughness / hydraulicDiameterFt;
     frictionFactor = 0.02 * (1 + (relativeRoughness * 1000 + 100000 / reynolds) ** 0.333);
   }
-  
+
   // Pressure loss calculation (Darcy-Weisbach based, converted to in. w.g.)
   // Use a simplified constant (0.109) for unit conversion as recommended in
   // SMACNA examples: ΔP = 0.109 * f * (L/D) * (V/1000)^2
-  const pressureLoss = 0.109 * frictionFactor * (length / hydraulicDiameterFt) * Math.pow(velocity / 1000, 2);
-  
+  const pressureLoss =
+    0.109 * frictionFactor * (length / hydraulicDiameterFt) * Math.pow(velocity / 1000, 2);
+
   return pressureLoss; // in. w.g.
 }
 
@@ -201,7 +208,7 @@ function calculateJointSpacing(velocity: number, shape: string): number {
  */
 function calculateHangerSpacing(shape: string, gauge: string): number {
   const gaugeNum = parseInt(gauge);
-  
+
   if (shape === 'rectangular') {
     if (gaugeNum >= 24) return 8; // feet
     if (gaugeNum >= 20) return 10;
