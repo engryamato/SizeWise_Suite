@@ -231,8 +231,6 @@ const AirDuctSizerUI: React.FC = () => {
     </div>
   );
 
-
-
   // Render function
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -452,7 +450,8 @@ const AirDuctSizerUI: React.FC = () => {
                       <div className="bg-white p-4 rounded-lg shadow">
                         <h3 className="text-sm font-medium text-gray-500">Duct Gauge</h3>
                         <p className="text-2xl font-semibold text-gray-900">
-                          {ductResults?.find((r) => 'parameter' in r && r.parameter === 'Gauge')?.value ?? 'N/A'}{' '}
+                          {ductResults?.find(r => 'parameter' in r && r.parameter === 'Gauge')
+                            ?.value ?? 'N/A'}{' '}
                           <span className="text-sm text-gray-500 ml-1">GA</span>
                         </p>
                       </div>
