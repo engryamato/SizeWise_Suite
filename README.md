@@ -106,14 +106,14 @@ See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
    cd SizeWise_Suite
    ```
 
-1. Install dependencies:
+2. Install dependencies:
 
    ```bash
    nvm use
    npm install
    ```
 
-1. Start the development server:
+3. Start the development server:
 
    ```bash
    npm run dev
@@ -121,12 +121,26 @@ See `/app/docs/architecture/` for diagrams and `/app/docs/` for full docs.
 
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-1. For production build:
+4. For production build:
 
    ```bash
    npm run build
    npm run preview
    ```
+
+### ⚠️ Current Development Status
+
+**Pipeline Status (Last Updated: 2025-06-16)**
+
+| Component | Status | Action Required |
+|-----------|--------|-----------------|
+| **Tests** | ✅ **PASSING** | None - All 31 tests pass |
+| **Dependencies** | ✅ **RESOLVED** | None - All packages installed |
+| **Linting** | ⚠️ **7 issues** | See [Development Issues](#development-issues) |
+| **Build** | ❌ **TypeScript errors** | **PRIORITY: Fix type errors** |
+| **CI/CD** | ✅ **CONFIGURED** | Ready for use once build fixes complete |
+
+**Before starting development, please see [Development Issues](#development-issues) section below.**
 
 ---
 
@@ -155,14 +169,15 @@ npm test -- --coverage
 ## 📋 Available Scripts
 
 - `npm run dev` — Start development server
-- `npm run build` — Build for production
+- `npm run build` — Build for production ⚠️ *Currently failing - see [Development Issues](#development-issues)*
 - `npm run preview` — Preview production build
-- `npm test` — Run tests
-- `npm run lint` — Run ESLint
-- `npm run storybook` — Start Storybook (coming soon)
+- `npm test` — Run tests ✅ *All tests passing*
+- `npm run lint` — Run ESLint ⚠️ *7 issues remaining*
 - `npm run lint:fix` — Auto-fix lint issues
 - `npm run format` — Format code with Prettier
+- `npm run type-check` — TypeScript type checking ❌ *Currently failing*
 - `npm run test:coverage` — Run tests with coverage report
+- `npm run storybook` — Start Storybook (coming soon)
 
 ---
 
@@ -236,34 +251,91 @@ See the [Contributing Guide](./CONTRIBUTING.md) for full details.
 - Alice – Frontend Lead
 - Sophia – Engineering/Logic Consultant
 
+## 🚨 Development Issues
+
+**IMPORTANT: Please address these issues before starting development work.**
+
+### Priority 1: TypeScript Build Errors ❌
+
+The build currently fails with ~15 TypeScript errors. **Fix these first:**
+
+```bash
+# Check current TypeScript errors
+npm run type-check
+
+# Common errors to fix:
+# 1. src/hooks/useDuctResults.ts - null vs undefined type mismatches
+# 2. src/components/ui/SMACNAResultsTable.tsx - missing 'title' prop
+# 3. src/tools/air-duct-sizer/ui.tsx - ResultItem type inconsistencies
+# 4. src/utils/smacnaUtils.ts - missing 'gauge' property
+```
+
+**Action Required:**
+- Fix null/undefined type mismatches in hooks
+- Add missing component prop types
+- Align ResultItem type usage across components
+- Update SMACNA utility type definitions
+
+### Priority 2: Linting Issues ⚠️
+
+7 linting issues remain (2 errors, 5 warnings):
+
+```bash
+# Check current linting issues
+npm run lint
+
+# Auto-fix what's possible
+npm run lint:fix
+```
+
+**Remaining Issues:**
+- Unused `application` parameter in SMACNAResultsTable.tsx
+- React refresh warnings for component exports
+- One remaining `any` type in events.ts
+
+### Priority 3: Pipeline Verification ✅
+
+Once the above are fixed, verify the full pipeline:
+
+```bash
+# Full pipeline check
+npm run lint && npm run type-check && npm test && npm run build
+```
+
 ## ❓ Troubleshooting
 
-Common issues and solutions:
+### Current Known Issues
+
+1. **Build Failures (TypeScript)**
+   - **Issue**: `npm run build` fails with type errors
+   - **Status**: ❌ **BLOCKING** - Must fix before development
+   - **Solution**: See [Development Issues](#development-issues) above
+
+2. **Linting Warnings**
+   - **Issue**: ESLint reports 7 issues
+   - **Status**: ⚠️ **Non-blocking** but should be addressed
+   - **Solution**: Run `npm run lint:fix` and manually fix remaining
+
+### General Troubleshooting
 
 1. **Node.js Version Mismatch**
    - **Issue**: Build errors related to Node.js version
    - **Solution**: Ensure you're using Node.js 18+
 
-1. **Dependency Installation Issues**
+2. **Dependency Installation Issues**
    - **Issue**: Errors during `npm install`
    - **Solution**:
      1. Delete `node_modules` and `package-lock.json`
-     1. Run `npm cache clean --force`
-     1. Run `npm install`
+     2. Run `npm cache clean --force`
+     3. Run `npm install`
 
-1. **Build Errors**
-   - **Issue**: Build fails with TypeScript errors
-   - **Solution**:
-     1. Run `npm run type-check` to identify issues
-     1. Ensure all TypeScript types are properly defined
-     1. Check for any missing type definitions
+3. **Jest Configuration Warnings**
+   - **Issue**: ✅ **RESOLVED** - Jest moduleNameMapping fixed
+   - **Status**: No action needed
 
-1. **Test Failures**
-   - **Issue**: Tests are failing
-   - **Solution**:
-     1. Run `npm test -- --watch` to run tests in watch mode
-     1. Check test output for specific failures
-     1. Update tests to match current implementation
+4. **Missing ESLint Plugin**
+   - **Issue**: ✅ **RESOLVED** - eslint-plugin-react installed
+   - **Status**: No action needed
 
 For additional help, please [open an issue](https://github.com/engryamato/SizeWise_Suite/issues).
 

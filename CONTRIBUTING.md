@@ -19,18 +19,37 @@ This project follows a professional code of conduct:
 - Prioritize accuracy and safety in engineering calculations
 - Maintain professional standards in all communications
 
+## 🚨 IMPORTANT: Read This First
+
+**Before contributing, please read [DEVELOPMENT.md](./DEVELOPMENT.md) for current pipeline status and critical issues that need to be addressed.**
+
+### Current Development Status
+
+⚠️ **CRITICAL ISSUES BLOCKING DEVELOPMENT:**
+- TypeScript build errors (~15 errors) - **MUST FIX FIRST**
+- Linting issues (7 remaining) - Should be addressed
+- Build pipeline failing - Blocked by TypeScript errors
+
+**DO NOT START NEW FEATURES** until the TypeScript errors in [DEVELOPMENT.md](./DEVELOPMENT.md) are resolved.
+
 ## Getting Started
 
 1. **Fork the repository** and clone your fork
 2. **Install dependencies**: `npm install`
-3. **Create a branch** for your feature: `git checkout -b feature/your-feature-name`
-4. **Read the documentation** in `/app/docs/`
+3. **Check pipeline status** ⚠️ **REQUIRED** - see [DEVELOPMENT.md](./DEVELOPMENT.md)
+4. **Create a branch** for your feature: `git checkout -b feature/your-feature-name`
+5. **Read the documentation** in `/app/docs/`
 
 ### Development Setup
 ```bash
 git clone https://github.com/your-username/SizeWise_Suite.git
 cd SizeWise_Suite
 npm install
+
+# IMPORTANT: Check current status first
+npm run lint && npm run type-check && npm test && npm run build
+
+# Only proceed if all pass (currently they don't - see DEVELOPMENT.md)
 npm run dev
 ```
 
@@ -207,11 +226,16 @@ test('updates calculation when inputs change', () => {
 ## Pull Request Process
 
 ### Before Submitting
-1. **Run tests**: `npm test`
-2. **Run linting**: `npm run lint`
-3. **Build successfully**: `npm run build`
+1. **Check pipeline status**: See [DEVELOPMENT.md](./DEVELOPMENT.md) for current issues
+2. **Run full pipeline check**: `npm run lint && npm run type-check && npm test && npm run build`
+3. **All checks must pass** ⚠️ (currently failing - fix TypeScript errors first)
 4. **Update documentation** as needed
 5. **Add/update tests** for your changes
+
+### ⚠️ Current Submission Blockers
+- **TypeScript errors**: ~15 errors must be fixed before any PR
+- **Build failures**: Caused by TypeScript errors
+- **Linting issues**: 7 remaining issues should be addressed
 
 ### PR Description Template
 ```markdown
