@@ -1,0 +1,13 @@
+{
+  "tools": [
+    {
+      "id": "air-duct-sizer",
+      "name": "Air Duct Sizer",
+      "description": "Calculate duct sizes and pressure drops",
+      "icon": "duct-icon",
+      "componentPath": "@/tools/air-duct-sizer",
+      "category": "HVAC",
+      "version": "1.0.0"
+    }
+  ]
+}
