@@ -1,0 +1,33 @@
+{
+  "tools": [
+    {
+      "id": "air-duct-sizer",
+      "name": "Air Duct Sizer",
+      "description": "Calculate duct sizes and pressure drops",
+      "icon": "duct-icon",
+      "componentPath": "@/tools/air-duct-sizer",
+      "category": "HVAC",
+      "version": "1.0.0"
+    },
+    {
+      "id": "engine-exhaust",
+      "name": "Engine Exhaust Sizer",
+      "description": "Size generator exhaust systems",
+      "icon": "wrench",
+      "componentPath": "@/tools/engine-exhaust",
+      "category": "HVAC",
+      "version": "0.1.0",
+      "enabled": false
+    },
+    {
+      "id": "estimating-app",
+      "name": "Estimating App",
+      "description": "Create HVAC estimates and exports",
+      "icon": "clipboard",
+      "componentPath": "@/tools/estimating-app",
+      "category": "Estimating",
+      "version": "0.1.0",
+      "enabled": false
+    }
+  ]
+}

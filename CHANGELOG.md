@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Status Indicators**: Reusable component system for compliance visualization
 - **Enhanced Color Palette**: Professional engineering colors with dark mode support
 - **No Redundant Code**: Consolidated color coding logic into reusable components
+- **Pressure Class Support**: Low/Medium/High pressure system calculations with appropriate limits
 
 ### Enhanced Features
 

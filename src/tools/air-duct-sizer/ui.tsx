@@ -1,9 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import { DuctShape, Units } from './logic';
-import { DuctShapeSelector } from '../../components/air-duct-sizer/DuctShapeSelector';
-import { UnitsSelector } from '../../components/air-duct-sizer/UnitsSelector';
-import { useDuctResults } from '../../hooks/useDuctResults';
-import ResultsTable from '../../components/duct/ResultsTable';
+import React, { useState } from 'react';
+import { DuctShape, Units, createAirDuctSizer } from './logic';
+
+type PressureClass = 'low' | 'medium' | 'high';
 
 interface DuctSizerState {
   shape: DuctShape;
@@ -15,6 +13,9 @@ interface DuctSizerState {
     diameter: string;
   };
   length: string;
+  material: string;
+  application: string;
+  pressureClass: PressureClass;
 }
 
 interface CalculationResult {
@@ -25,20 +26,70 @@ interface CalculationResult {
   gauge: string;
   area: number;
   areaUnit: string;
+  jointSpacing: string;
+  hangerSpacing: string;
+  warnings: string[];
+  summary: string;
 }
 
+const materialOptions = [
+  { value: 'galvanized', label: 'Galvanized Steel' },
+  { value: 'aluminum', label: 'Aluminum' },
+  { value: 'flexible', label: 'Flexible Duct' },
+];
+
+const applicationOptions = [
+  { value: 'residential', label: 'Residential' },
+  { value: 'commercial', label: 'Commercial' },
+  { value: 'industrial', label: 'Industrial' },
+];
+
+const pressureClassOptions = [
+  { value: 'low', label: 'Low (≤ 2" w.g.)' },
+  { value: 'medium', label: 'Medium (2-6" w.g.)' },
+  { value: 'high', label: 'High (6-10" w.g.)' },
+];
+
+// Helper functions for validation
+const validateField = (value: string, fieldName: string): string | null => {
+  if (!value.trim()) {
+    return `${fieldName} is required`;
+  }
+  if (isNaN(Number(value)) || Number(value) <= 0) {
+    return `${fieldName} must be a positive number`;
+  }
+  return null;
+};
+
+const validateFlowRate = (flowRate: string): string | null => {
+  return validateField(flowRate, 'Flow rate');
+};
+
+const validateDimensions = (
+  shape: DuctShape,
+  dimensions: DuctSizerState['dimensions']
+): Record<string, string> => {
+  const errors: Record<string, string> = {};
+
+  if (shape === 'rectangular') {
+    const widthError = validateField(dimensions.width, 'Width');
+    const heightError = validateField(dimensions.height, 'Height');
+
+    if (widthError) errors.width = widthError;
+    if (heightError) errors.height = heightError;
+  } else {
+    const diameterError = validateField(dimensions.diameter, 'Diameter');
+    if (diameterError) errors.diameter = diameterError;
+  }
+
+  return errors;
+};
+
+const validateLength = (length: string): string | null => {
+  return validateField(length, 'Length');
+};
+
 const AirDuctSizerUI: React.FC = () => {
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [results, setResults] = useState<CalculationResult | null>(null);
-  const { 
-    calculateResults, 
-    data: ductResults = [], 
-    summary = '', 
-    loading = false, 
-    error = null, 
-    resetResults 
-  } = useDuctResults();
-
   const [state, setState] = useState<DuctSizerState>({
     shape: 'rectangular',
     units: 'imperial',
@@ -49,760 +100,606 @@ const AirDuctSizerUI: React.FC = () => {
       diameter: '',
     },
     length: '',
+    material: 'galvanized',
+    application: 'commercial',
+    pressureClass: 'low',
   });
 
-  // Update state helper function
-  const updateState = useCallback((updates: Partial<DuctSizerState>) => {
-    setState(prev => ({
-      ...prev,
-      ...updates,
-      dimensions: {
-        ...prev.dimensions,
-        ...(updates.dimensions || {}),
-      },
-    }));
-  }, []);
+  const [results, setResults] = useState<CalculationResult | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Input validation function
-  const validateInputs = useCallback((): boolean => {
-    const validationErrors: Record<string, string> = {};
-    const { shape, dimensions, flowRate, length } = state;
-    
-    if (!flowRate.trim()) {
-      validationErrors.flowRate = 'Flow rate is required';
-    } else if (isNaN(parseFloat(flowRate)) || parseFloat(flowRate) <= 0) {
-      validationErrors.flowRate = 'Flow rate must be a positive number';
-    }
-    
-    if (!length.trim()) {
-      validationErrors.length = 'Duct length is required';
-    } else if (isNaN(parseFloat(length)) || parseFloat(length) <= 0) {
-      validationErrors.length = 'Length must be a positive number';
-    }
-    
-    if (shape === 'rectangular') {
-      if (!dimensions.width.trim()) {
-        validationErrors.width = 'Width is required';
-      } else if (isNaN(parseFloat(dimensions.width)) || parseFloat(dimensions.width) <= 0) {
-        validationErrors.width = 'Width must be a positive number';
-      }
-      
-      if (!dimensions.height.trim()) {
-        validationErrors.height = 'Height is required';
-      } else if (isNaN(parseFloat(dimensions.height)) || parseFloat(dimensions.height) <= 0) {
-        validationErrors.height = 'Height must be a positive number';
-      }
-    } else {
-      // Handle round duct validation
-      const diameterValue = dimensions.diameter.trim();
-      if (!diameterValue) {
-        validationErrors.diameter = 'Diameter is required';
-      } else if (isNaN(parseFloat(diameterValue)) || parseFloat(diameterValue) <= 0) {
-        validationErrors.diameter = 'Diameter must be a positive number';
-      }
-    }
-    
-    setErrors(validationErrors);
-    return Object.keys(validationErrors).length === 0;
-  }, [state]);
+  const validateInputs = (): boolean => {
+    const newErrors: Record<string, string> = {};
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate inputs
-    if (!validateInputs()) {
-      return;
-    }
-    
-    // Clear any previous errors
-    setErrors({});
-    
-    try {
-      // Clear previous results
-      resetResults();
-      
-      // Prepare duct data
-      const { shape, dimensions, flowRate, length } = state;
-      const flowRateNum = parseFloat(flowRate);
-      const lengthNum = parseFloat(length);
-      
-      let width = 0;
-      let height = 0;
-      let diameter = 0;
-      let area = 0;
-      let hydraulicDiameter = 0;
-      
-      if (shape === 'rectangular') {
-        width = parseFloat(dimensions.width);
-        height = parseFloat(dimensions.height);
-        const widthFt = width / 12; // Convert to feet
-        const heightFt = height / 12; // Convert to feet
-        area = widthFt * heightFt; // sq.ft
-        const perimeter = 2 * (widthFt + heightFt); // ft
-        hydraulicDiameter = (4 * area) / perimeter; // ft
-      } else {
-        diameter = parseFloat(dimensions.diameter);
-        const diameterFt = diameter / 12; // Convert to feet
-        const radius = diameterFt / 2;
-        area = Math.PI * Math.pow(radius, 2); // sq.ft
-        hydraulicDiameter = diameterFt; // ft
-      }
-      
-      // Calculate velocity and pressure drop
-      const velocity = flowRateNum / area;
-      const pressureDrop = (0.03 * lengthNum * Math.pow(velocity / 4005, 2)) / (hydraulicDiameter * 2);
-      
-      // Create complete duct data object
-      const ductData = {
-        ductId: `duct-${Date.now()}`,
-        ductName: `Duct ${new Date().toLocaleString()}`,
-        shape,
-        dimensions: shape === 'rectangular' 
-          ? { width, height }
-          : { diameter },
-        airflow: flowRateNum,
-        velocity,
-        maxVelocity: shape === 'rectangular' ? 2000 : 2500,
-        pressureDrop,
-        pressureClass: 2,
-        materialGauge: 0,
-        minRequiredGauge: 0,
-        transverseJoints: [],
-        seamTypes: [],
-        hangerSpacing: 10,
-        maxHangerSpacing: 0,
-        timestamp: new Date(),
-        units: {
-          length: 'in' as const,
-          velocity: 'fpm' as const,
-          pressure: 'in_wg' as const,
-          airflow: 'cfm' as const,
-        },
-      };
-      
-      // Calculate results using the hook
-      await calculateResults(ductData);
-      
-      // Set basic results for the legacy display
-      setResults({
-        velocity: Math.round(velocity * 10) / 10,
-        velocityUnit: 'ft/min',
-        pressureLoss: Math.round(pressureDrop * 1000) / 1000,
-        pressureLossUnit: 'in wg',
-        gauge: 'TBD',
-        area: Math.round(area * 144 * 10) / 10,
-        areaUnit: 'in²'
-      });
-      
-    } catch (err) {
-      console.error('Error calculating duct properties:', err);
-      setErrors({
-        submit: 'An error occurred while calculating duct properties. Please try again.'
-      });
-    }
+    // Validate flow rate
+    const flowRateError = validateFlowRate(state.flowRate);
+    if (flowRateError) newErrors.flowRate = flowRateError;
+
+    // Validate dimensions
+    const dimensionErrors = validateDimensions(state.shape, state.dimensions);
+    Object.assign(newErrors, dimensionErrors);
+
+    // Validate length
+    const lengthError = validateLength(state.length);
+    if (lengthError) newErrors.length = lengthError;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Helper function to render input field with error message
-  const renderInputField = (
-    id: string,
-    label: string,
-    value: string,
-    onChange: (value: string) => void,
-    error?: string,
-    type = 'text',
-    placeholder = '',
-    disabled = false
-  ) => (
-    <div className="space-y-1">
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
-        {label}
-      </label>
-      <input
-        type={type}
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm ${
-          error ? 'border-red-300 text-red-900 placeholder-red-300' : ''
-        } ${disabled ? 'bg-gray-100' : ''}`}
-        placeholder={placeholder}
-        disabled={disabled}
-      />
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-    </div>
-  );
-
-  // Helper function to render radio button group
-  const renderRadioGroup = (
-    label: string,
-    name: string,
-    value: string,
-    options: Array<{ value: string; label: string }>,
-    onChange: (value: string) => void,
-    error?: string
-  ) => (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-700">{label}</label>
-      <div className="space-y-2">
-        {options.map((option) => (
-          <div key={option.value} className="flex items-center">
-            <input
-              type="radio"
-              id={`${name}-${option.value}`}
-              name={name}
-              value={option.value}
-              checked={value === option.value}
-              onChange={() => onChange(option.value)}
-              className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
-            />
-            <label
-              htmlFor={`${name}-${option.value}`}
-              className="ml-2 block text-sm text-gray-700"
-            >
-              {option.label}
-            </label>
-          </div>
-        ))}
-      </div>
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-    </div>
-  );
-
-  // Helper function to render section header
-  const renderSectionHeader = (title: string, description?: string) => (
-    <div className="border-b border-gray-200 pb-4">
-      <h3 className="text-lg font-medium leading-6 text-gray-900">{title}</h3>
-      {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
-    </div>
-  );
-
-  // Render function
-  // State management
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [results, setResults] = useState<CalculationResult | null>(null);
-  const { 
-    calculateResults, 
-    data: ductResults, 
-    summary, 
-    loading, 
-    error, 
-    resetResults 
-  } = useDuctResults();
-
-  const [state, setState] = useState<DuctSizerState>({
-    shape: 'rectangular',
-    units: 'imperial',
-    flowRate: '',
-    dimensions: {
-      width: '',
-      height: '',
-      diameter: '',
-    },
-    length: '',
-  });
-
-  // Update state helper function
-  const updateState = useCallback((updates: Partial<DuctSizerState>) => {
-    setState(prev => ({
-      ...prev,
-      ...updates,
-      dimensions: {
-        ...prev.dimensions,
-        ...(updates.dimensions ?? {}),
-      },
-    }));
-  }, []);
-
-  // Input validation function
-  const validateInputs = useCallback(() => {
-    const validationErrors: Record<string, string> = {};
-    const { shape, dimensions, flowRate, length } = state;
+  const parseInputValues = () => {
+    const width = parseFloat(state.dimensions.width);
+    const height = state.shape === 'rectangular' 
+      ? parseFloat(state.dimensions.height) 
+      : undefined;
+    const diameter = state.shape === 'round' 
+      ? parseFloat(state.dimensions.diameter) 
+      : undefined;
+    const length = parseFloat(state.length);
+    const flowRate = parseFloat(state.flowRate);
     
-    if (!flowRate.trim()) {
-      validationErrors.flowRate = 'Flow rate is required';
-    } else if (isNaN(parseFloat(flowRate)) || parseFloat(flowRate) <= 0) {
-      validationErrors.flowRate = 'Flow rate must be a positive number';
+    return { width, height, diameter, length, flowRate };
+  };
+
+  const calculateDuctArea = (width: number, height: number | undefined, diameter: number | undefined) => {
+    if (state.shape === 'rectangular' && height !== undefined) {
+      return (width * height) / (state.units === 'imperial' ? 144 : 1);
     }
-    
-    if (!length.trim()) {
-      validationErrors.length = 'Duct length is required';
-    } else if (isNaN(parseFloat(length)) || parseFloat(length) <= 0) {
-      validationErrors.length = 'Length must be a positive number';
+    if (diameter !== undefined) {
+      return (Math.PI * Math.pow(diameter / 2, 2)) / (state.units === 'imperial' ? 144 : 1);
     }
-    
-    if (shape === 'rectangular') {
-      if (!dimensions.width.trim()) {
-        validationErrors.width = 'Width is required';
-      } else if (isNaN(parseFloat(dimensions.width)) || parseFloat(dimensions.width) <= 0) {
-        validationErrors.width = 'Width must be a positive number';
-      }
-      
-      if (!dimensions.height.trim()) {
-        validationErrors.height = 'Height is required';
-      } else if (isNaN(parseFloat(dimensions.height)) || parseFloat(dimensions.height) <= 0) {
-        validationErrors.height = 'Height must be a positive number';
-      }
-    } else {
-      // Handle round duct validation
-      const diameterValue = dimensions.diameter.trim();
-      if (!diameterValue) {
-        validationErrors.diameter = 'Diameter is required';
-      } else if (isNaN(parseFloat(diameterValue)) || parseFloat(diameterValue) <= 0) {
-        validationErrors.diameter = 'Diameter must be a positive number';
-      }
-    }
-    
-    setErrors(validationErrors);
-    return Object.keys(validationErrors).length === 0;
-  }, [state]);
+    return 0;
+  };
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Format numbers to 2 decimal places
+  const formatNumber = (num: number): number => {
+    return parseFloat(num.toFixed(2));
+  };
+
+  const formatResult = (result: any, width: number, height?: number, diameter?: number): CalculationResult => {
+    const area = calculateDuctArea(width, height, diameter);
+    const unitSuffix = state.units === 'imperial' ? 'ft' : 'm';
+    const areaUnit = state.units === 'imperial' ? 'ft²' : 'm²';
+    const velocityUnit = state.units === 'imperial' ? 'fpm' : 'm/s';
+    const pressureLossUnit = state.units === 'imperial' ? 'in wg/100ft' : 'Pa/m';
+
+    return {
+      velocity: formatNumber(result.velocity),
+      velocityUnit,
+      pressureLoss: formatNumber(result.pressureLoss),
+      pressureLossUnit,
+      gauge: result.gauge.toString(),
+      area: formatNumber(area),
+      areaUnit,
+      jointSpacing: `${formatNumber(result.hangerSpacing)} ${unitSuffix}`,
+      hangerSpacing: `${formatNumber(result.hangerSpacing)} ${unitSuffix}`,
+      warnings: result.warnings,
+      summary: `Duct sizing complete for ${state.material} duct in ${state.application} application.`,
+    };
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate inputs
-    if (!validateInputs()) {
-      return;
-    }
-    
-    // Clear any previous errors
+    if (!validateInputs()) return;
+
+    setIsLoading(true);
     setErrors({});
-    
+
     try {
-      // Clear previous results
-      resetResults();
+      const { width, height, diameter, length, flowRate } = parseInputValues();
       
-      // Prepare duct data
-      const { shape, dimensions, flowRate, length } = state;
-      const flowRateNum = parseFloat(flowRate);
-      const lengthNum = parseFloat(length);
-      
-      let width = 0;
-      let height = 0;
-      let diameter = 0;
-      let area = 0;
-      let hydraulicDiameter = 0;
-      
-      if (shape === 'rectangular') {
-        width = parseFloat(dimensions.width);
-        height = parseFloat(dimensions.height);
-        const widthFt = width / 12; // Convert to feet
-        const heightFt = height / 12; // Convert to feet
-        area = widthFt * heightFt; // sq.ft
-        const perimeter = 2 * (widthFt + heightFt); // ft
-        hydraulicDiameter = (4 * area) / perimeter; // ft
-      } else {
-        diameter = parseFloat(dimensions.diameter);
-        const diameterFt = diameter / 12; // Convert to feet
-        const radius = diameterFt / 2;
-        area = Math.PI * Math.pow(radius, 2); // sq.ft
-        hydraulicDiameter = diameterFt; // ft
-      }
-      
-      // Calculate velocity and pressure drop
-      const velocity = flowRateNum / area;
-      const pressureDrop = (0.03 * lengthNum * Math.pow(velocity / 4005, 2)) / (hydraulicDiameter * 2);
-      
-      // Create complete duct data object
-      const ductData = {
-        ductId: `duct-${Date.now()}`,
-        ductName: `Duct ${new Date().toLocaleString()}`,
-        shape,
-        dimensions: shape === 'rectangular' 
-          ? { width, height }
-          : { diameter },
-        airflow: flowRateNum,
-        velocity,
-        maxVelocity: shape === 'rectangular' ? 2000 : 2500,
-        pressureDrop,
-        pressureClass: 2,
-        materialGauge: 0,
-        minRequiredGauge: 0,
-        transverseJoints: [],
-        seamTypes: [],
-        hangerSpacing: 10,
-        maxHangerSpacing: 0,
-        timestamp: new Date(),
-        units: {
-          length: 'in' as const,
-          velocity: 'fpm' as const,
-          pressure: 'in_wg' as const,
-          airflow: 'cfm' as const,
-        },
-      };
-      
-      // Calculate results using the hook
-      await calculateResults(ductData);
-      
-      // Set basic results for the legacy display
-      setResults({
-        velocity: Math.round(velocity * 10) / 10,
-        velocityUnit: 'ft/min',
-        pressureLoss: Math.round(pressureDrop * 1000) / 1000,
-        pressureLossUnit: 'in wg',
-        gauge: 'TBD',
-        area: Math.round(area * 144 * 10) / 10,
-        areaUnit: 'in²'
-      });
-      
+      const ductSizer = createAirDuctSizer(
+        state.shape,
+        { width, height, diameter, length },
+        flowRate,
+        state.units
+      );
+
+      const result = ductSizer.calculate();
+      const formattedResult = formatResult(result, width, height, diameter);
+      setResults(formattedResult);
     } catch (error) {
-      console.error('Error calculating duct properties:', error);
+      console.error('Calculation error:', error);
+      setErrors(prev => ({
+        ...prev,
+        calculation: 'An error occurred during calculation. Please check your inputs.'
+      }));
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Helper function to render input field with error message
-  const renderInputField = (
-    id: string,
-    label: string,
-    value: string,
-    onChange: (value: string) => void,
-    error?: string,
-    type = 'text',
-    placeholder = ''
-  ) => (
-    <div className="space-y-1">
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
-        {label}
-      </label>
-      <div className="mt-1 relative rounded-md shadow-sm">
-        <input
-          type={type}
-          id={id}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className={`block w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-            error 
-              ? 'border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500' 
-              : 'border-gray-300 text-gray-900 placeholder-gray-400 focus:border-transparent focus:ring-2 focus:ring-blue-500'
-          }`}
-          placeholder={placeholder}
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
-        />
-      </div>
-      {error && (
-        <p className="mt-1 text-sm text-red-600" id={`${id}-error`}>
-          {error}
-        </p>
-      )}
-    </div>
-                    </div>
+  const handleInputChange = (field: keyof Omit<DuctSizerState, 'dimensions'>, value: string) => {
+    setState(prev => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
-  // Render function
+  const handleDimensionChange = (field: keyof DuctSizerState['dimensions'], value: string) => {
+    setState(prev => ({
+      ...prev,
+      dimensions: {
+        ...prev.dimensions,
+        [field]: value,
+      },
+    }));
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="p-8">
-            <header className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Air Duct Sizer</h1>
-              <p className="mt-2 text-sm text-gray-600">Calculate the optimal duct size for your HVAC system</p>
-            </header>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-6 p-6 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="space-y-4">
-                    <DuctShapeSelector
-                      selectedShape={state.shape}
-                      onShapeChange={(shape) => updateState({ shape })}
-                    />
-                    <UnitsSelector
-                      selectedUnits={state.units}
-                      onUnitsChange={(units) => updateState({ units })}
-                    />
-                  </div>
-
-                  {renderInputField(
-                    'flow-rate',
-                    'Flow Rate (CFM)',
-                    state.flowRate,
-                    (value) => updateState({ flowRate: value }),
-                    errors.flowRate,
-                    'number',
-                    'Enter flow rate in CFM'
-                  )}
-
-                  {state.shape === 'rectangular' ? (
-                    <>
-                      {renderInputField(
-                        'width',
-                        'Width (in)',
-                        state.dimensions.width,
-                        (value) => updateState({ dimensions: { ...state.dimensions, width: value } }),
-                        errors.width,
-                        'number',
-                        'Enter width in inches'
-                      )}
-                      {renderInputField(
-                        'height',
-                        'Height (in)',
-                        state.dimensions.height,
-                        (value) => updateState({ dimensions: { ...state.dimensions, height: value } }),
-                        errors.height,
-                        'number',
-                        'Enter height in inches'
-                      )}
-                    </>
-                  ) : (
-                    renderInputField(
-                      'diameter',
-                      'Diameter (in)',
-                      state.dimensions.diameter,
-                      (value) => updateState({ dimensions: { ...state.dimensions, diameter: value } }),
-                      errors.diameter,
-                      'number',
-                      'Enter diameter in inches'
-                    )
-                  )}
-
-                  {renderInputField(
-                    'length',
-                    'Duct Length (ft)',
-                    state.length,
-                    (value) => updateState({ length: value }),
-                    errors.length,
-                    'number',
-                    'Enter duct length in feet'
-                  )}
-
-                  <div className="flex space-x-4 pt-4">
-                    <button
-                      type="submit"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                      disabled={loading}
-                    >
-                      {loading ? 'Calculating...' : 'Calculate'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        updateState({
-                          flowRate: '',
-                          dimensions: { width: '', height: '', diameter: '' },
-                          length: ''
-                        });
-                        resetResults();
-                      }}
-                      className="flex-1 bg-white border border-gray-300 text-gray-700 font-medium py-2 px-4 rounded-md hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    >
-                      Reset
-                    </button>
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="p-6 bg-blue-50 rounded-xl border border-blue-100">
-                    <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      SMACNA Guidelines
-                    </h4>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li key="velocity-guideline" className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        <span>Recommended velocity: <span className="font-medium">1,500-2,000 fpm</span> (7.5-10 m/s) for main ducts</span>
-                      </li>
-                      <li key="max-velocity-guideline" className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        <span>Maximum velocity: <span className="font-medium">2,500 fpm</span> (12.5 m/s) for low-pressure systems</span>
-                      </li>
-                      <li key="pressure-loss-guideline" className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        <span>Recommended pressure loss: <span className="font-medium">0.08 in wg/100ft</span> (0.66 Pa/m) or less</span>
-                      </li>
-                      <li key="max-pressure-loss-guideline" className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        <span>Maximum pressure loss: <span className="font-medium">0.15 in wg/100ft</span> (1.23 Pa/m)</span>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            {/* Results Section */}
-            {(results || (ductResults && ductResults.length > 0)) && (
-              <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Results</h2>
-
-                {loading && (
-                  <div className="text-center py-8">
-                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
-                    <p className="mt-2 text-gray-600">Calculating results...</p>
-                  </div>
-                )}
-
-                {error && (
-                  <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-                    <div className="flex">
-                      <div className="flex-shrink-0">
-                        <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <div className="ml-3">
-                        <p className="text-sm text-red-700">{error}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {!loading && !error && (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white p-4 rounded-lg shadow">
-                        <h3 className="text-sm font-medium text-gray-500">Velocity</h3>
-                        <p className="text-2xl font-semibold text-gray-900">
-                          {results?.velocity?.toFixed(2) || (ductResults?.[0]?.velocity?.toFixed(2) ?? 'N/A')}{' '}
-                          <span className="text-sm text-gray-500 ml-1">fpm</span>
-                        </p>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow">
-                        <h3 className="text-sm font-medium text-gray-500">Pressure Loss</h3>
-                        <p className="text-2xl font-semibold text-gray-900">
-                          {results?.pressureLoss?.toFixed(4) || (ductResults?.[0]?.pressureDrop?.toFixed(4) ?? 'N/A')}
-                          <span className="text-sm text-gray-500 ml-1">in wg/100ft</span>
-                        </p>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow">
-                        <h3 className="text-sm font-medium text-gray-500">Duct Gauge</h3>
-                        <p className="text-2xl font-semibold text-gray-900">
-                          {ductResults?.find((r: any) => r.parameter === 'Gauge')?.value ?? 'N/A'}{' '}
-                          <span className="text-sm text-gray-500 ml-1">GA</span>
-                        </p>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg shadow">
-                        <h3 className="text-sm font-medium text-gray-500">Duct Area</h3>
-                        <p className="text-2xl font-semibold text-gray-900">
-                          {results?.area?.toFixed(2) || (ductResults?.[0]?.area?.toFixed(2) ?? 'N/A')}
-                          <span className="text-sm text-gray-500 ml-1">in²</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    {summary && (
-                      <div className="mt-6">
-                        <h3 className="text-sm font-medium text-gray-900 mb-2">Summary</h3>
-                        <div className="bg-blue-50 p-4 rounded-lg">
-                          <p className="text-sm text-gray-700">{summary}</p>
-                        </div>
-                      </div>
-                    )}
-
-                    {ductResults && ductResults.length > 0 && (
-                      <div className="mt-6">
-                        <h3 className="text-sm font-medium text-gray-900 mb-4">Detailed Results</h3>
-                        <ResultsTable results={ductResults[0]} summary={summary} />
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8 relative">
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
+            <p className="mt-4 text-center">Calculating...</p>
           </div>
         </div>
-      </div>
+      )}
 
-{(results || (ductResults && ductResults.length > 0)) && (
-      <section aria-labelledby="results-heading" className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
-        <h2 id="results-heading" className="sr-only">Results</h2>
-        <h2 className="text-xl font-semibold mb-4 text-gray-800">Results</h2>
-
-        {/* Loading and Error States */}
-        {loading && (
-          <div className="flex items-center justify-center p-8">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
-        )}
-
-        {error && (
-          <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+      {/* Error Message */}
+      {errors.calculation && (
+        <div className="max-w-5xl mx-auto mb-6">
+          <div className="bg-red-50 border-l-4 border-red-400 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
               </div>
               <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
+                <p className="text-sm text-red-700">{errors.calculation}</p>
               </div>
             </div>
           </div>
-        )}
-
-        {/* Results Table - Display when results are available */}
-        {!loading && !error && ductResults && ductResults.length > 0 && (
-          <div className="mb-6">
-            <div>
-              <h2 className="text-xl font-semibold mb-4 text-gray-800">Duct Sizing Results</h2>
-              <ResultsTable 
-                results={ductResults} 
-                summary={summary} 
-                onExport={(format) => {
-                  if (format === 'pdf') {
-                    // Handle PDF export
-                    console.log('Exporting to PDF');
-                  }
-                }} 
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Results message - Display when basic results are available but no detailed results */}
-        {!loading && !error && results && (!ductResults || ductResults.length === 0) && (
-          <div className="mb-6">
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <p className="text-gray-500">Results calculated. View the summary below.</p>
-            </div>
-          </div>
-        )}
-
-        {/* Initial state - No results available */}
-        {!loading && !error && !results && (!ductResults || ductResults.length === 0) && (
-          <div className="mb-6">
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <p className="text-gray-500">Fill in the form and calculate to see detailed results</p>
-            </div>
-          </div>
-        )}
-
-        {/* Legacy Results Summary (temporary) */}
-        {results && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="text-sm font-medium text-gray-500">Velocity</h3>
-              <p className="text-2xl font-semibold text-gray-900">
-                {results?.velocity} <span className="text-sm text-gray-500">{results?.velocityUnit}</span>
+        </div>
+      )}
+      <div className="max-w-5xl mx-auto">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+          <div className="p-8">
+            <header className="text-center mb-10">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent sm:text-5xl">
+                Air Duct Sizer
+              </h1>
+              <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+                Calculate the optimal duct size and specifications for your HVAC system
               </p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="text-sm font-medium text-gray-500">Pressure Loss</h3>
-              <p className="text-2xl font-semibold text-gray-900">
-                {results?.pressureLoss} <span className="text-sm text-gray-500">{results?.pressureLossUnit}</span>
-              </p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="text-sm font-medium text-gray-500">Duct Gauge</h3>
-              <p className="text-2xl font-semibold text-gray-900">
-                {ductResults?.find((r: any) => r.parameter === 'Gauge')?.value ?? 'N/A'} GA
-              </p>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="text-sm font-medium text-gray-500">Cross-Sectional Area</h3>
-              <p className="text-2xl font-semibold text-gray-900">
-                {results?.area} <span className="text-sm text-gray-500">{results?.areaUnit}</span>
-              </p>
-            </div>
+            </header>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Left Column */}
+                <div className="space-y-6 p-8 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl border border-gray-200 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">
+                    Duct Specifications
+                  </h3>
+                  <div className="space-y-4">
+                    {/* Duct Shape */}
+                    <div>
+                      <label
+                        htmlFor="ductShape"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Duct Shape
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="ductShape"
+                          value={state.shape}
+                          onChange={e => handleInputChange('shape', e.target.value as DuctShape)}
+                          className="appearance-none mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2.5 pl-4 pr-10 text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out cursor-pointer"
+                        >
+                          <option value="rectangular">Rectangular</option>
+                          <option value="round">Round</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                          <svg
+                            className="h-5 w-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Units */}
+                    <div>
+                      <label
+                        htmlFor="units"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Units
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="units"
+                          value={state.units}
+                          onChange={e => handleInputChange('units', e.target.value as Units)}
+                          className="appearance-none mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2.5 pl-4 pr-10 text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out cursor-pointer"
+                        >
+                          <option value="imperial">Imperial (in, ft, CFM)</option>
+                          <option value="metric">Metric (mm, m, m³/h)</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                          <svg
+                            className="h-5 w-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Flow Rate */}
+                    <div>
+                      <label
+                        htmlFor="flowRate"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Flow Rate ({state.units === 'imperial' ? 'CFM' : 'm³/h'})
+                      </label>
+                      <input
+                        type="number"
+                        id="flowRate"
+                        value={state.flowRate}
+                        onChange={e => handleInputChange('flowRate', e.target.value)}
+                        className={`mt-1 block w-full bg-white border ${errors.flowRate ? 'border-red-300 ring-1 ring-red-300' : 'border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'} rounded-md shadow-sm py-2.5 px-4 text-gray-900 placeholder-gray-400 focus:outline-none sm:text-sm transition duration-150 ease-in-out`}
+                        placeholder={`Enter flow rate in ${state.units === 'imperial' ? 'CFM' : 'm³/h'}`}
+                        min="0"
+                        step="0.01"
+                      />
+                      {errors.flowRate && (
+                        <p className="mt-1 text-sm text-red-600">{errors.flowRate}</p>
+                      )}
+                    </div>
+
+                    {/* Dimensions */}
+                    {state.shape === 'rectangular' ? (
+                      <>
+                        <div>
+                          <label
+                            htmlFor="width"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                          >
+                            Width ({state.units === 'imperial' ? 'in' : 'mm'})
+                          </label>
+                          <input
+                            type="number"
+                            id="width"
+                            value={state.dimensions.width}
+                            onChange={e => handleDimensionChange('width', e.target.value)}
+                            className={`mt-1 block w-full bg-white border ${errors.width ? 'border-red-300 ring-1 ring-red-300' : 'border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'} rounded-md shadow-sm py-2.5 px-4 text-gray-900 placeholder-gray-400 focus:outline-none sm:text-sm transition duration-150 ease-in-out`}
+                            placeholder={`Enter width in ${state.units === 'imperial' ? 'inches' : 'millimeters'}`}
+                            min="0"
+                            step="0.01"
+                          />
+                          {errors.width && (
+                            <p className="mt-1 text-sm text-red-600">{errors.width}</p>
+                          )}
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="height"
+                            className="block text-sm font-medium text-gray-700 mb-1"
+                          >
+                            Height ({state.units === 'imperial' ? 'in' : 'mm'})
+                          </label>
+                          <input
+                            type="number"
+                            id="height"
+                            value={state.dimensions.height}
+                            onChange={e => handleDimensionChange('height', e.target.value)}
+                            className={`mt-1 block w-full bg-white border ${errors.height ? 'border-red-300 ring-1 ring-red-300' : 'border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'} rounded-md shadow-sm py-2.5 px-4 text-gray-900 placeholder-gray-400 focus:outline-none sm:text-sm transition duration-150 ease-in-out`}
+                            placeholder={`Enter height in ${state.units === 'imperial' ? 'inches' : 'millimeters'}`}
+                            min="0"
+                            step="0.01"
+                          />
+                          {errors.height && (
+                            <p className="mt-1 text-sm text-red-600">{errors.height}</p>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <div>
+                        <label
+                          htmlFor="diameter"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Diameter ({state.units === 'imperial' ? 'in' : 'mm'})
+                        </label>
+                        <input
+                          type="number"
+                          id="diameter"
+                          value={state.dimensions.diameter}
+                          onChange={e => handleDimensionChange('diameter', e.target.value)}
+                          className={`mt-1 block w-full bg-white border ${errors.diameter ? 'border-red-300 ring-1 ring-red-300' : 'border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'} rounded-md shadow-sm py-2.5 px-4 text-gray-900 placeholder-gray-400 focus:outline-none sm:text-sm transition duration-150 ease-in-out`}
+                          placeholder={`Enter diameter in ${state.units === 'imperial' ? 'inches' : 'millimeters'}`}
+                          min="0"
+                          step="0.01"
+                        />
+                        {errors.diameter && (
+                          <p className="mt-1 text-sm text-red-600">{errors.diameter}</p>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Length */}
+                    <div>
+                      <label
+                        htmlFor="length"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Length ({state.units === 'imperial' ? 'ft' : 'm'})
+                      </label>
+                      <input
+                        type="number"
+                        id="length"
+                        value={state.length}
+                        onChange={e => handleInputChange('length', e.target.value)}
+                        className={`mt-1 block w-full bg-white border ${errors.length ? 'border-red-300 ring-1 ring-red-300' : 'border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'} rounded-md shadow-sm py-2.5 px-4 text-gray-900 placeholder-gray-400 focus:outline-none sm:text-sm transition duration-150 ease-in-out`}
+                        placeholder={`Enter length in ${state.units === 'imperial' ? 'feet' : 'meters'}`}
+                        min="0"
+                        step="0.01"
+                      />
+                      {errors.length && (
+                        <p className="mt-1 text-sm text-red-600">{errors.length}</p>
+                      )}
+                    </div>
+
+                    {/* Material */}
+                    <div>
+                      <label
+                        htmlFor="material"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Material
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="material"
+                          value={state.material}
+                          onChange={e => handleInputChange('material', e.target.value)}
+                          className="appearance-none mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2.5 pl-4 pr-10 text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out cursor-pointer"
+                        >
+                          {materialOptions.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                          <svg
+                            className="h-5 w-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Application */}
+                    <div>
+                      <label
+                        htmlFor="application"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Application
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="application"
+                          value={state.application}
+                          onChange={e => handleInputChange('application', e.target.value)}
+                          className="appearance-none mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2.5 pl-4 pr-10 text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out cursor-pointer"
+                        >
+                          {applicationOptions.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                          <svg
+                            className="h-5 w-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Pressure Class */}
+                    <div>
+                      <label
+                        htmlFor="pressureClass"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Pressure Class
+                      </label>
+                      <div className="relative">
+                        <select
+                          id="pressureClass"
+                          value={state.pressureClass}
+                          onChange={e =>
+                            handleInputChange('pressureClass', e.target.value as PressureClass)
+                          }
+                          className="appearance-none mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2.5 pl-4 pr-10 text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150 ease-in-out cursor-pointer"
+                        >
+                          {pressureClassOptions.map(option => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                          <svg
+                            className="h-5 w-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className="w-full flex justify-center py-3 px-6 border border-transparent rounded-lg shadow-sm text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      {isLoading ? 'Calculating...' : 'Calculate'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right Column - Results */}
+                <div className="space-y-6">
+                  <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100 shadow-inner">
+                    <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
+                      <svg
+                        className="w-5 h-5 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      How to Use
+                    </h4>
+                    <ul className="space-y-2 text-sm text-blue-700">
+                      <li>• Enter the required dimensions based on your duct shape</li>
+                      <li>• Specify the flow rate in CFM or m³/h</li>
+                      <li>• Select the appropriate material and application type</li>
+                      <li>• Click Calculate to see the results</li>
+                    </ul>
+                  </div>
+
+                  {isLoading && (
+                    <div className="p-6 bg-yellow-50 border border-yellow-100 rounded-xl flex items-center justify-center shadow-sm">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500 mr-3"></div>
+                      <span className="text-yellow-800">Calculating results...</span>
+                    </div>
+                  )}
+
+                  {results && !isLoading && (
+                    <div className="space-y-5 p-6 bg-white border border-gray-100 rounded-xl shadow-sm">
+                      <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">Duct Sizing Results</h3>
+
+                      <div className="space-y-3.5">
+                        <div className="flex justify-between items-center py-1.5">
+                          <span className="text-sm font-medium text-gray-700">Flow Area</span>
+                          <div className="text-right">
+                            <span className="text-sm font-semibold text-blue-700">
+                              {results.area.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+                            </span>
+                            <span className="text-sm text-gray-500 ml-1">{results.areaUnit}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center py-1.5">
+                          <span className="text-sm font-medium text-gray-700">Air Velocity</span>
+                          <div className="text-right">
+                            <span className="text-sm font-semibold text-blue-700">
+                              {results.velocity.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </span>
+                            <span className="text-sm text-gray-500 ml-1">{results.velocityUnit}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center py-1.5">
+                          <span className="text-sm font-medium text-gray-700">Pressure Loss</span>
+                          <div className="text-right">
+                            <span className="text-sm font-semibold text-blue-700">
+                              {results.pressureLoss.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </span>
+                            <span className="text-sm text-gray-500 ml-1">{results.pressureLossUnit}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center py-1.5">
+                          <span className="text-sm font-medium text-gray-700">Recommended Gauge</span>
+                          <span className="text-sm font-semibold text-blue-700">{results.gauge} gauge</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center py-1.5">
+                          <span className="text-sm font-medium text-gray-700">Joint Spacing</span>
+                          <span className="text-sm font-semibold text-blue-700">{results.jointSpacing}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center py-1.5">
+                          <span className="text-sm font-medium text-gray-700">Hanger Spacing</span>
+                          <span className="text-sm font-semibold text-blue-700">{results.hangerSpacing}</span>
+                        </div>
+                      </div>
+
+                      {results.warnings && results.warnings.length > 0 && (
+                        <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                          <h4 className="text-sm font-medium text-yellow-800 mb-1">Warnings:</h4>
+                          <ul className="text-sm text-yellow-700 space-y-1">
+                            {results.warnings.map(warning => (
+                              <li key={warning}>• {warning}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      <div className="mt-4 pt-4 border-t border-gray-100">
+                        <p className="text-sm text-gray-600">{results.summary}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
           </div>
-        )}
-      </section>
-    )}
-  </div>
-</div>
-);
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AirDuctSizerUI;
-

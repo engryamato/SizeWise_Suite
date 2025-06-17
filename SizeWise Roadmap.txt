@@ -1,3 +1,815 @@
-﻿📍 Updated SizeWise Suite – Practical Development Roadmap(With Smart Enhancements and Team-Friendly Planning)🧱 Phase 0.0 – Core FoundationObjective: Build the project’s skeleton: routing, theming, validation, config, and testing setup.✅ Product Deliverables:• Flask backend initialized• Routing via routes.py• Tool registry (toolConfig.json)• JSON-driven rule engine + schema validation• Dark/light theme toggler• Shared layout shell (header, nav, tool loader)• Basic error handling & logging• Unit testing setup (Jest or Mocha)🔧 Implementation Plan:TaskFolder/FileFlask App Init/app/__init__.py, /core/routes.pyTool Registry Logic/core/registration/toolRegistrar.jsSchema Validator/core/schema/schemaValidator.jsTheme Toggle/hooks/themeToggler.jsHome UI Shell/templates/base.html, home.htmlConfiguration & Defaults/config/toolConfig.json, defaultSettings.jsonError Handling & Logging/core/errorHandler.js, /core/logger.jsUnit Test Bootstrap/tests/setup.js, /tests/core/🌬️ Phase 0.1 – AirDuctSizer (formerly DuctSizer)Objective: Launch first tool for sizing conditioned air ducts.✅ Product Deliverables:• Input: CFM, duct shape/size, length• Output: velocity, pressure loss, gauge, joint, hanger spacing• SMACNA-based validation (Tables 1-3, 2-1, etc.)• Educational callouts (when Educated Mode ON)• Snap summary output string• Consistent file layout (logic, ui, events, rules, validators)🔧 Implementation Plan:TaskFolder/FileTool Folder/tools/air-duct-sizer/Logic/UI/Eventslogic.js, ui.js, events.jsValidators (shared use)/core/validators/gauge.js, joint.js, hanger.jsRule Files (SMACNA)/tools/air-duct-sizer/rules/Template/templates/air-duct-sizer.htmlTool Settings (if needed)/tools/air-duct-sizer/toolConfig.jsonUnit Tests/tools/air-duct-sizer/tests/🔥 Phase 0.2 – GreaseDuctSizer (formerly GreaseSizer)Objective: Handle grease-laden exhaust duct sizing (NFPA 96 + UL).✅ Product Deliverables:• Input: airflow, size, material (SS304/SS316)• Output: clearance, pressure drop, code warnings• Compliance validator (UL 1978/2221 + NFPA 96)• Snap summary string• UI with tool-specific theme (green)🔧 Implementation Plan:TaskFolder/FileTool Folder/tools/grease-duct-sizer/Logic & UIlogic.js, ui.js, events.jsClearance Validator/core/validators/ulCompliance.jsRule Files/rules/nfpa96.json, ul1978.jsonTemplate/templates/grease-duct-sizer.htmlTests/tools/grease-duct-sizer/tests/♨️ Phase 0.3 – BoilerVentSizerObjective: Support boiler venting (Cat I–IV, PVC/CPVC/SS, etc.)✅ Product Deliverables:• Input: BTU/hr, length, elbows, vent type• Output: pressure drop, material limit warning• Validator based on NFPA 54 + manufacturer specs🔧 Implementation Plan:TaskFolder/FileTool Folder/tools/boiler-vent-sizer/Rule Files/rules/nfpa54.json, /rules/boilerSpecs.jsonValidator Logic/validators/pressureCheck.js, etc.🚛 Phase 0.4 – EngineExhaustSizerObjective: Engine generator exhaust sizing (backpressure, velocity, etc.)✅ Product Deliverables:• Inputs: HP, length, slope, elbows• Output: backpressure, exhaust velocity• Material selection + validation (e.g. flex vs rigid)• Snap output summary🔁 Phase 1.x – Enhancements & Utilities📦 Phase 1.1 – Export & Report ModePriority: Early user-facing feature✅ Features:• Export PDF + CSV with system summary• Download ZIP: layout image, config, compliance note• Shareable project summaries🔧 Implementation:TaskFolder/FileExport Engine/services/exportService.jsPDF/CSV Logic/core/export/pdfGenerator.js, csvBuilder.js🧪 Phase 1.2 – Testing & Validator CoverageObjective: Bulletproof all validators, schemas, and logic✅ Tasks:• Add validation schemas for every tool• Expand unit tests (tools, shared logic)• Test invalid inputs and edge cases🧰 Phase 1.3 – Admin DashboardObjective: Lightweight internal panel for non-developers✅ Features:• Rule editor (basic JSON form)• Tool toggle switches (freemium control)• View/edit validator coverage🎯 Phase 2.x – Simulation Mode🧱 Phase 2.0 – AirDuct Simulation CanvasProof of Concept First✅ Features:• Canvas duct path drawing• Airflow pressure animation• Duct segment color-coding by velocity🔧 Tools:• Explore D3.js or Three.js (or simple SVG first)• Place under /simulations/air-duct/🔥 Phase 2.1 – Grease Simulation Add-On• Same as above but for grease ducts• Includes trap detection + clearance visuals🌍 Phase 3.x – Platform Expansion🌐 Phase 3.0 – Multi-Language Support• Locale files: /locales/en.json, ph.json, es.json• Auto-switch + UI toggler⚙️ Phase 3.1 – Plugin Engine (Simplified)• Basic system to let developers drop new tools• Plugin schema + auto-loader💾 Phase 3.2 – Cloud Sync (Delay if low demand)• Add auth system• Save/load history🛠️ Maintenance & DevOps Phase (ongoing)TaskWhy?CI/CD via GitHub ActionsAuto-run tests + buildCHANGELOG.mdTrack releasesCONTRIBUTING.mdWelcome collaboratorsFallback handling for broken inputsPrevent app crashesPost-release refactoringReduce tech debtUser feedback via issue collectorPrioritize next features[Type here]0[Type here]04 Phase 0.0 - Estimating App Setup
+codex/implement-estimating-app-structure-and-tools
+﻿
+📍 Updated SizeWise Suite – Practical Development Roadmap
+
+(With Smart Enhancements and Team-Friendly Planning)
+
+🧱 Phase 0.0 – Core Foundation
+
+Objective: Build the project’s skeleton: routing, theming, validation, config, and testing setup.
+
+✅ Product Deliverables:
+• Flask backend initialized
+• Routing via routes.py
+• Tool registry (toolConfig.json)
+• JSON-driven rule engine + schema validation
+• Dark/light theme toggler
+• Shared layout shell (header, nav, tool loader)
+• Basic error handling & logging
+• Unit testing setup (Jest or Mocha)
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Flask App Init
+/app/__init__.py, /core/routes.py
+Tool Registry Logic
+/core/registration/toolRegistrar.js
+Schema Validator
+/core/schema/schemaValidator.js
+Theme Toggle
+/hooks/themeToggler.js
+Home UI Shell
+/templates/base.html, home.html
+Configuration & Defaults
+/config/toolConfig.json, defaultSettings.json
+Error Handling & Logging
+/core/errorHandler.js, /core/logger.js
+Unit Test Bootstrap
+/tests/setup.js, /tests/core/
+
+🌬️ Phase 0.1 – AirDuctSizer (formerly DuctSizer)
+
+Objective: Launch first tool for sizing conditioned air ducts.
+
+✅ Product Deliverables:
+• Input: CFM, duct shape/size, length
+• Output: velocity, pressure loss, gauge, joint, hanger spacing
+• SMACNA-based validation (Tables 1-3, 2-1, etc.)
+• Educational callouts (when Educated Mode ON)
+• Snap summary output string
+• Consistent file layout (logic, ui, events, rules, validators)
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Tool Folder
+/tools/air-duct-sizer/
+Logic/UI/Events
+logic.js, ui.js, events.js
+Validators (shared use)
+/core/validators/gauge.js, joint.js, hanger.js
+Rule Files (SMACNA)
+/tools/air-duct-sizer/rules/
+Template
+/templates/air-duct-sizer.html
+Tool Settings (if needed)
+/tools/air-duct-sizer/toolConfig.json
+Unit Tests
+/tools/air-duct-sizer/tests/
+
+🔥 Phase 0.2 – GreaseDuctSizer (formerly GreaseSizer)
+
+Objective: Handle grease-laden exhaust duct sizing (NFPA 96 + UL).
+
+✅ Product Deliverables:
+• Input: airflow, size, material (SS304/SS316)
+• Output: clearance, pressure drop, code warnings
+• Compliance validator (UL 1978/2221 + NFPA 96)
+• Snap summary string
+• UI with tool-specific theme (green)
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Tool Folder
+/tools/grease-duct-sizer/
+Logic & UI
+logic.js, ui.js, events.js
+Clearance Validator
+/core/validators/ulCompliance.js
+Rule Files
+/rules/nfpa96.json, ul1978.json
+Template
+/templates/grease-duct-sizer.html
+Tests
+/tools/grease-duct-sizer/tests/
+
+♨️ Phase 0.3 – BoilerVentSizer
+
+Objective: Support boiler venting (Cat I–IV, PVC/CPVC/SS, etc.)
+
+✅ Product Deliverables:
+• Input: BTU/hr, length, elbows, vent type
+• Output: pressure drop, material limit warning
+• Validator based on NFPA 54 + manufacturer specs
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Tool Folder
+/tools/boiler-vent-sizer/
+Rule Files
+/rules/nfpa54.json, /rules/boilerSpecs.json
+Validator Logic
+/validators/pressureCheck.js, etc.
+
+🚛 Phase 0.4 – EngineExhaustSizer
+
+Objective: Engine generator exhaust sizing (backpressure, velocity, etc.)
+
+✅ Product Deliverables:
+• Inputs: HP, length, slope, elbows
+• Output: backpressure, exhaust velocity
+• Material selection + validation (e.g. flex vs rigid)
+• Snap output summary
+
+🔁 Phase 1.x – Enhancements & Utilities
+
+📦 Phase 1.1 – Export & Report Mode
+
+Priority: Early user-facing feature
+
+✅ Features:
+• Export PDF + CSV with system summary
+• Download ZIP: layout image, config, compliance note
+• Shareable project summaries
+
+🔧 Implementation:
+Task
+Folder/File
+Export Engine
+/services/exportService.js
+PDF/CSV Logic
+/core/export/pdfGenerator.js, csvBuilder.js
+
+🧪 Phase 1.2 – Testing & Validator Coverage
+
+Objective: Bulletproof all validators, schemas, and logic
+
+✅ Tasks:
+• Add validation schemas for every tool
+• Expand unit tests (tools, shared logic)
+• Test invalid inputs and edge cases
+
+🧰 Phase 1.3 – Admin Dashboard
+
+Objective: Lightweight internal panel for non-developers
+
+✅ Features:
+• Rule editor (basic JSON form)
+• Tool toggle switches (freemium control)
+• View/edit validator coverage
+
+🎯 Phase 2.x – Simulation Mode
+
+🧱 Phase 2.0 – AirDuct Simulation Canvas
+
+Proof of Concept First
+
+✅ Features:
+• Canvas duct path drawing
+• Airflow pressure animation
+• Duct segment color-coding by velocity
+
+🔧 Tools:
+• Explore D3.js or Three.js (or simple SVG first)
+• Place under /simulations/air-duct/
+
+🔥 Phase 2.1 – Grease Simulation Add-On
+• Same as above but for grease ducts
+• Includes trap detection + clearance visuals
+
+🌍 Phase 3.x – Platform Expansion
+
+🌐 Phase 3.0 – Multi-Language Support
+• Locale files: /locales/en.json, ph.json, es.json
+• Auto-switch + UI toggler
+
+⚙️ Phase 3.1 – Plugin Engine (Simplified)
+• Basic system to let developers drop new tools
+• Plugin schema + auto-loader
+
+💾 Phase 3.2 – Cloud Sync (Delay if low demand)
+• Add auth system
+• Save/load history
+
+🛠️ Maintenance & DevOps Phase (ongoing)
+Task
+Why?
+CI/CD via GitHub Actions
+Auto-run tests + build
+CHANGELOG.md
+Track releases
+CONTRIBUTING.md
+Welcome collaborators
+Fallback handling for broken inputs
+Prevent app crashes
+Post-release refactoring
+Reduce tech debt
+User feedback via issue collector
+Prioritize next features
+
+
+
+
+
+
+
+
+[Type here]0[Type here]04
+
+
+
+
+
+ Phase 0.0 - Estimating App Setup
  Objective: Initialize takeoff workflows, schemas, and export stubs.
-📍 Updated SizeWise Suite – Practical Development Roadmap(With Smart Enhancements and Team-Friendly Planning)🧱 Phase 0.0 – Core FoundationObjective: Build the project’s skeleton: routing, theming, validation, config, and testing setup.✅ Product Deliverables:• Flask backend initialized• Routing via routes.py• Tool registry (toolConfig.json)• JSON-driven rule engine + schema validation• Dark/light theme toggler• Shared layout shell (header, nav, tool loader)• Basic error handling & logging• Unit testing setup (Jest or Mocha)🔧 Implementation Plan:TaskFolder/FileFlask App Init/app/__init__.py, /core/routes.pyTool Registry Logic/core/registration/toolRegistrar.jsSchema Validator/core/schema/schemaValidator.jsTheme Toggle/hooks/themeToggler.jsHome UI Shell/templates/base.html, home.htmlConfiguration & Defaults/config/toolConfig.json, defaultSettings.jsonError Handling & Logging/core/errorHandler.js, /core/logger.jsUnit Test Bootstrap/tests/setup.js, /tests/core/🌬️ Phase 0.1 – AirDuctSizer (formerly DuctSizer)Objective: Launch first tool for sizing conditioned air ducts.✅ Product Deliverables:• Input: CFM, duct shape/size, length• Output: velocity, pressure loss, gauge, joint, hanger spacing• SMACNA-based validation (Tables 1-3, 2-1, etc.)• Educational callouts (when Educated Mode ON)• Snap summary output string• Consistent file layout (logic, ui, events, rules, validators)🔧 Implementation Plan:TaskFolder/FileTool Folder/tools/air-duct-sizer/Logic/UI/Eventslogic.js, ui.js, events.jsValidators (shared use)/core/validators/gauge.js, joint.js, hanger.jsRule Files (SMACNA)/tools/air-duct-sizer/rules/Template/templates/air-duct-sizer.htmlTool Settings (if needed)/tools/air-duct-sizer/toolConfig.jsonUnit Tests/tools/air-duct-sizer/tests/🔥 Phase 0.2 – GreaseDuctSizer (formerly GreaseSizer)Objective: Handle grease-laden exhaust duct sizing (NFPA 96 + UL).✅ Product Deliverables:• Input: airflow, size, material (SS304/SS316)• Output: clearance, pressure drop, code warnings• Compliance validator (UL 1978/2221 + NFPA 96)• Snap summary string• UI with tool-specific theme (green)🔧 Implementation Plan:TaskFolder/FileTool Folder/tools/grease-duct-sizer/Logic & UIlogic.js, ui.js, events.jsClearance Validator/core/validators/ulCompliance.jsRule Files/rules/nfpa96.json, ul1978.jsonTemplate/templates/grease-duct-sizer.htmlTests/tools/grease-duct-sizer/tests/♨️ Phase 0.3 – BoilerVentSizerObjective: Support boiler venting (Cat I–IV, PVC/CPVC/SS, etc.)✅ Product Deliverables:• Input: BTU/hr, length, elbows, vent type• Output: pressure drop, material limit warning• Validator based on NFPA 54 + manufacturer specs🔧 Implementation Plan:TaskFolder/FileTool Folder/tools/boiler-vent-sizer/Rule Files/rules/nfpa54.json, /rules/boilerSpecs.jsonValidator Logic/validators/pressureCheck.js, etc.🚛 Phase 0.4 – EngineExhaustSizerObjective: Engine generator exhaust sizing (backpressure, velocity, etc.)✅ Product Deliverables:• Inputs: HP, length, slope, elbows• Output: backpressure, exhaust velocity• Material selection + validation (e.g. flex vs rigid)• Snap output summary🔁 Phase 1.x – Enhancements & Utilities📦 Phase 1.1 – Export & Report ModePriority: Early user-facing feature✅ Features:• Export PDF + CSV with system summary• Download ZIP: layout image, config, compliance note• Shareable project summaries🔧 Implementation:TaskFolder/FileExport Engine/services/exportService.jsPDF/CSV Logic/core/export/pdfGenerator.js, csvBuilder.js🧪 Phase 1.2 – Testing & Validator CoverageObjective: Bulletproof all validators, schemas, and logic✅ Tasks:• Add validation schemas for every tool• Expand unit tests (tools, shared logic)• Test invalid inputs and edge cases🧰 Phase 1.3 – Admin DashboardObjective: Lightweight internal panel for non-developers✅ Features:• Rule editor (basic JSON form)• Tool toggle switches (freemium control)• View/edit validator coverage🎯 Phase 2.x – Simulation Mode🧱 Phase 2.0 – AirDuct Simulation CanvasProof of Concept First✅ Features:• Canvas duct path drawing• Airflow pressure animation• Duct segment color-coding by velocity🔧 Tools:• Explore D3.js or Three.js (or simple SVG first)• Place under /simulations/air-duct/🔥 Phase 2.1 – Grease Simulation Add-On• Same as above but for grease ducts• Includes trap detection + clearance visuals🌍 Phase 3.x – Platform Expansion🌐 Phase 3.0 – Multi-Language Support• Locale files: /locales/en.json, ph.json, es.json• Auto-switch + UI toggler⚙️ Phase 3.1 – Plugin Engine (Simplified)• Basic system to let developers drop new tools• Plugin schema + auto-loader💾 Phase 3.2 – Cloud Sync (Delay if low demand)• Add auth system• Save/load history🛠️ Maintenance & DevOps Phase (ongoing)TaskWhy?CI/CD via GitHub ActionsAuto-run tests + buildCHANGELOG.mdTrack releasesCONTRIBUTING.mdWelcome collaboratorsFallback handling for broken inputsPrevent app crashesPost-release refactoringReduce tech debtUser feedback via issue collectorPrioritize next features[Type here]0[Type here]04
+📍 Updated SizeWise Suite – Practical Development Roadmap
+
+(With Smart Enhancements and Team-Friendly Planning)
+
+🧱 Phase 0.0 – Core Foundation
+
+Objective: Build the project’s skeleton: routing, theming, validation, config, and testing setup.
+
+✅ Product Deliverables:
+• Flask backend initialized
+• Routing via routes.py
+• Tool registry (toolConfig.json)
+• JSON-driven rule engine + schema validation
+• Dark/light theme toggler
+• Shared layout shell (header, nav, tool loader)
+• Basic error handling & logging
+• Unit testing setup (Jest or Mocha)
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Flask App Init
+/app/__init__.py, /core/routes.py
+Tool Registry Logic
+/core/registration/toolRegistrar.js
+Schema Validator
+/core/schema/schemaValidator.js
+Theme Toggle
+/hooks/themeToggler.js
+Home UI Shell
+/templates/base.html, home.html
+Configuration & Defaults
+/config/toolConfig.json, defaultSettings.json
+Error Handling & Logging
+/core/errorHandler.js, /core/logger.js
+Unit Test Bootstrap
+/tests/setup.js, /tests/core/
+
+🌬️ Phase 0.1 – AirDuctSizer (formerly DuctSizer)
+
+Objective: Launch first tool for sizing conditioned air ducts.
+
+✅ Product Deliverables:
+• Input: CFM, duct shape/size, length
+• Output: velocity, pressure loss, gauge, joint, hanger spacing
+• SMACNA-based validation (Tables 1-3, 2-1, etc.)
+• Educational callouts (when Educated Mode ON)
+• Snap summary output string
+• Consistent file layout (logic, ui, events, rules, validators)
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Tool Folder
+/tools/air-duct-sizer/
+Logic/UI/Events
+logic.js, ui.js, events.js
+Validators (shared use)
+/core/validators/gauge.js, joint.js, hanger.js
+Rule Files (SMACNA)
+/tools/air-duct-sizer/rules/
+Template
+/templates/air-duct-sizer.html
+Tool Settings (if needed)
+/tools/air-duct-sizer/toolConfig.json
+Unit Tests
+/tools/air-duct-sizer/tests/
+
+🔥 Phase 0.2 – GreaseDuctSizer (formerly GreaseSizer)
+
+Objective: Handle grease-laden exhaust duct sizing (NFPA 96 + UL).
+
+✅ Product Deliverables:
+• Input: airflow, size, material (SS304/SS316)
+• Output: clearance, pressure drop, code warnings
+• Compliance validator (UL 1978/2221 + NFPA 96)
+• Snap summary string
+• UI with tool-specific theme (green)
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Tool Folder
+/tools/grease-duct-sizer/
+Logic & UI
+logic.js, ui.js, events.js
+Clearance Validator
+/core/validators/ulCompliance.js
+Rule Files
+/rules/nfpa96.json, ul1978.json
+Template
+/templates/grease-duct-sizer.html
+Tests
+/tools/grease-duct-sizer/tests/
+
+♨️ Phase 0.3 – BoilerVentSizer
+
+Objective: Support boiler venting (Cat I–IV, PVC/CPVC/SS, etc.)
+
+✅ Product Deliverables:
+• Input: BTU/hr, length, elbows, vent type
+• Output: pressure drop, material limit warning
+• Validator based on NFPA 54 + manufacturer specs
+
+🔧 Implementation Plan:
+Task
+Folder/File
+Tool Folder
+/tools/boiler-vent-sizer/
+Rule Files
+/rules/nfpa54.json, /rules/boilerSpecs.json
+Validator Logic
+/validators/pressureCheck.js, etc.
+
+🚛 Phase 0.4 – EngineExhaustSizer
+
+Objective: Engine generator exhaust sizing (backpressure, velocity, etc.)
+
+✅ Product Deliverables:
+• Inputs: HP, length, slope, elbows
+• Output: backpressure, exhaust velocity
+• Material selection + validation (e.g. flex vs rigid)
+• Snap output summary
+
+🔁 Phase 1.x – Enhancements & Utilities
+
+📦 Phase 1.1 – Export & Report Mode
+
+Priority: Early user-facing feature
+
+✅ Features:
+• Export PDF + CSV with system summary
+• Download ZIP: layout image, config, compliance note
+• Shareable project summaries
+
+🔧 Implementation:
+Task
+Folder/File
+Export Engine
+/services/exportService.js
+PDF/CSV Logic
+/core/export/pdfGenerator.js, csvBuilder.js
+
+🧪 Phase 1.2 – Testing & Validator Coverage
+
+Objective: Bulletproof all validators, schemas, and logic
+
+✅ Tasks:
+• Add validation schemas for every tool
+• Expand unit tests (tools, shared logic)
+• Test invalid inputs and edge cases
+
+🧰 Phase 1.3 – Admin Dashboard
+
+Objective: Lightweight internal panel for non-developers
+
+✅ Features:
+• Rule editor (basic JSON form)
+• Tool toggle switches (freemium control)
+• View/edit validator coverage
+
+🎯 Phase 2.x – Simulation Mode
+
+🧱 Phase 2.0 – AirDuct Simulation Canvas
+
+Proof of Concept First
+
+✅ Features:
+• Canvas duct path drawing
+• Airflow pressure animation
+• Duct segment color-coding by velocity
+
+🔧 Tools:
+• Explore D3.js or Three.js (or simple SVG first)
+• Place under /simulations/air-duct/
+
+🔥 Phase 2.1 – Grease Simulation Add-On
+• Same as above but for grease ducts
+• Includes trap detection + clearance visuals
+
+🌍 Phase 3.x – Platform Expansion
+
+🌐 Phase 3.0 – Multi-Language Support
+• Locale files: /locales/en.json, ph.json, es.json
+• Auto-switch + UI toggler
+
+⚙️ Phase 3.1 – Plugin Engine (Simplified)
+• Basic system to let developers drop new tools
+• Plugin schema + auto-loader
+
+💾 Phase 3.2 – Cloud Sync (Delay if low demand)
+• Add auth system
+• Save/load history
+
+🛠️ Maintenance & DevOps Phase (ongoing)
+Task
+Why?
+CI/CD via GitHub Actions
+Auto-run tests + build
+CHANGELOG.md
+Track releases
+CONTRIBUTING.md
+Welcome collaborators
+Fallback handling for broken inputs
+Prevent app crashes
+Post-release refactoring
+Reduce tech debt
+User feedback via issue collector
+Prioritize next features
+
+
+
+
+
+
+
+
+[Type here]0[Type here]04
+
+
+
+
+
+=======
+﻿
+📍 SizeWise Suite – Practical Development Roadmap
+This roadmap includes clear success metrics, risks, dependencies, sprint estimates, validation checklists, and shared logic notes for each phase. It ensures a modular rollout of tools and structured platform growth.
+
+🧱 Phase 0.0 – Core Foundation
+
+Objective:
+Establish the core system architecture of the SizeWise Suite, including modular tool loading, schema validation, theme control, and shared infrastructure that will power all future tools.
+
+📦 Deliverables
+Feature
+Description
+Flask app with blueprint setup
+Foundation of the backend using modular Flask blueprints
+Tool registration system
+Auto-register tools via /config/toolConfig.json and display them in the UI
+JSON schema validator engine
+Ensures all rule/config files follow a strict schema
+Shared validator modules
+Reusable logic for pressure, velocity, and gauge calculations
+Light/Dark theme toggler
+Toggle stored via localStorage/sessionStorage
+Freemium settings config
+Enable gating for tools or features
+Home screen + navigation
+App entry point with tool selection UI
+Error handling and logging
+Capture and report frontend/backend issues
+Unit test setup (Jest/Mocha)
+Reliable base testing framework for JS logic
+
+✅ Validation Checklist
+• Tool registration loads 10+ mock tools correctly
+• Theme toggle persists across refreshes
+• JSON schema catches malformed config/rule files
+• Errors trigger visible warnings and backend logs
+• 80%+ test coverage in /core/ and /config/
+• Home screen renders on mobile and desktop
+• Tools render dynamically via config (not hardcoded)
+
+🔄 Shared Logic:
+📁 /core/validators/
+• velocityValidator.js: Ensures air/gas velocity stays within limits (used across all tools)
+• pressureDropValidator.js: Calculates and checks static pressure drop
+• materialValidator.js: Validates compatibility of materials for conditions (UL/NFPA/ASTM)
+• clearanceValidator.js: Ensures spacing from combustibles (NFPA/UL compliance)
+• gaugeValidator.js: Validates duct gauge selection per SMACNA
+• jointSeamValidator.js: Validates proper joints/seams based on tool and spec
+📁 /core/schema/
+• schemaValidator.js: Validates JSON files (rules, config)
+• toolSchema.json: Schema for toolConfig.json
+• ruleSchema.json: Schema for all rule files
+📁 /core/constants.js
+• Units: CFM, in. WG, Pa, °C, kW
+• Tool Types: AIR_DUCT, GREASE_DUCT, BOILER_VENT, ENGINE_EXHAUST
+• Velocity Classes: LOW, MEDIUM, HIGH, CRITICAL
+• Joint/Seam Types: TDC, S&D, Welded, Flanged
+📁 /core/errors.js
+• ValidationError: Used for SMACNA/NFPA/UL violations
+• RuleLoadError: When a rule file fails to load or parse
+• ConfigError: Errors in tool config or environment
+📁 /core/conversionUtils.js
+• convertCFMtoLPS()
+• convertPressureUnits()
+• convertTemp()
+📁 /core/toolRegistrar.js
+• Injects tool metadata from toolConfig.json into UI shell/dashboard
+📁 /core/themeManager.js
+• Handles light/dark mode toggle using CSS variables and localStorage
+📁 /core/feedbackLogger.js (Planned Phase 1.3)
+• Stores anonymous feedback & usage logs for improving UX
+
+
+📚 Docs:
+• /docs/dev.md – Setup & contribution guide
+• /docs/architecture.md – Design principles & system overview
+• /docs/api/ – API docs (Swagger/OpenAPI)
+
+⚠️ Risks:
+1. Schema validator too restrictive
+→ Mitigation: Start with warning-only mode
+2. Theme inconsistencies across pages
+→ Mitigation: Use CSS variables and test both themes
+
+🧪 Testing:
+• Unit: Jest for shared logic
+• Integration: Cypress for UI flows
+• Coverage: 80% minimum for core
+• E2E: Basic flows (tool load, validation)
+
+🧩 Dependencies: None
+⏱️ Estimate: 2 sprints
+
+⚡ Performance Benchmarks
+Metric
+Target
+Initial load time
+< 2s (with cache)
+Theme toggle response
+< 100ms
+Tool registration speed
+< 200ms for 10 tools
+JSON schema parse/validate
+< 150ms per file
+
+🔄 Rollback Plan
+1. Revert to last stable Git tag or branch checkpoint (e.g. phase-0.0-stable)
+2. Clear local browser cache or localStorage (for theme/active tool)
+3. Fallback UI: Render home.html with no tool data if registration fails
+4. Ensure error logs are saved via /logs/core.log for debugging
+
+📚 Documentation Scope
+Doc File
+Description
+/docs/dev.md
+Local development setup, VS Code tasks, linting rules
+/docs/architecture.md
+Core decisions on tool modularity, JSON config patterns
+/docs/tool-registration.md
+How to register and validate new tools via toolConfig.json
+/docs/api/
+Folder for Swagger/OpenAPI-generated backend docs (Phase 1.2+)
+
+⚠️ Risks + Mitigation
+Risk
+Mitigation
+JSON schema too strict (false errors)
+Start in warning mode, elevate to blocker once validated
+Theme inconsistency between light/dark
+Use CSS variables; test all components in both modes
+Registration fails due to malformed file
+Wrap in try/catch, fallback to base tool list, log error to console
+Inconsistent core validator logic across tools
+Enforce central usage via /core/validators/ only
+
+🧪 Testing Strategy
+Type
+Framework
+Coverage Goal
+Unit Tests
+Jest or Mocha
+80% of /core/, /config/
+Integration
+Cypress
+3 flows: theme toggle, tool load, schema fail
+E2E (optional)
+Cypress
+Home → Tool → Output success
+Schema Tests
+AJV or Zod
+Validate rule and config files on boot
+
+⏱️ Time Estimate + Dependencies
+• ⏱️ Estimate: 2–3 sprints (2 weeks/sprint)
+• 🔗 Dependencies: None (this is the base platform)
+
+
+
+🌬️ Phase 0.1 – AirDuctSizer
+✅ Objectives: • Build the primary air duct calculator • Comply with SMACNA Tables 1-3 for gauge, joint, seam, and hanger selection
+📦 Deliverables: • Inputs: width, height, CFM, duct type, unit system • Outputs: velocity, pressure drop, gauge, hanger spacing, SMACNA warnings • Tool folder: /tools/air-duct-sizer/ • UI Template: /templates/air-duct-sizer.html • Logic: /tools/air-duct-sizer/logic.js • Real-time validation using shared engine • Snap summary (e.g., “24x12 Rect, 800 CFM – OK”)
+✅ Validation Checklist:
+• 
+🔄 Shared Logic:
+• Pressure drop calculator
+• Unit conversion helpers
+📢 Feedback Loop:
+• "Report Issue" button added to UI
+• Basic analytics on tool usage
+⚡ Performance:
+• Calculations complete in <100ms
+• Works offline after first load
+🔄 Rollback Plan:
+• Feature flag: enable_airduct_calculator_v1
+• DB migrations are idempotent
+📚 Docs:
+• /docs/air-duct-sizer.md
+🧩 Dependencies: Phase 0.0 ⏱️ Estimate: 3–4 sprints
+⸻
+🔥 Phase 0.2 – GreaseDuctSizer
+✅ Objectives: • Size ducts for grease-laden exhaust based on NFPA 96, UL 1978/2221
+📦 Deliverables: • Inputs: duct size, airflow, clearance, materials • Outputs: compliance warnings, suggested materials, snap summary • UL and NFPA rule validators • Tool path: /tools/grease-duct-sizer/
+✅ Validation Checklist:
+• 
+🔄 Shared Logic:
+• UL compliance engine
+• Shared material validator
+📢 Feedback Loop:
+• Heatmap of usage in field
+⚡ Performance:
+• Submittal-ready output in <200ms
+🔄 Rollback Plan:
+• Tool toggle via registry config
+📚 Docs:
+• /docs/grease-duct-sizer.md
+🧩 Dependencies: Phase 0.0 ⏱️ Estimate: 4 sprints
+⸻
+♨️ Phase 0.3 – BoilerVentSizer
+✅ Objectives: • Support vent sizing for boilers using NFPA 54
+📦 Deliverables: • Inputs: capacity, length, elbows, material, altitude • Outputs: pressure loss, draft, exhaust velocity • Validator for material limits • Rule sets: NFPA 54 + manufacturer specs
+✅ Validation Checklist:
+• 
+🔄 Shared Logic:
+• Material and pressure validators
+📢 Feedback Loop:
+• Error logging for invalid input edge cases
+⚡ Performance:
+• Complete system feedback in <250ms
+🔄 Rollback Plan:
+• Tool behind enable_boiler_tool_v1 flag
+📚 Docs:
+• /docs/boiler-vent-sizer.md
+🧩 Dependencies: Phase 0.0 ⏱️ Estimate: 4 sprints
+⸻
+🚛 Phase 0.4 – EngineExhaustSizer
+✅ Objectives: • Size engine exhaust systems for generators based on horsepower and NFPA specs
+📦 Deliverables: • Inputs: HP, duct length, slope, elbows, material • Outputs: exhaust velocity, backpressure, temperature • Validator for CO/smoke volume
+✅ Validation Checklist:
+• 
+🔄 Shared Logic:
+• Pressure and material validators
+📢 Feedback Loop:
+• Annotated feedback form
+⚡ Performance:
+• Output within 150ms
+🔄 Rollback Plan:
+• Toggle engine tool in UI
+📚 Docs:
+• /docs/engine-exhaust-sizer.md
+🧩 Dependencies: Phase 0.0 ⏱️ Estimate: 4–5 sprints
+⸻
+
+📦 Phase 1.1 – Export & Report Mode
+
+Objective: Enable download/export of calculation results.
+
+✅ Deliverables:
+• PDF report with submittal-ready layout
+• CSV export of raw inputs
+• Screenshot capture for Simulation canvas
+• Compliance notes export (UL, SMACNA, NFPA)
+• Output ZIP download: “[Download Project Package]”
+
+🔗 Dependencies: AirDuctSizer, GreaseDuctSizer
+✅ Success Metrics:
+• Users can export 100% of session state and visuals
+🔍 Risks: PDF formatting inconsistencies
+⏱ Estimate: 2 sprints
+
+🧪 Phase 1.2 – Testing & Validator Safety
+
+Objective: Harden logic and expand test coverage.
+
+✅ Deliverables:
+• Unit test scaffolding per tool
+• Schema validator test suite
+• Edge case catchers (nulls, invalid JSON, etc.)
+• Coverage reports + CI integration
+
+🔗 Dependencies: All Phase 0.x tools
+✅ Success Metrics:
+• 90%+ code coverage on core validators
+🔍 Risks: Delayed validator updates cause test failures
+⏱ Estimate: 2 sprints
+
+🧰 Phase 1.3 – Admin Tools
+
+Objective: Provide internal team tools for QA and management.
+
+✅ Deliverables:
+• Rule editor (Web-based JSON file manager)
+• Tool access toggles (Freemium enforcement)
+• Validator toggles and override testing
+• Admin-only UI panel
+
+🔗 Dependencies: Validators + Rules from Phase 0.x
+✅ Success Metrics:
+• Internal edits apply without breaking validation
+🔍 Risks: Accidental overwrite of live rules
+⏱ Estimate: 2 sprints
+
+🧱 Phase 2.0 – AirFlow Simulation (AirDuct Only)
+
+Objective: Visualize duct airflow and segments interactively.
+
+✅ Deliverables:
+• Canvas-based routing tool
+• Animated elbows, T-branches
+• Color-coded flow behavior (by pressure, velocity)
+• Snapshot button to download visuals
+
+🔗 Dependencies: AirDuctSizer (Phase 0.1)
+✅ Success Metrics:
+• Smooth canvas behavior on mid-tier devices
+• All segments tagged with values
+🔍 Risks: Performance on mobile or older machines
+⏱ Estimate: 4 sprints (PoC to MVP)
+
+🔥 Phase 2.1 – GreaseFlow Simulation Add-On
+
+Objective: Animate grease duct layout and trap/coding alerts.
+
+✅ Deliverables:
+• Clearance zone highlighting
+• Static trap alerts (auto-detected slope issues)
+• Printout with visual compliance snapshot
+
+🔗 Dependencies: GreaseDuctSizer + Simulation Engine (2.0)
+✅ Success Metrics:
+• 100% trap alerts on sample edge-case runs
+🔍 Risks: Hard to model real-world grease trap failure visually
+⏱ Estimate: 3 sprints
+
+🌐 Phase 3.0 – Multilingual Support
+
+✅ Deliverables:
+• Language selector
+• Locale JSON: en.json, ph.json, es.json
+• RTL compatibility (future proof)
+
+🔗 Dependencies: UI strings externalized across tools
+✅ Success Metrics:
+• 100% UI text localized for 3 languages
+🔍 Risks: Broken layout in right-to-left mode
+⏱ Estimate: 2 sprints
+
+⚙️ Phase 3.1 – Plugin System
+
+✅ Deliverables:
+• Plugin loader engine
+• External tool folder support (/plugins/)
+• Validator add-ons
+
+🔗 Dependencies: Stable validator engine (Phase 0.0)
+✅ Success Metrics:
+• At least 1 plugin runs as external module
+🔍 Risks: Conflicts with core rule schemas
+⏱ Estimate: 2–3 sprints
+
+💾 Phase 3.2 – Cloud Sync & Persistence
+
+✅ Deliverables:
+• Login + user account
+• Save/load session history
+• Sync to browser/cloud
+
+🔗 Dependencies: Export/Validator systems
+✅ Success Metrics:
+• Data restores properly on new device
+🔍 Risks: Storage limits, user privacy compliance
+⏱ Estimate: 4 sprints
+
+🧹 Phase 4.0+ – Maintenance & Optimization
+
+✅ Deliverables:
+• Refactor rounds after each major phase
+• DevOps: GitHub Actions, Pre-commit hooks, CI
+• Roadmap update every 2 versions
+• Performance profiling (canvas, validators)
+
+✅ Success Metrics:
+• Each major version loads in <1.5s
+🔍 Risks: CI breakage during rapid changes
+⏱ Estimate: Ongoing per sprint

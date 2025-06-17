@@ -46,6 +46,7 @@ Welcome to the comprehensive documentation for SizeWise Suite - Professional HVA
 - **Grease Duct Sizer** - NFPA 96 compliant grease duct calculations
 - **Boiler Vent Sizer** - Boiler venting requirements
 - **Engine Exhaust Sizer** - Generator exhaust system sizing
+- **Estimating App** - Comprehensive takeoff and bid management
 
 ## 📊 Current Status
 
@@ -69,8 +70,9 @@ Welcome to the comprehensive documentation for SizeWise Suite - Professional HVA
 
 ### Phase 0.3 - Additional Tools 📋 Planned
 - [ ] Grease Duct Sizer
-- [ ] Boiler Vent Sizer  
+- [ ] Boiler Vent Sizer
 - [ ] Engine Exhaust Sizer
+- [ ] Estimating App
 
 ## 🎯 Documentation Standards
 

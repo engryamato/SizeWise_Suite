@@ -4,8 +4,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/engryamato/SizeWise_Suite/branch/main/graph/badge.svg)](https://codecov.io/gh/engryamato/SizeWise_Suite)
 [![GitHub stars](https://img.shields.io/github/stars/engryamato/SizeWise_Suite?style=social)](https://github.com/engryamato/SizeWise_Suite/stargazers)
+[![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-**A modular, standards-driven HVAC engineering platform. SizeWise Suite enables accurate duct sizing, pressure loss analysis, and system design—fully aligned with SMACNA, NFPA, and UL requirements. Designed for professionals. Built for trust.**
+**A modular, standards-driven HVAC engineering platform. SizeWise Suite enables accurate duct sizing, pressure loss analysis, and system design—fully aligned with SMACNA, NFPA, and UL requirements. Built with React, TypeScript, and Vite for a modern developer experience.**
 
 ---
 
@@ -40,15 +44,170 @@
 
 ## 🚀 Features
 
-- **Air Duct Sizer** [`/app/tools/duct-sizer/`] *(📦 Phase 0.1)*:  
-  Calculate duct dimensions, velocity, and pressure loss (SMACNA)
-
+- **Modular Tool Architecture** - Dynamic tool loading with Vite's module system
+- **Air Duct Sizer** - Calculate duct dimensions, velocity, and pressure loss (SMACNA)
+- **Real-time Validation** - Instant standards compliance and engineering warning checks
+- **Theme System** - Built-in light/dark mode with persistent user preference
+- **Type-Safe** - Full TypeScript support throughout the codebase
+- **Developer Experience** - Fast refresh, linting, and testing setup
 - **Estimating App** [`/app/tools/estimating-app/`] *(📦 Phase 0.0)*: Takeoff, labor and material costing, export to Excel/PDF
 - **Real-time Validation** [`/app/core/validators/`] *(📦 Phase 0.1)*:  
   Instant standards compliance and engineering warning checks
 
-- **Dark/Light Theme** [`/src/providers/ThemeProvider.tsx`, `/src/styles/`] *(📦 Phase 0.1)*:  
-  Accessible, professional UI
+### Core Components
+
+- **Tool System** - Dynamic tool loading and registration
+  - `src/core/toolRegistrar.ts` - Central tool registry
+  - `src/plugins/virtual-tools.ts` - Vite plugin for dynamic imports
+  - `src/config/toolConfig.json` - Tool metadata and configuration
+
+- **Validation** - Schema-based validation system
+  - `src/core/validators/` - Engineering validators
+  - `src/core/schema/` - JSON Schema definitions
+
+- **UI Components** - Reusable UI elements
+  - `src/components/` - Shared components
+  - `src/pages/` - Page-level components
+
+### Tool Development
+
+Each tool follows this structure:
+```
+src/tools/
+  <tool-id>/
+    index.tsx     # Public API (re-exports UI component)
+    ui.tsx        # React component
+    logic.ts      # Business logic
+    rules/        # Tool-specific validation rules
+    types.ts      # TypeScript types
+```
+
+### Adding a New Tool
+
+1. Create a new directory under `src/tools/`
+2. Implement the UI component in `ui.tsx`
+3. Add tool metadata to `src/config/toolConfig.json`
+4. The tool will be automatically discovered and loaded at runtime
+
+## 🛠️ Development Setup
+
+### Prerequisites
+
+- Node.js 18+ (LTS recommended)
+- npm 9+ or yarn 1.22+
+- Git
+
+### Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/engryamato/SizeWise_Suite.git
+   cd SizeWise_Suite
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   The app will be available at http://localhost:3000
+
+4. **Build for production**
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
+
+### Available Scripts
+
+- `dev` - Start development server
+- `build` - Build for production
+- `preview` - Preview production build locally
+- `test` - Run tests
+- `lint` - Run ESLint
+- `type-check` - Run TypeScript type checking
+
+## 📚 Documentation
+
+### Tool Registration
+
+Tools are registered in `src/config/toolConfig.json`:
+
+```json
+{
+  "tools": [
+    {
+      "id": "air-duct-sizer",
+      "name": "Air Duct Sizer",
+      "description": "Calculate duct dimensions and pressure drops",
+      "icon": "duct-icon",
+      "componentPath": "@/tools/air-duct-sizer",
+      "category": "HVAC",
+      "version": "1.0.0"
+    }
+  ]
+}
+```
+
+### Theming
+
+The app uses CSS variables for theming. The theme can be toggled between light and dark modes.
+
+```css
+:root {
+  /* Light theme */
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  /* ... */
+}
+
+[data-theme="dark"] {
+  /* Dark theme */
+  --color-bg: #1a1a1a;
+  --color-text: #ffffff;
+  /* ... */
+}
+```
+
+### Testing
+
+Tests are written with Jest and React Testing Library:
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React](https://react.dev/) - A JavaScript library for building user interfaces
+- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript at Any Scale
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 
 - **Offline Ready** [`/vite.config.ts`] *(📦 Phase 0.2)*:  
   Field-ready—works without an internet connection

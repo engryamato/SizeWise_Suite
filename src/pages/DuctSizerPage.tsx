@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import { Calculator, Info } from 'lucide-react';
 import { SMACNAResultsTable, createDuctSizerResults } from '../components/ui/SMACNAResultsTable';
 
+// Add JSX namespace for React
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elemName: string]: any;
+    }
+  }
+}
+
 interface LocalDuctInputs {
   cfm: string;
   shape: 'rectangular' | 'circular';
@@ -11,6 +20,7 @@ interface LocalDuctInputs {
   length: string;
   material: 'galvanized' | 'stainless' | 'aluminum';
   application: 'supply' | 'return' | 'exhaust';
+  pressureClass: 'low' | 'medium' | 'high';
 }
 
 interface LocalDuctResults {
@@ -28,20 +38,21 @@ interface LocalDuctResults {
 
 const DuctSizerPage: React.FC = () => {
   const [inputs, setInputs] = useState<LocalDuctInputs>({
-    cfm: '',
+    cfm: '1000',
     shape: 'rectangular',
-    width: '',
-    height: '',
+    width: '12',
+    height: '8',
     diameter: '',
-    length: '',
+    length: '100',
     material: 'galvanized',
     application: 'supply',
+    pressureClass: 'low',
   });
 
   const [results, setResults] = useState<LocalDuctResults | null>(null);
 
   const handleInputChange = (field: keyof LocalDuctInputs, value: string) => {
-    setInputs(prev => ({ ...prev, [field]: value }));
+    setInputs(prev => ({ ...prev, [field]: value }) as LocalDuctInputs);
   };
 
   // Helper function to calculate duct geometry
@@ -64,37 +75,122 @@ const DuctSizerPage: React.FC = () => {
     }
   };
 
-  // Helper function to determine material gauge
-  const determineGauge = (pressureLoss: number): string => {
-    if (pressureLoss > 6) return '18';
-    if (pressureLoss > 4) return '20';
-    if (pressureLoss > 2) return '22';
-    if (pressureLoss > 1) return '24';
-    return '26';
+  // Helper function to determine material gauge based on multiple factors
+  const determineGauge = (
+    pressureLoss: number,
+    pressureClass: string,
+    ductSize: number,
+    application: string
+  ): string => {
+    // Start with pressure loss based gauge
+    let gaugeFromPressure = '26';
+    if (pressureLoss > 0.5) gaugeFromPressure = '18';
+    else if (pressureLoss > 0.3) gaugeFromPressure = '20';
+    else if (pressureLoss > 0.15) gaugeFromPressure = '22';
+    else if (pressureLoss > 0.08) gaugeFromPressure = '24';
+
+    // Minimum gauge based on pressure class
+    let minGaugeForPressureClass = '26';
+    if (pressureClass === 'high') minGaugeForPressureClass = '20';
+    else if (pressureClass === 'medium') minGaugeForPressureClass = '22';
+
+    // Minimum gauge based on duct size (larger ducts need thicker material)
+    let minGaugeForSize = '26';
+    if (ductSize > 30)
+      minGaugeForSize = '20'; // Large ducts (>30" dimension)
+    else if (ductSize > 20)
+      minGaugeForSize = '22'; // Medium ducts (20-30")
+    else if (ductSize > 12) minGaugeForSize = '24'; // Small-medium ducts (12-20")
+
+    // Minimum gauge based on application
+    let minGaugeForApplication = '26';
+    if (application === 'exhaust') minGaugeForApplication = '24'; // Exhaust systems need stronger material
+
+    // Select the thickest (lowest number) gauge from all requirements
+    const allGauges = [
+      parseInt(gaugeFromPressure),
+      parseInt(minGaugeForPressureClass),
+      parseInt(minGaugeForSize),
+      parseInt(minGaugeForApplication),
+    ];
+
+    const selectedGauge = Math.min(...allGauges);
+    return selectedGauge.toString();
   };
 
-  // Helper function to calculate joint spacing
-  const calculateJointSpacing = (velocity: number): number => {
-    if (velocity > 2500) return 4;
-    if (velocity > 2000) return 6;
-    return 8;
+  // Helper function to get pressure class limits
+  const getPressureClassLimits = (pressureClass: string) => {
+    switch (pressureClass) {
+      case 'low':
+        return { maxVelocity: 2500, minVelocity: 800, maxPressureLoss: 0.1 };
+      case 'medium':
+        return { maxVelocity: 3500, minVelocity: 1000, maxPressureLoss: 0.25 };
+      case 'high':
+        return { maxVelocity: 4500, minVelocity: 1200, maxPressureLoss: 0.5 };
+      default:
+        return { maxVelocity: 2500, minVelocity: 800, maxPressureLoss: 0.1 };
+    }
   };
 
-  // Helper function to calculate hanger spacing
-  const calculateHangerSpacing = (gauge: string): number => {
+  // Helper function to calculate joint spacing based on pressure class
+  const calculateJointSpacing = (velocity: number, pressureClass: string): number => {
+    if (pressureClass === 'high') {
+      if (velocity > 4000) return 3;
+      if (velocity > 3000) return 4;
+      return 5;
+    } else if (pressureClass === 'medium') {
+      if (velocity > 3000) return 4;
+      if (velocity > 2500) return 5;
+      return 6;
+    } else {
+      if (velocity > 2500) return 4;
+      if (velocity > 2000) return 6;
+      return 8;
+    }
+  };
+
+  // Helper function to calculate hanger spacing based on gauge and pressure class
+  const calculateHangerSpacing = (gauge: string, pressureClass: string): number => {
     const gaugeNum = parseInt(gauge);
-    if (gaugeNum >= 24) return 8;
-    if (gaugeNum >= 20) return 10;
-    return 12;
+    let baseSpacing = 12;
+
+    if (gaugeNum >= 24) baseSpacing = 8;
+    else if (gaugeNum >= 20) baseSpacing = 10;
+
+    // Reduce spacing for higher pressure classes
+    if (pressureClass === 'high') {
+      return Math.max(baseSpacing - 2, 4);
+    } else if (pressureClass === 'medium') {
+      return Math.max(baseSpacing - 1, 6);
+    }
+    return baseSpacing;
   };
 
-  // Helper function to generate warnings
-  const generateWarnings = (velocity: number, pressureLoss: number): string[] => {
+  // Helper function to generate warnings based on pressure class
+  const generateWarnings = (
+    velocity: number,
+    pressureLoss: number,
+    pressureClass: string
+  ): string[] => {
     const warnings: string[] = [];
-    if (velocity > 2500)
-      warnings.push('Velocity exceeds recommended 2500 ft/min for low-pressure systems');
-    if (velocity < 800) warnings.push('Velocity below 800 ft/min may cause stratification');
-    if (pressureLoss > 0.1) warnings.push('High pressure loss - consider larger duct size');
+    const limits = getPressureClassLimits(pressureClass);
+
+    if (velocity > limits.maxVelocity) {
+      warnings.push(
+        `Velocity exceeds recommended ${limits.maxVelocity} ft/min for ${pressureClass}-pressure systems`
+      );
+    }
+    if (velocity < limits.minVelocity) {
+      warnings.push(
+        `Velocity below ${limits.minVelocity} ft/min may cause stratification in ${pressureClass}-pressure systems`
+      );
+    }
+    if (pressureLoss > limits.maxPressureLoss) {
+      warnings.push(
+        `Pressure loss exceeds ${limits.maxPressureLoss}" w.g. limit for ${pressureClass}-pressure systems`
+      );
+    }
+
     return warnings;
   };
 
@@ -171,11 +267,22 @@ const DuctSizerPage: React.FC = () => {
             (2 * 4005 * (hydraulicDiameter / 12))
           : 0;
 
+      // Calculate the largest duct dimension for gauge selection
+      const ductSize =
+        inputs.shape === 'rectangular'
+          ? Math.max(parseFloat(inputs.width), parseFloat(inputs.height))
+          : parseFloat(inputs.diameter);
+
       // Use helper functions for calculations
-      const gauge = determineGauge(pressureLoss);
-      const jointSpacing = calculateJointSpacing(velocity);
-      const hangerSpacing = calculateHangerSpacing(gauge);
-      const warnings = generateWarnings(velocity, pressureLoss);
+      const gauge = determineGauge(
+        pressureLoss,
+        inputs.pressureClass,
+        ductSize,
+        inputs.application
+      );
+      const jointSpacing = calculateJointSpacing(velocity, inputs.pressureClass);
+      const hangerSpacing = calculateHangerSpacing(gauge, inputs.pressureClass);
+      const warnings = generateWarnings(velocity, pressureLoss, inputs.pressureClass);
       const snapSummary = generateSnapSummary(inputs, cfm, velocity, pressureLoss, gauge, length);
 
       setResults({
@@ -336,7 +443,12 @@ const DuctSizerPage: React.FC = () => {
               <select
                 id="material-select"
                 value={inputs.material}
-                onChange={e => handleInputChange('material', e.target.value)}
+                onChange={e =>
+                  handleInputChange(
+                    'material',
+                    e.target.value as 'galvanized' | 'stainless' | 'aluminum'
+                  )
+                }
                 className="input-field"
               >
                 <option value="galvanized">Galvanized Steel</option>
@@ -356,12 +468,39 @@ const DuctSizerPage: React.FC = () => {
               <select
                 id="application-select"
                 value={inputs.application}
-                onChange={e => handleInputChange('application', e.target.value)}
+                onChange={e =>
+                  handleInputChange(
+                    'application',
+                    e.target.value as 'supply' | 'return' | 'exhaust'
+                  )
+                }
                 className="input-field"
               >
                 <option value="supply">Supply Air</option>
                 <option value="return">Return Air</option>
                 <option value="exhaust">Exhaust Air</option>
+              </select>
+            </div>
+
+            {/* Pressure Class */}
+            <div>
+              <label
+                htmlFor="pressure-class-select"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
+                Pressure Class
+              </label>
+              <select
+                id="pressure-class-select"
+                value={inputs.pressureClass}
+                onChange={e =>
+                  handleInputChange('pressureClass', e.target.value as 'low' | 'medium' | 'high')
+                }
+                className="input-field"
+              >
+                <option value="low">Low Pressure (≤ 2" w.g.)</option>
+                <option value="medium">Medium Pressure (2-6" w.g.)</option>
+                <option value="high">High Pressure (6-10" w.g.)</option>
               </select>
             </div>
 
@@ -386,6 +525,7 @@ const DuctSizerPage: React.FC = () => {
                 length: parseFloat(inputs.length),
                 material: inputs.material,
                 application: inputs.application,
+                pressureClass: inputs.pressureClass,
               },
               {
                 velocity: results.velocity,
