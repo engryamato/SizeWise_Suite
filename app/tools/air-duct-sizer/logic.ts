@@ -113,42 +113,48 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
 }
 
 /**
+ * Parse a dimension value that could be a string or number
+ */
+function parseDimension(value: string | number | undefined, name: string): number {
+  if (value === undefined || value === null) {
+    throw new Error(`${name} is required`);
+  }
+  const num = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(num)) {
+    throw new Error(`${name} must be a valid number`);
+  }
+  return num;
+}
+
+/**
+ * Calculate rectangular duct geometry
+ */
+function calculateRectangularGeometry(width: number, height: number) {
+  const area = (width * height) / 144; // Convert sq inches to sq feet
+  const perimeter = 2 * (width + height) / 12; // Convert inches to feet
+  return { area, perimeter };
+}
+
+/**
+ * Calculate circular duct geometry
+ */
+function calculateCircularGeometry(diameter: number) {
+  const area = (Math.PI * Math.pow(diameter, 2)) / (4 * 144); // Convert sq inches to sq feet
+  const perimeter = (Math.PI * diameter) / 12; // Convert inches to feet
+  return { area, perimeter };
+}
+
+/**
  * Calculate duct geometry (area and perimeter)
  */
 function calculateGeometry(inputs: DuctInputs): { area: number; perimeter: number } {
   if (inputs.shape === 'rectangular') {
-    if (!inputs.width || !inputs.height) {
-      throw new Error('Width and height required for rectangular ducts');
-    }
-    
-    // Ensure width and height are numbers
-    const width = typeof inputs.width === 'string' ? parseFloat(inputs.width) : inputs.width;
-    const height = typeof inputs.height === 'string' ? parseFloat(inputs.height) : inputs.height;
-    
-    if (isNaN(width) || isNaN(height)) {
-      throw new Error('Width and height must be valid numbers');
-    }
-    
-    const area = (width * height) / 144; // Convert sq inches to sq feet
-    const perimeter = 2 * (width + height) / 12; // Convert inches to feet
-    
-    return { area, perimeter };
+    const width = parseDimension(inputs.width, 'Width');
+    const height = parseDimension(inputs.height, 'Height');
+    return calculateRectangularGeometry(width, height);
   } else {
-    if (!inputs.diameter) {
-      throw new Error('Diameter required for circular ducts');
-    }
-    
-    // Ensure diameter is a number
-    const diameter = typeof inputs.diameter === 'string' ? parseFloat(inputs.diameter) : inputs.diameter;
-    
-    if (isNaN(diameter)) {
-      throw new Error('Diameter must be a valid number');
-    }
-    
-    const area = (Math.PI * Math.pow(diameter, 2)) / (4 * 144); // Convert sq inches to sq feet
-    const perimeter = (Math.PI * diameter) / 12; // Convert inches to feet
-    
-    return { area, perimeter };
+    const diameter = parseDimension(inputs.diameter, 'Diameter');
+    return calculateCircularGeometry(diameter);
   }
 }
 
