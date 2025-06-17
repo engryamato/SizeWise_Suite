@@ -40,6 +40,7 @@ Welcome to the comprehensive documentation for SizeWise Suite - Professional HVA
 
 ### Implemented Tools
 - **[Air Duct Sizer](./tools/air-duct-sizer.md)** - Duct sizing calculations (v0.1.0)
+- **[Estimating App](./tools/estimating-app/USER_GUIDE.md)** - Takeoff and costing (v0.0.0)
 
 ### Planned Tools
 - **Grease Duct Sizer** - NFPA 96 compliant grease duct calculations
@@ -48,6 +49,10 @@ Welcome to the comprehensive documentation for SizeWise Suite - Professional HVA
 - **Estimating App** - Comprehensive takeoff and bid management
 
 ## 📊 Current Status
+
+### Phase 0.0 - Estimating Core Setup 🚧 In Progress
+- [ ] Estimating App directory structure
+- [ ] Sample schemas and calculations
 
 ### Phase 0.1 - Foundation ✅ Complete
 - [x] Modern frontend stack (React + TypeScript + Vite)
