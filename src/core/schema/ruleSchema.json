@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Rule File Schema",
+  "type": "object",
+  "properties": {
+    "ruleId": { "type": "string" },
+    "description": { "type": "string" },
+    "parameters": { "type": "object" },
+    "constraints": { "type": "object" }
+  },
+  "required": ["ruleId", "description", "parameters", "constraints"]
+}

@@ -110,24 +110,46 @@ export function getComplianceStatus(
 }
 
 /**
- * Get velocity status based on application type
+ * Get velocity status based on application type and pressure class
  */
-export function getVelocityStatus(velocity: number, application: string): StatusType {
-  const limits = {
+export function getVelocityStatus(
+  velocity: number,
+  application: string,
+  pressureClass?: string
+): StatusType {
+  // Base limits by application
+  const baseLimits = {
     supply: { min: 800, max: 2500, warning: 2000 },
     return: { min: 600, max: 2000, warning: 1500 },
     exhaust: { min: 1000, max: 3000, warning: 2500 },
   };
 
-  const appLimits = limits[application as keyof typeof limits] || limits.supply;
+  let appLimits = baseLimits[application as keyof typeof baseLimits] || baseLimits.supply;
+
+  // Adjust limits based on pressure class
+  if (pressureClass === 'medium') {
+    appLimits = { ...appLimits, max: appLimits.max + 1000, warning: appLimits.warning + 500 };
+  } else if (pressureClass === 'high') {
+    appLimits = { ...appLimits, max: appLimits.max + 2000, warning: appLimits.warning + 1000 };
+  }
+
   return getComplianceStatus(velocity, appLimits);
 }
 
 /**
- * Get pressure loss status
+ * Get pressure loss status based on pressure class
  */
-export function getPressureLossStatus(pressureLoss: number): StatusType {
-  return getComplianceStatus(pressureLoss, { max: 0.1, warning: 0.08 });
+export function getPressureLossStatus(pressureLoss: number, pressureClass?: string): StatusType {
+  let limits = { max: 0.1, warning: 0.08 };
+
+  // Adjust limits based on pressure class
+  if (pressureClass === 'medium') {
+    limits = { max: 0.25, warning: 0.2 };
+  } else if (pressureClass === 'high') {
+    limits = { max: 0.5, warning: 0.4 };
+  }
+
+  return getComplianceStatus(pressureLoss, limits);
 }
 
 export default StatusIndicator;

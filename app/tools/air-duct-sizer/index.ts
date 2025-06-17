@@ -18,12 +18,13 @@ export interface AirDuctSizerConfig {
 export interface DuctInputs {
   cfm: number;
   shape: 'rectangular' | 'circular';
-  width?: number; // inches (for rectangular)
-  height?: number; // inches (for rectangular)
-  diameter?: number; // inches (for circular)
-  length: number; // feet
-  material?: 'galvanized' | 'stainless' | 'aluminum';
-  application?: 'supply' | 'return' | 'exhaust';
+  width?: number | string;  // inches (for rectangular)
+  height?: number | string; // inches (for rectangular)
+  diameter?: number | string; // inches (for circular)
+  length: number | string; // feet
+  material: 'galvanized' | 'stainless' | 'aluminum';
+  application: 'supply' | 'return' | 'exhaust';
+  pressureClass: 'low' | 'medium' | 'high';
 }
 
 export interface DuctResults {
