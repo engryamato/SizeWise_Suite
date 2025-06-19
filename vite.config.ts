@@ -12,7 +12,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      'virtual:tools': path.resolve(__dirname, 'src/plugins/virtual-tools.ts'),
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },

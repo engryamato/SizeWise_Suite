@@ -71,14 +71,14 @@ const ToolDashboard: React.FC = () => {
 
   return (
     <div className="py-6">
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">Available Tools</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h1 className="text-2xl font-bold text-gray-900 mb-8">Tools Dashboard</h1>
+
+      <div data-testid="tool-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tools.map((tool) => (
           <ToolCard key={tool.id} {...tool} />
         ))}
       </div>
-      
+
       {tools.length === 0 && (
         <div className="text-center py-12">
           <p className="text-gray-500">No tools available. Please check back later.</p>

@@ -22,5 +22,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src"],
+  "exclude": ["src/plugins/virtual-tools.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
