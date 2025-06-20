@@ -25,12 +25,12 @@ export function useDuctResults({ initialResults = {} }: UseDuctResultsProps = {}
       timestamp: new Date(),
     },
     loading: false,
-    error: null,
+    error: undefined,
   });
 
   const calculateResults = useCallback(async (input: Partial<DuctResults>) => {
     try {
-      setResults(prev => ({ ...prev, loading: true, error: null }));
+      setResults(prev => ({ ...prev, loading: true, error: undefined }));
       
       // Default values
       const defaults: DuctResults = {
@@ -71,8 +71,8 @@ export function useDuctResults({ initialResults = {} }: UseDuctResultsProps = {}
             derived.shape,
             derived.pressureClass
           );
-          derived.materialGauge = gaugeResult.gauge;
-          derived.minRequiredGauge = gaugeResult.gauge;
+          derived.materialGauge = gaugeResult.gauge || undefined;
+          derived.minRequiredGauge = gaugeResult.gauge || undefined;
         } else if (derived.shape === 'rectangular' && 'width' in derived.dimensions && 'height' in derived.dimensions) {
           const gaugeResult = findDuctGauge(
             { 
@@ -82,8 +82,8 @@ export function useDuctResults({ initialResults = {} }: UseDuctResultsProps = {}
             derived.shape,
             derived.pressureClass
           );
-          derived.materialGauge = gaugeResult.gauge;
-          derived.minRequiredGauge = gaugeResult.gauge;
+          derived.materialGauge = gaugeResult.gauge || undefined;
+          derived.minRequiredGauge = gaugeResult.gauge || undefined;
         }
       }
 
@@ -160,7 +160,7 @@ export function useDuctResults({ initialResults = {} }: UseDuctResultsProps = {}
         data: processedResults,
         summary,
         loading: false,
-        error: null,
+        error: undefined,
       });
 
       return { results: processedResults, summary };
@@ -194,7 +194,7 @@ export function useDuctResults({ initialResults = {} }: UseDuctResultsProps = {}
         timestamp: new Date(),
       },
       loading: false,
-      error: null,
+      error: undefined,
     }),
   };
 }

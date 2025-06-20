@@ -1,0 +1,5054 @@
+{
+  "config": {
+    "configFile": "/mnt/persist/workspace/playwright.config.ts",
+    "rootDir": "/mnt/persist/workspace/app/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/mnt/persist/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/mnt/persist/workspace/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/mnt/persist/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/mnt/persist/workspace/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/mnt/persist/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/mnt/persist/workspace/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/mnt/persist/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/mnt/persist/workspace/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/mnt/persist/workspace/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/mnt/persist/workspace/app/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.53.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3001",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "air-duct-sizer.spec.ts",
+      "file": "air-duct-sizer.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Air Duct Sizer Tool",
+          "file": "air-duct-sizer.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display the tool interface correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-04206a3b7b4d899438ee",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should switch between rectangular and circular duct shapes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-250a63985ac86f538472",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 22,
+              "column": 3
+            },
+            {
+              "title": "should calculate rectangular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-5972c5fefc3d5db08f9a",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should calculate circular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-8c19cb898b433b16b0f6",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should validate input fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-c703982e9cc2feec9178",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "should handle invalid input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-ea62a457ff6e96512758",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "should handle very large input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-97b5dc6de106e000829f",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "should persist form values during shape changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-e00eecca9bbebf32b69a",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-13f61759cf7492fc6205",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 147,
+              "column": 3
+            },
+            {
+              "title": "should handle units conversion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-6b7fa0e2ecebae26a0da",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 170,
+              "column": 3
+            },
+            {
+              "title": "should display the tool interface correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-9c09b812c4b77e308ca9",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should switch between rectangular and circular duct shapes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-89a898ea072362880389",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 22,
+              "column": 3
+            },
+            {
+              "title": "should calculate rectangular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-52fa9539b76b2a1c0c52",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should calculate circular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-4b0172703f5a224ca209",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should validate input fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-ef687300b405b7120d0c",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "should handle invalid input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-5151cc3f1b042952f8a8",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "should handle very large input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-343c1e8918f6d3123b5c",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "should persist form values during shape changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-62b342c5c050eafe7623",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-0cfa89898ff44cd42958",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 147,
+              "column": 3
+            },
+            {
+              "title": "should handle units conversion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-f43005a03e3449d3022e",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 170,
+              "column": 3
+            },
+            {
+              "title": "should display the tool interface correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-b44a0b5c4de22daaceb8",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should switch between rectangular and circular duct shapes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-89bd79b63d005f348830",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 22,
+              "column": 3
+            },
+            {
+              "title": "should calculate rectangular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-9208473e90130b70c2df",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should calculate circular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-a631f3bb0c6437a423d3",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should validate input fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-2621e7fa9fd5ff566189",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "should handle invalid input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-c5fed49e67670c7dd1f4",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "should handle very large input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-2a2eedadb5935bfac60d",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "should persist form values during shape changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-5e6d12f1e301200496bf",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-703e74d84d496c56fe32",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 147,
+              "column": 3
+            },
+            {
+              "title": "should handle units conversion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-5b605e4975bdb8a1024e",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 170,
+              "column": 3
+            },
+            {
+              "title": "should display the tool interface correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-4d3fe2ccc74f2475bd8e",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should switch between rectangular and circular duct shapes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-9e71ba704796152311a5",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 22,
+              "column": 3
+            },
+            {
+              "title": "should calculate rectangular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-69e6fd5918a6c2db5d6c",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should calculate circular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-804b23773a2aa7cb9580",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should validate input fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-1c42b1d085330e610257",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "should handle invalid input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-847f0123be73fb41452c",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "should handle very large input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-50b483fdb48cee404218",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "should persist form values during shape changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-e95a3356f4ade9506856",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-6326e0e606a054649bde",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 147,
+              "column": 3
+            },
+            {
+              "title": "should handle units conversion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-3940cff998e515d50773",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 170,
+              "column": 3
+            },
+            {
+              "title": "should display the tool interface correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-3f141184882f7d51a491",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should switch between rectangular and circular duct shapes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-478d68a0d568ddd92d4d",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 22,
+              "column": 3
+            },
+            {
+              "title": "should calculate rectangular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-a837ad73e47ce9fba938",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should calculate circular duct sizing correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-f50c25956f5d63547073",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should validate input fields",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-88f0276f78a018190e8a",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "should handle invalid input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-3ebcc834481d6578b4d8",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "should handle very large input values",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-64a9941ebfd9d6e5ad26",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 108,
+              "column": 3
+            },
+            {
+              "title": "should persist form values during shape changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-cdbceb6074a666511f15",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 127,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-aba3b2f41005cc202ef9",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 147,
+              "column": 3
+            },
+            {
+              "title": "should handle units conversion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a31ef478fdcc95e00b25-ca8afecc85a544c86b68",
+              "file": "air-duct-sizer.spec.ts",
+              "line": 170,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "comprehensive.spec.ts",
+      "file": "comprehensive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Comprehensive E2E Tests",
+          "file": "comprehensive.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should complete full user journey - home to calculation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-6cf2cf73e49969e9111e",
+              "file": "comprehensive.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should work correctly across all viewport sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-4f73a83568667afeb53f",
+              "file": "comprehensive.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "should handle multiple calculation scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-4c8881bea132d985c105",
+              "file": "comprehensive.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should validate all input scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-f376d1408957191b8d78",
+              "file": "comprehensive.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should maintain performance standards",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-305babb9acda28bfd30d",
+              "file": "comprehensive.spec.ts",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "should be accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-0477c23324628a4796da",
+              "file": "comprehensive.spec.ts",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "should handle edge cases gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-6b0263a7b70e6313cc4c",
+              "file": "comprehensive.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "should work with random data generation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-62c73171421586cc5955",
+              "file": "comprehensive.spec.ts",
+              "line": 232,
+              "column": 3
+            },
+            {
+              "title": "should complete full user journey - home to calculation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-dd7d64df5d1a19ee3f5d",
+              "file": "comprehensive.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should work correctly across all viewport sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-e17ff9c08e84cc2a4bfb",
+              "file": "comprehensive.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "should handle multiple calculation scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-c1d501af193049f4a580",
+              "file": "comprehensive.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should validate all input scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-5e4547e3a08b9c7684a4",
+              "file": "comprehensive.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should maintain performance standards",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-20e283690d5a4dc4a568",
+              "file": "comprehensive.spec.ts",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "should be accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-1edb84cb1705de02738a",
+              "file": "comprehensive.spec.ts",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "should handle edge cases gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-df589e183e4e41a25f26",
+              "file": "comprehensive.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "should work with random data generation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-bde5a72e8f18f912bc6b",
+              "file": "comprehensive.spec.ts",
+              "line": 232,
+              "column": 3
+            },
+            {
+              "title": "should complete full user journey - home to calculation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-aabc58596fe66fd0260c",
+              "file": "comprehensive.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should work correctly across all viewport sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-8a9764b1850d87a145e3",
+              "file": "comprehensive.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "should handle multiple calculation scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-4656639247326790ef2d",
+              "file": "comprehensive.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should validate all input scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-54145c2b2959d8cbc9db",
+              "file": "comprehensive.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should maintain performance standards",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-315e0be710849164ca9a",
+              "file": "comprehensive.spec.ts",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "should be accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-4adce5c2ac64892cb097",
+              "file": "comprehensive.spec.ts",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "should handle edge cases gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-ab577da9042b79ebe85d",
+              "file": "comprehensive.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "should work with random data generation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-8951bc7087a856c9814a",
+              "file": "comprehensive.spec.ts",
+              "line": 232,
+              "column": 3
+            },
+            {
+              "title": "should complete full user journey - home to calculation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-0b5abe7bc5acfc8a7b83",
+              "file": "comprehensive.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should work correctly across all viewport sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-cf91fc81a8fb52567377",
+              "file": "comprehensive.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "should handle multiple calculation scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-9bd85111b431fbd92127",
+              "file": "comprehensive.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should validate all input scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-3f00f3ebdd9a900694e2",
+              "file": "comprehensive.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should maintain performance standards",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-b75b05b73aa184f03a8c",
+              "file": "comprehensive.spec.ts",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "should be accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-bad9a20c52fb0f8dc37e",
+              "file": "comprehensive.spec.ts",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "should handle edge cases gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-e4f84708f121c6b0b182",
+              "file": "comprehensive.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "should work with random data generation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-edb2b7af72eb6664b686",
+              "file": "comprehensive.spec.ts",
+              "line": 232,
+              "column": 3
+            },
+            {
+              "title": "should complete full user journey - home to calculation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-bea443ca579284332024",
+              "file": "comprehensive.spec.ts",
+              "line": 9,
+              "column": 3
+            },
+            {
+              "title": "should work correctly across all viewport sizes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-da08e3ba1f837333a80a",
+              "file": "comprehensive.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "should handle multiple calculation scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-2e7d0a66b582a2e4806f",
+              "file": "comprehensive.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should validate all input scenarios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-c43e4fdcdecff52881ac",
+              "file": "comprehensive.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should maintain performance standards",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-84f93f8abc2272deaffc",
+              "file": "comprehensive.spec.ts",
+              "line": 151,
+              "column": 3
+            },
+            {
+              "title": "should be accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-c28144bba5e8a56a65be",
+              "file": "comprehensive.spec.ts",
+              "line": 171,
+              "column": 3
+            },
+            {
+              "title": "should handle edge cases gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-1cf8696900b32725b71a",
+              "file": "comprehensive.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "should work with random data generation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ee7a9684fd9fecf71bb2-f00f6210dcd90a05d794",
+              "file": "comprehensive.spec.ts",
+              "line": 232,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "debug.spec.ts",
+      "file": "debug.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Debug Tests",
+          "file": "debug.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should check what is on the air-duct-sizer page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-16962f755d4877f4cb78",
+              "file": "debug.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-5ce6f8b722eb2fd30bc6",
+              "file": "debug.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the air-duct-sizer page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-8dbb69af2cdbf6802646",
+              "file": "debug.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-f3e3c8e1908289202794",
+              "file": "debug.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the air-duct-sizer page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-e8eb38b36ba7fd15d49f",
+              "file": "debug.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-9a89d74fe9742ddca89d",
+              "file": "debug.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the air-duct-sizer page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-b9ed8cf641c56cf86b99",
+              "file": "debug.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-34c73269dfb7a419b5f7",
+              "file": "debug.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the air-duct-sizer page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-b3db883055a32ca8b9c6",
+              "file": "debug.spec.ts",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should check what is on the home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5ee6126738e1012db859-cea1682c4661df636c50",
+              "file": "debug.spec.ts",
+              "line": 59,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "error-handling.spec.ts",
+      "file": "error-handling.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Error Handling and Edge Cases",
+          "file": "error-handling.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should handle network errors gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-6fa1a211c2517a9551ad",
+              "file": "error-handling.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should handle JavaScript errors without crashing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-a683feff351d2b9e8a44",
+              "file": "error-handling.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "should handle slow network conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-45968a90f028dc1dbbee",
+              "file": "error-handling.spec.ts",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should handle missing resources gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-eb070062f0da1d03573f",
+              "file": "error-handling.spec.ts",
+              "line": 98,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-c0b3d007ba194ee3f63a",
+              "file": "error-handling.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should handle window resize events",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-964bebb4ed86e3812c3c",
+              "file": "error-handling.spec.ts",
+              "line": 128,
+              "column": 3
+            },
+            {
+              "title": "should handle form validation edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-41843e048e614c95ff31",
+              "file": "error-handling.spec.ts",
+              "line": 153,
+              "column": 3
+            },
+            {
+              "title": "should handle concurrent user interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-fce9a3e1ea3ec8805503",
+              "file": "error-handling.spec.ts",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "should handle memory leaks during navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-f1bf2de8cc3e12df6fdd",
+              "file": "error-handling.spec.ts",
+              "line": 228,
+              "column": 3
+            },
+            {
+              "title": "should handle network errors gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-6083c63fb77495cc38bd",
+              "file": "error-handling.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should handle JavaScript errors without crashing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-49952130256df909e50c",
+              "file": "error-handling.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "should handle slow network conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-8460eebd2d2afb7874b7",
+              "file": "error-handling.spec.ts",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should handle missing resources gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-b682286b2fc0f32b73b0",
+              "file": "error-handling.spec.ts",
+              "line": 98,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-598cf7666d5d3c6194f3",
+              "file": "error-handling.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should handle window resize events",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-d86fc17e4548512360f5",
+              "file": "error-handling.spec.ts",
+              "line": 128,
+              "column": 3
+            },
+            {
+              "title": "should handle form validation edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-76f9a2a6be8c1c8eacd8",
+              "file": "error-handling.spec.ts",
+              "line": 153,
+              "column": 3
+            },
+            {
+              "title": "should handle concurrent user interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-936c2670d170abcddf1a",
+              "file": "error-handling.spec.ts",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "should handle memory leaks during navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-03601f3a226152df241a",
+              "file": "error-handling.spec.ts",
+              "line": 228,
+              "column": 3
+            },
+            {
+              "title": "should handle network errors gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-01d064e739b6641b36c6",
+              "file": "error-handling.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should handle JavaScript errors without crashing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-24b1116222243decf260",
+              "file": "error-handling.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "should handle slow network conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-48a8dd1bbb59791917a9",
+              "file": "error-handling.spec.ts",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should handle missing resources gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-a367ad7c41ad5440d9ab",
+              "file": "error-handling.spec.ts",
+              "line": 98,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-55b336ba46f8494ddbe9",
+              "file": "error-handling.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should handle window resize events",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-5d0276d3d3bb0663331a",
+              "file": "error-handling.spec.ts",
+              "line": 128,
+              "column": 3
+            },
+            {
+              "title": "should handle form validation edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-350d6aaceacdf75f2362",
+              "file": "error-handling.spec.ts",
+              "line": 153,
+              "column": 3
+            },
+            {
+              "title": "should handle concurrent user interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-1f126b62f0f6bcf77c7b",
+              "file": "error-handling.spec.ts",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "should handle memory leaks during navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-a50ff557e3ca48fbfa9b",
+              "file": "error-handling.spec.ts",
+              "line": 228,
+              "column": 3
+            },
+            {
+              "title": "should handle network errors gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-489813aa455d1aff6ce9",
+              "file": "error-handling.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should handle JavaScript errors without crashing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-36fa66627b75099a3d48",
+              "file": "error-handling.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "should handle slow network conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-aba1fef85728175fd463",
+              "file": "error-handling.spec.ts",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should handle missing resources gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-84df702dbd2b16e116ee",
+              "file": "error-handling.spec.ts",
+              "line": 98,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-141156d5bb61deabfb71",
+              "file": "error-handling.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should handle window resize events",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-00c892395af782278cb6",
+              "file": "error-handling.spec.ts",
+              "line": 128,
+              "column": 3
+            },
+            {
+              "title": "should handle form validation edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-1647ae4ceccd57ed60ee",
+              "file": "error-handling.spec.ts",
+              "line": 153,
+              "column": 3
+            },
+            {
+              "title": "should handle concurrent user interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-8988640b523f96602efb",
+              "file": "error-handling.spec.ts",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "should handle memory leaks during navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-aaf7a89f3c1bacc8b5ea",
+              "file": "error-handling.spec.ts",
+              "line": 228,
+              "column": 3
+            },
+            {
+              "title": "should handle network errors gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-a5c6a15e77162834de88",
+              "file": "error-handling.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "should handle JavaScript errors without crashing",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-989ce2b6067b8c4a2c34",
+              "file": "error-handling.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "should handle slow network conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-2bafc917c63cbf7f0acc",
+              "file": "error-handling.spec.ts",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "should handle missing resources gracefully",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-2020693571121721b782",
+              "file": "error-handling.spec.ts",
+              "line": 98,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-93d103df518d3399a52d",
+              "file": "error-handling.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should handle window resize events",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-ed43beffd7985f3860ee",
+              "file": "error-handling.spec.ts",
+              "line": 128,
+              "column": 3
+            },
+            {
+              "title": "should handle form validation edge cases",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-70aa3fce1914c639f5ba",
+              "file": "error-handling.spec.ts",
+              "line": 153,
+              "column": 3
+            },
+            {
+              "title": "should handle concurrent user interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-44e458bae60943c87361",
+              "file": "error-handling.spec.ts",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "should handle memory leaks during navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1a72721d9ac5c938e1fe-a8a2f20ecc639b8cbd4f",
+              "file": "error-handling.spec.ts",
+              "line": 228,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "home-page.spec.ts",
+      "file": "home-page.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Home Page",
+          "file": "home-page.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display main heading and subtitle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-f2376df567a29b47ee25",
+              "file": "home-page.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should display navigation menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-3e952258016960a8e5f0",
+              "file": "home-page.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "should display available tools",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-a38d29fd0b2e96ec3e82",
+              "file": "home-page.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should have working theme toggle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-d359788d8b280d4f51c5",
+              "file": "home-page.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-1428d51d9733f39277e3",
+              "file": "home-page.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should have proper meta tags and title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-e1602082891fafa6b84b",
+              "file": "home-page.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should load without JavaScript errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-ed3207871bca2abe7fc1",
+              "file": "home-page.spec.ts",
+              "line": 84,
+              "column": 3
+            },
+            {
+              "title": "should have accessible elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-c952ff7d37ebb6acdae5",
+              "file": "home-page.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should display main heading and subtitle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-5912bf427498b8eb5a3d",
+              "file": "home-page.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should display navigation menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-1e143271a1e30ff41d87",
+              "file": "home-page.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "should display available tools",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-1fce4f72f006b1f317a2",
+              "file": "home-page.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should have working theme toggle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-eb569593c9fdf5cae790",
+              "file": "home-page.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-c234fa9a4fc3c61115fa",
+              "file": "home-page.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should have proper meta tags and title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-f9f4deee010a6bbeac8e",
+              "file": "home-page.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should load without JavaScript errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-a6a9339ac65053f966c5",
+              "file": "home-page.spec.ts",
+              "line": 84,
+              "column": 3
+            },
+            {
+              "title": "should have accessible elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-8faa851577f11c7fce86",
+              "file": "home-page.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should display main heading and subtitle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-9c679ea8cd83c74d092b",
+              "file": "home-page.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should display navigation menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-656aede78a24d49b8537",
+              "file": "home-page.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "should display available tools",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-62f3c51aab71eefc8c09",
+              "file": "home-page.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should have working theme toggle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-b3b6097ca5110ef23c09",
+              "file": "home-page.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-0669878821d6bf05fad2",
+              "file": "home-page.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should have proper meta tags and title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-8c5f3791de66d5b9975e",
+              "file": "home-page.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should load without JavaScript errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-85bcd6dbf609c8c66fd8",
+              "file": "home-page.spec.ts",
+              "line": 84,
+              "column": 3
+            },
+            {
+              "title": "should have accessible elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-2e5664e2d4f698b40692",
+              "file": "home-page.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should display main heading and subtitle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-01d6356b76131cb5e48d",
+              "file": "home-page.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should display navigation menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-6de3c2396b41e23927aa",
+              "file": "home-page.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "should display available tools",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-4a5e021c57ca290b40df",
+              "file": "home-page.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should have working theme toggle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-1d5d116d5328ffaea081",
+              "file": "home-page.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-73dfa2606d7366f79c93",
+              "file": "home-page.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should have proper meta tags and title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-40265aac5d96676d656a",
+              "file": "home-page.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should load without JavaScript errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-6614966be107387273c4",
+              "file": "home-page.spec.ts",
+              "line": 84,
+              "column": 3
+            },
+            {
+              "title": "should have accessible elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-61103e5e09dc8178a4f7",
+              "file": "home-page.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should display main heading and subtitle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-6f99e12245735ae96176",
+              "file": "home-page.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should display navigation menu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-a2cc601c325f61c6e99f",
+              "file": "home-page.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "should display available tools",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-46d02940710d3ba1b7a8",
+              "file": "home-page.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "should have working theme toggle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-d966c0982fb9d06e1d7a",
+              "file": "home-page.spec.ts",
+              "line": 37,
+              "column": 3
+            },
+            {
+              "title": "should be responsive on mobile devices",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-ca5cf4ec54c362249231",
+              "file": "home-page.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should have proper meta tags and title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-a7d69d8f2fedaaa2254a",
+              "file": "home-page.spec.ts",
+              "line": 72,
+              "column": 3
+            },
+            {
+              "title": "should load without JavaScript errors",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-f8c2af7f5ebd8e546b03",
+              "file": "home-page.spec.ts",
+              "line": 84,
+              "column": 3
+            },
+            {
+              "title": "should have accessible elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d186ff7d110502c4a7d9-83dab7fb476aaf54cc33",
+              "file": "home-page.spec.ts",
+              "line": 113,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation",
+          "file": "navigation.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should navigate between pages correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-18999780ee9cf32f2b41",
+              "file": "navigation.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should navigate to Air Duct Sizer from home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-6a1c5451d4e13f385217",
+              "file": "navigation.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-4d3dad8fe99836d99504",
+              "file": "navigation.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should show 404 for invalid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-1c5c21170bfcc23aff3d",
+              "file": "navigation.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should maintain navigation state across page refreshes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-c1ef9abafca0c6dea8c1",
+              "file": "navigation.spec.ts",
+              "line": 73,
+              "column": 3
+            },
+            {
+              "title": "should navigate between pages correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-434f462973eb6650459d",
+              "file": "navigation.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should navigate to Air Duct Sizer from home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-1b98105d71677bbdeb58",
+              "file": "navigation.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-6fa7834a643219c7a58b",
+              "file": "navigation.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should show 404 for invalid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-49341cf714b194c7dd9f",
+              "file": "navigation.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should maintain navigation state across page refreshes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-61ac7c9d9f69de72ed6f",
+              "file": "navigation.spec.ts",
+              "line": 73,
+              "column": 3
+            },
+            {
+              "title": "should navigate between pages correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-7605f7f2f00c18ae2dc7",
+              "file": "navigation.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should navigate to Air Duct Sizer from home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-b7bec81bda013a6c6296",
+              "file": "navigation.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-e0cc1f592dc5c5f852be",
+              "file": "navigation.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should show 404 for invalid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-87ca4ffa07e654bd3bfa",
+              "file": "navigation.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should maintain navigation state across page refreshes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-0cea4a778064f4abadcf",
+              "file": "navigation.spec.ts",
+              "line": 73,
+              "column": 3
+            },
+            {
+              "title": "should navigate between pages correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-139725552c43b68cd70c",
+              "file": "navigation.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should navigate to Air Duct Sizer from home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-3d73b53a647fecfde80b",
+              "file": "navigation.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-0778c6fa448fa3f4a447",
+              "file": "navigation.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should show 404 for invalid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-2a8c958bc39d4a619d3c",
+              "file": "navigation.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should maintain navigation state across page refreshes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-948148fb8b17dddb4e76",
+              "file": "navigation.spec.ts",
+              "line": 73,
+              "column": 3
+            },
+            {
+              "title": "should navigate between pages correctly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-b583c492918c4dff030a",
+              "file": "navigation.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should navigate to Air Duct Sizer from home page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-841259cca27aa88bb51f",
+              "file": "navigation.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should handle browser back/forward navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-f5dacabffbbc5519922a",
+              "file": "navigation.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should show 404 for invalid routes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-da897461511f1772b286",
+              "file": "navigation.spec.ts",
+              "line": 60,
+              "column": 3
+            },
+            {
+              "title": "should maintain navigation state across page refreshes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5d2868f7d23420c27cca-22fe7e2dfbeed0d3f15d",
+              "file": "navigation.spec.ts",
+              "line": 73,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "theme-toggle.spec.ts",
+      "file": "theme-toggle.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Theme Toggle Functionality",
+          "file": "theme-toggle.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should toggle between light and dark themes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-a335d5a242094085b897",
+              "file": "theme-toggle.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should persist theme preference across page reloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-ec9ffb5f3949362c9c32",
+              "file": "theme-toggle.spec.ts",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should persist theme across different pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-9b8366534e492f2a5b79",
+              "file": "theme-toggle.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should update theme toggle icon/text when theme changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-13d494b0fecd4a6b6597",
+              "file": "theme-toggle.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should respect system theme preference on first visit",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-532cc0f9d3200496ee2a",
+              "file": "theme-toggle.spec.ts",
+              "line": 144,
+              "column": 3
+            },
+            {
+              "title": "should maintain theme during navigation and form interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-5c6fd19666e5d32bd44e",
+              "file": "theme-toggle.spec.ts",
+              "line": 181,
+              "column": 3
+            },
+            {
+              "title": "should toggle between light and dark themes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-00432dbda347e4b004ce",
+              "file": "theme-toggle.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should persist theme preference across page reloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-380e5c3485242e4cf19a",
+              "file": "theme-toggle.spec.ts",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should persist theme across different pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-f82b2726e9afd7c06712",
+              "file": "theme-toggle.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should update theme toggle icon/text when theme changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-ee10939e63bc162af39c",
+              "file": "theme-toggle.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should respect system theme preference on first visit",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-150178ce079c92c68ec2",
+              "file": "theme-toggle.spec.ts",
+              "line": 144,
+              "column": 3
+            },
+            {
+              "title": "should maintain theme during navigation and form interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-69fbb21806c9f3bcbe05",
+              "file": "theme-toggle.spec.ts",
+              "line": 181,
+              "column": 3
+            },
+            {
+              "title": "should toggle between light and dark themes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-12bf523925db55a0bdd1",
+              "file": "theme-toggle.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should persist theme preference across page reloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-af82dc3cb756bcf75352",
+              "file": "theme-toggle.spec.ts",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should persist theme across different pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-4118666750a3d01e6020",
+              "file": "theme-toggle.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should update theme toggle icon/text when theme changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-3d6ed7024c11ac385157",
+              "file": "theme-toggle.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should respect system theme preference on first visit",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-d01402a97eabe1a090b3",
+              "file": "theme-toggle.spec.ts",
+              "line": 144,
+              "column": 3
+            },
+            {
+              "title": "should maintain theme during navigation and form interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-e23fcac3b31f6f494dd8",
+              "file": "theme-toggle.spec.ts",
+              "line": 181,
+              "column": 3
+            },
+            {
+              "title": "should toggle between light and dark themes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-6c532e4a8bd615cf28c8",
+              "file": "theme-toggle.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should persist theme preference across page reloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-795cec50506b58de5836",
+              "file": "theme-toggle.spec.ts",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should persist theme across different pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-eaa302feb9fc2f1d52c5",
+              "file": "theme-toggle.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should update theme toggle icon/text when theme changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-c1f4278ec47816662ec4",
+              "file": "theme-toggle.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should respect system theme preference on first visit",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-fc1fe0dbd43d8b7f1938",
+              "file": "theme-toggle.spec.ts",
+              "line": 144,
+              "column": 3
+            },
+            {
+              "title": "should maintain theme during navigation and form interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-8e5b10acadf7f1e52def",
+              "file": "theme-toggle.spec.ts",
+              "line": 181,
+              "column": 3
+            },
+            {
+              "title": "should toggle between light and dark themes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-ddf6e1e1a835d28b6ea4",
+              "file": "theme-toggle.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should persist theme preference across page reloads",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-760e9c61f65bce3ff3bb",
+              "file": "theme-toggle.spec.ts",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should persist theme across different pages",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-8c1982ec3517f03f19ac",
+              "file": "theme-toggle.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "should update theme toggle icon/text when theme changes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-ce5d488b291efda9b126",
+              "file": "theme-toggle.spec.ts",
+              "line": 113,
+              "column": 3
+            },
+            {
+              "title": "should respect system theme preference on first visit",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-3b4df3bda820be35aabb",
+              "file": "theme-toggle.spec.ts",
+              "line": 144,
+              "column": 3
+            },
+            {
+              "title": "should maintain theme during navigation and form interactions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "28924747feb34f610bb0-7a645719cf6f2f5eb343",
+              "file": "theme-toggle.spec.ts",
+              "line": 181,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-20T22:07:28.062Z",
+    "duration": 346.866,
+    "expected": 0,
+    "skipped": 240,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

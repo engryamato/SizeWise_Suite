@@ -1,0 +1,1032 @@
+<testsuites id="" name="" tests="240" failures="0" skipped="240" errors="0" time="0.346866">
+<testsuite name="air-duct-sizer.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="10" failures="0" skipped="10" time="0" errors="0">
+<testcase name="Air Duct Sizer Tool › should display the tool interface correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should switch between rectangular and circular duct shapes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate rectangular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate circular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should validate input fields" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle invalid input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle very large input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should persist form values during shape changes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should be responsive on mobile devices" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle units conversion" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="comprehensive.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Comprehensive E2E Tests › should complete full user journey - home to calculation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work correctly across all viewport sizes" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle multiple calculation scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should validate all input scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should maintain performance standards" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should be accessible" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle edge cases gracefully" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work with random data generation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="debug.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Debug Tests › should check what is on the air-duct-sizer page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Debug Tests › should check what is on the home page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="error-handling.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="9" failures="0" skipped="9" time="0" errors="0">
+<testcase name="Error Handling and Edge Cases › should handle network errors gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle JavaScript errors without crashing" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle slow network conditions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle missing resources gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle browser back/forward edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle window resize events" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle form validation edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle concurrent user interactions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle memory leaks during navigation" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home-page.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Home Page › should display main heading and subtitle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display navigation menu" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display available tools" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have working theme toggle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should be responsive on mobile devices" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have proper meta tags and title" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should load without JavaScript errors" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have accessible elements" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="navigation.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="5" failures="0" skipped="5" time="0" errors="0">
+<testcase name="Navigation › should navigate between pages correctly" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should navigate to Air Duct Sizer from home page" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should handle browser back/forward navigation" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should show 404 for invalid routes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should maintain navigation state across page refreshes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="theme-toggle.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="chromium" tests="6" failures="0" skipped="6" time="0" errors="0">
+<testcase name="Theme Toggle Functionality › should toggle between light and dark themes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme preference across page reloads" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme across different pages" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should update theme toggle icon/text when theme changes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should respect system theme preference on first visit" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should maintain theme during navigation and form interactions" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="air-duct-sizer.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="10" failures="0" skipped="10" time="0" errors="0">
+<testcase name="Air Duct Sizer Tool › should display the tool interface correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should switch between rectangular and circular duct shapes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate rectangular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate circular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should validate input fields" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle invalid input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle very large input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should persist form values during shape changes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should be responsive on mobile devices" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle units conversion" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="comprehensive.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Comprehensive E2E Tests › should complete full user journey - home to calculation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work correctly across all viewport sizes" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle multiple calculation scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should validate all input scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should maintain performance standards" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should be accessible" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle edge cases gracefully" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work with random data generation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="debug.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Debug Tests › should check what is on the air-duct-sizer page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Debug Tests › should check what is on the home page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="error-handling.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="9" failures="0" skipped="9" time="0" errors="0">
+<testcase name="Error Handling and Edge Cases › should handle network errors gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle JavaScript errors without crashing" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle slow network conditions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle missing resources gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle browser back/forward edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle window resize events" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle form validation edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle concurrent user interactions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle memory leaks during navigation" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home-page.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Home Page › should display main heading and subtitle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display navigation menu" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display available tools" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have working theme toggle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should be responsive on mobile devices" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have proper meta tags and title" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should load without JavaScript errors" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have accessible elements" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="navigation.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="5" failures="0" skipped="5" time="0" errors="0">
+<testcase name="Navigation › should navigate between pages correctly" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should navigate to Air Duct Sizer from home page" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should handle browser back/forward navigation" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should show 404 for invalid routes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should maintain navigation state across page refreshes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="theme-toggle.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="firefox" tests="6" failures="0" skipped="6" time="0" errors="0">
+<testcase name="Theme Toggle Functionality › should toggle between light and dark themes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme preference across page reloads" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme across different pages" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should update theme toggle icon/text when theme changes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should respect system theme preference on first visit" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should maintain theme during navigation and form interactions" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="air-duct-sizer.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="10" failures="0" skipped="10" time="0" errors="0">
+<testcase name="Air Duct Sizer Tool › should display the tool interface correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should switch between rectangular and circular duct shapes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate rectangular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate circular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should validate input fields" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle invalid input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle very large input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should persist form values during shape changes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should be responsive on mobile devices" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle units conversion" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="comprehensive.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Comprehensive E2E Tests › should complete full user journey - home to calculation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work correctly across all viewport sizes" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle multiple calculation scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should validate all input scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should maintain performance standards" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should be accessible" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle edge cases gracefully" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work with random data generation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="debug.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Debug Tests › should check what is on the air-duct-sizer page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Debug Tests › should check what is on the home page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="error-handling.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="9" failures="0" skipped="9" time="0" errors="0">
+<testcase name="Error Handling and Edge Cases › should handle network errors gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle JavaScript errors without crashing" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle slow network conditions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle missing resources gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle browser back/forward edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle window resize events" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle form validation edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle concurrent user interactions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle memory leaks during navigation" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home-page.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Home Page › should display main heading and subtitle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display navigation menu" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display available tools" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have working theme toggle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should be responsive on mobile devices" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have proper meta tags and title" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should load without JavaScript errors" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have accessible elements" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="navigation.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="5" failures="0" skipped="5" time="0" errors="0">
+<testcase name="Navigation › should navigate between pages correctly" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should navigate to Air Duct Sizer from home page" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should handle browser back/forward navigation" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should show 404 for invalid routes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should maintain navigation state across page refreshes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="theme-toggle.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="webkit" tests="6" failures="0" skipped="6" time="0" errors="0">
+<testcase name="Theme Toggle Functionality › should toggle between light and dark themes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme preference across page reloads" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme across different pages" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should update theme toggle icon/text when theme changes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should respect system theme preference on first visit" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should maintain theme during navigation and form interactions" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="air-duct-sizer.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="10" failures="0" skipped="10" time="0" errors="0">
+<testcase name="Air Duct Sizer Tool › should display the tool interface correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should switch between rectangular and circular duct shapes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate rectangular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate circular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should validate input fields" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle invalid input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle very large input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should persist form values during shape changes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should be responsive on mobile devices" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle units conversion" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="comprehensive.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Comprehensive E2E Tests › should complete full user journey - home to calculation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work correctly across all viewport sizes" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle multiple calculation scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should validate all input scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should maintain performance standards" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should be accessible" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle edge cases gracefully" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work with random data generation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="debug.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Debug Tests › should check what is on the air-duct-sizer page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Debug Tests › should check what is on the home page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="error-handling.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="9" failures="0" skipped="9" time="0" errors="0">
+<testcase name="Error Handling and Edge Cases › should handle network errors gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle JavaScript errors without crashing" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle slow network conditions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle missing resources gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle browser back/forward edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle window resize events" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle form validation edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle concurrent user interactions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle memory leaks during navigation" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home-page.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Home Page › should display main heading and subtitle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display navigation menu" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display available tools" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have working theme toggle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should be responsive on mobile devices" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have proper meta tags and title" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should load without JavaScript errors" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have accessible elements" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="navigation.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="5" failures="0" skipped="5" time="0" errors="0">
+<testcase name="Navigation › should navigate between pages correctly" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should navigate to Air Duct Sizer from home page" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should handle browser back/forward navigation" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should show 404 for invalid routes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should maintain navigation state across page refreshes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="theme-toggle.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Chrome" tests="6" failures="0" skipped="6" time="0" errors="0">
+<testcase name="Theme Toggle Functionality › should toggle between light and dark themes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme preference across page reloads" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme across different pages" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should update theme toggle icon/text when theme changes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should respect system theme preference on first visit" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should maintain theme during navigation and form interactions" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="air-duct-sizer.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="10" failures="0" skipped="10" time="0" errors="0">
+<testcase name="Air Duct Sizer Tool › should display the tool interface correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should switch between rectangular and circular duct shapes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate rectangular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should calculate circular duct sizing correctly" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should validate input fields" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle invalid input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle very large input values" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should persist form values during shape changes" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should be responsive on mobile devices" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Air Duct Sizer Tool › should handle units conversion" classname="air-duct-sizer.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="comprehensive.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Comprehensive E2E Tests › should complete full user journey - home to calculation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work correctly across all viewport sizes" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle multiple calculation scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should validate all input scenarios" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should maintain performance standards" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should be accessible" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should handle edge cases gracefully" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Comprehensive E2E Tests › should work with random data generation" classname="comprehensive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="debug.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="Debug Tests › should check what is on the air-duct-sizer page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Debug Tests › should check what is on the home page" classname="debug.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="error-handling.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="9" failures="0" skipped="9" time="0" errors="0">
+<testcase name="Error Handling and Edge Cases › should handle network errors gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle JavaScript errors without crashing" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle slow network conditions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle missing resources gracefully" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle browser back/forward edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle window resize events" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle form validation edge cases" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle concurrent user interactions" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Error Handling and Edge Cases › should handle memory leaks during navigation" classname="error-handling.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home-page.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Home Page › should display main heading and subtitle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display navigation menu" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should display available tools" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have working theme toggle" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should be responsive on mobile devices" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have proper meta tags and title" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should load without JavaScript errors" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page › should have accessible elements" classname="home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="navigation.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="5" failures="0" skipped="5" time="0" errors="0">
+<testcase name="Navigation › should navigate between pages correctly" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should navigate to Air Duct Sizer from home page" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should handle browser back/forward navigation" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should show 404 for invalid routes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation › should maintain navigation state across page refreshes" classname="navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="theme-toggle.spec.ts" timestamp="2025-06-20T22:07:28.408Z" hostname="Mobile Safari" tests="6" failures="0" skipped="6" time="0" errors="0">
+<testcase name="Theme Toggle Functionality › should toggle between light and dark themes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme preference across page reloads" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should persist theme across different pages" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should update theme toggle icon/text when theme changes" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should respect system theme preference on first visit" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Theme Toggle Functionality › should maintain theme during navigation and form interactions" classname="theme-toggle.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>
