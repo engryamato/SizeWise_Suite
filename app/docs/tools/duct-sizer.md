@@ -28,7 +28,7 @@ The Air Duct Sizer is the first tool implemented in SizeWise Suite, designed to 
 
 ### File Structure
 ```
-app/tools/air-duct-sizer/
+app/tools/duct-sizer/
 ├── components/           # (Future: Tool-specific components)
 ├── calculations/         # (Future: Separated calculation logic)
 ├── config/              # (Future: Tool configuration)

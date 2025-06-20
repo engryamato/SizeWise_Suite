@@ -29,7 +29,7 @@ const Home = () => {
     {
       title: 'Air Duct Sizer',
       description: 'Calculate duct dimensions, velocity, and pressure loss based on SMACNA standards.',
-      path: '/air-duct-sizer',
+      path: '/duct-sizer',
       phase: 'Phase 0.1',
       icon: '🌬️',
     },

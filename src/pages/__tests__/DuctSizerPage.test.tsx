@@ -36,10 +36,10 @@ describe('DuctSizerPage', () => {
     // Calculate
     fireEvent.click(screen.getByRole('button', { name: /calculate/i }));
     
-    // Check results appear
-    expect(screen.getByText(/velocity/i)).toBeInTheDocument();
-    expect(screen.getByText(/pressure loss/i)).toBeInTheDocument();
-    expect(screen.getByText(/ft\/min/)).toBeInTheDocument();
+    // Check results appear - look for specific result values
+    expect(screen.getAllByText(/velocity/i)).toHaveLength(2); // One in description, one in results
+    expect(screen.getAllByText(/pressure loss/i)).toHaveLength(2); // One in description, one in results
+    expect(screen.getAllByText(/ft\/min/)).toHaveLength(3); // Multiple instances in results
   });
 
   test('switches to circular duct inputs', () => {

@@ -1,5 +1,16 @@
 import Ajv from 'ajv';
-import scheduleSchema from '../schemas/schedule.schema.json' assert { type: 'json' };
+
+const scheduleSchema = {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schedule",
+  "type": "object",
+  "properties": {
+    "task": { "type": "string" },
+    "hours": { "type": "number", "minimum": 0 }
+  },
+  "required": ["task", "hours"],
+  "additionalProperties": false
+};
 
 const ajv = new Ajv();
 const validate = ajv.compile(scheduleSchema);

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback } from 'react';
-import { DuctShape } from '../../tools/air-duct-sizer/logic';
+import { DuctShape } from '../../tools/duct-sizer/logic';
 
 interface DimensionsInputProps {
   shape: DuctShape;

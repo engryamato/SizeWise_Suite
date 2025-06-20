@@ -126,12 +126,12 @@ export const navigationTestData = {
   routes: [
     { path: '/', name: 'Home', expectedTitle: 'SizeWise Suite' },
     { path: '/tools', name: 'Tools Dashboard', expectedTitle: 'Tools' },
-    { path: '/air-duct-sizer', name: 'Air Duct Sizer', expectedTitle: 'Air Duct Sizer' },
+    { path: '/duct-sizer', name: 'Air Duct Sizer', expectedTitle: 'Air Duct Sizer' },
   ],
   invalidRoutes: [
     '/nonexistent',
     '/tools/invalid',
-    '/air-duct-sizer/invalid',
+    '/duct-sizer/invalid',
     '/admin',
     '/api',
   ],

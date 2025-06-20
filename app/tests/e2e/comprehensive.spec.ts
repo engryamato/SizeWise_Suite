@@ -18,7 +18,7 @@ test.describe('Comprehensive E2E Tests', () => {
 
     // Navigate to Air Duct Sizer
     await homePage.clickAirDuctSizer();
-    await expect(page).toHaveURL('/air-duct-sizer');
+    await expect(page).toHaveURL('/duct-sizer');
     await airDuctSizerPage.expectToBeVisible();
 
     // Perform a calculation with valid data

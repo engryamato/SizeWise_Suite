@@ -23,7 +23,7 @@ export default function virtualTools(): Plugin {
           
           // Store the importers in a constant
           const toolImporters = {
-            'air-duct-sizer': () => import('@/tools/air-duct-sizer')
+            'duct-sizer': () => import('@/tools/duct-sizer')
           };
           
           // Export the tools object

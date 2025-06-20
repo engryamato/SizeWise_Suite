@@ -48,7 +48,7 @@ app/tests/e2e/
    - Performance monitoring
    - Error handling
 
-3. **Air Duct Sizer Tests** (`air-duct-sizer.spec.ts`)
+3. **Air Duct Sizer Tests** (`duct-sizer.spec.ts`)
    - Form interactions and validation
    - Calculation accuracy testing
    - Shape switching (rectangular/circular)

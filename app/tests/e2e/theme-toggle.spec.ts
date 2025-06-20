@@ -197,7 +197,7 @@ test.describe('Theme Toggle Functionality', () => {
     
     // Navigate to Air Duct Sizer
     await homePage.clickAirDuctSizer();
-    await expect(page).toHaveURL('/air-duct-sizer');
+    await expect(page).toHaveURL('/duct-sizer');
     
     // Theme should still be dark
     const toolTheme = await page.locator('html').getAttribute('class') || '';

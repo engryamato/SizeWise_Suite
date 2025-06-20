@@ -40,11 +40,13 @@ export interface BaseSeamEntry extends BaseEntry {
 export interface RoundGaugeEntry extends BaseGaugeEntry {
   min_diameter_in: number;
   max_diameter_in: number;
+  gauge: number; // Add the gauge property that exists in the JSON data
 }
 
 export interface RectangularGaugeEntry extends BaseGaugeEntry {
   min_size_in: number;
   max_size_in: number;
+  gauge: number; // Add the gauge property that exists in the JSON data
 }
 
 export interface RoundJointEntry extends BaseJointEntry {

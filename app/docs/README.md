@@ -38,8 +38,8 @@ Welcome to the comprehensive documentation for SizeWise Suite - Professional HVA
 
 ## 🔧 Tool Documentation
 
-### Implemented Tools
-- **[Air Duct Sizer](./tools/air-duct-sizer.md)** - Duct sizing calculations (v0.1.0)
+-### Implemented Tools
+- **[Air Duct Sizer](./tools/duct-sizer.md)** - Duct sizing calculations (v0.1.0)
 - **[Estimating App](./tools/estimating-app/USER_GUIDE.md)** - Takeoff and costing (v0.0.0)
 
 ### Planned Tools

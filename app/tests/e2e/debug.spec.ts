@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Debug Tests', () => {
-  test('should check what is on the air-duct-sizer page', async ({ page }) => {
+  test('should check what is on the duct-sizer page', async ({ page }) => {
     // Collect console logs
     const consoleLogs: string[] = [];
     page.on('console', msg => {
@@ -14,7 +14,7 @@ test.describe('Debug Tests', () => {
       pageErrors.push(error.message);
     });
 
-    await page.goto('/air-duct-sizer');
+    await page.goto('/duct-sizer');
 
     // Wait for page to load
     await page.waitForTimeout(3000);
@@ -53,7 +53,7 @@ test.describe('Debug Tests', () => {
     pageErrors.forEach(error => console.log('  ', error));
 
     // Take a screenshot for debugging
-    await page.screenshot({ path: 'debug-air-duct-sizer.png', fullPage: true });
+    await page.screenshot({ path: 'debug-duct-sizer.png', fullPage: true });
   });
 
   test('should check what is on the home page', async ({ page }) => {
@@ -67,7 +67,7 @@ test.describe('Debug Tests', () => {
     console.log('Home page title:', title);
     
     // Check for tool cards
-    const toolCards = await page.locator('a[href="/air-duct-sizer"]').all();
+    const toolCards = await page.locator('a[href="/duct-sizer"]').all();
     console.log('Tool cards found:', toolCards.length);
     
     for (const card of toolCards) {

@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { Units } from '../../tools/air-duct-sizer/logic';
+import { Units } from '../../tools/duct-sizer/logic';
 
 interface UnitsSelectorProps {
   selectedUnits: Units;

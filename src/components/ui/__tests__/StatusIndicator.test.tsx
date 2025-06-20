@@ -1,4 +1,4 @@
-import React from 'react';
+// React import not needed with JSX transform
 import { render, screen } from '@testing-library/react';
 import { StatusIndicator, getVelocityStatus, getPressureLossStatus } from '../StatusIndicator';
 

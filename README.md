@@ -146,11 +146,11 @@ Tools are registered in `src/config/toolConfig.json`:
 {
   "tools": [
     {
-      "id": "air-duct-sizer",
+      "id": "duct-sizer",
       "name": "Air Duct Sizer",
       "description": "Calculate duct dimensions and pressure drops",
       "icon": "duct-icon",
-      "componentPath": "@/tools/air-duct-sizer",
+      "componentPath": "@/tools/duct-sizer",
       "category": "HVAC",
       "version": "1.0.0"
     }

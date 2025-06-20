@@ -83,7 +83,7 @@ Tests page navigation, routing, and browser history functionality.
 ### `home-page.spec.ts`
 Tests the home page interface, tool cards, and basic functionality.
 
-### `air-duct-sizer.spec.ts`
+### `duct-sizer.spec.ts`
 Tests the Air Duct Sizer tool including:
 - Form interactions
 - Calculations with various inputs

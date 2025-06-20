@@ -11,7 +11,7 @@ As well as alignment with the target structure in Updated Folder Structure (Futu
 
 ## 1. Naming & Folder Organization
 
-- [ ] Use **kebab-case** for all folders (e.g., `air-duct-sizer`, `grease-duct-sizer`).
+- [ ] Use **kebab-case** for all folders (e.g., `duct-sizer`, `grease-duct-sizer`).
 - [ ] Major root folder: `/app/` for all application logic and submodules.
 - [ ] Separation of assets: `/assets/` for raw sources (fonts, SVG, videos), `/static/` for app-serving assets (CSS, images, bundled JS).
 - [ ] Place shared logic, validation engines, and registrars in `/core/`.
@@ -34,7 +34,7 @@ As well as alignment with the target structure in Updated Folder Structure (Futu
 ## 3. Migration Steps and Data Handling
 
 - [ ] **Preserve all relevant existing content; do not delete code or assets unless specifically outdated or marked as temporary.**
-- [ ] Migrate legacy tool folders to new structure (e.g., `ductsizer` → `tools/air-duct-sizer`).
+- [ ] Migrate legacy tool folders to new structure (e.g., `ductsizer` → `tools/duct-sizer`).
 - [ ] Move or rename any docs, readmes, configuration, and templates into their corresponding new locations.
 - [ ] Combine/merge logic files if a tool’s code was previously scattered.
 - [ ] Archive or move any old/legacy/not-to-be-maintained scripts/folders to an `/archive/` or `/docs/old/` area if still potentially referenceable.

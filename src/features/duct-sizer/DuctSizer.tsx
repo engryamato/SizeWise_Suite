@@ -1,8 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { Card } from '../../components/shared/Card';
 import { Button } from '../../components/shared/Button';
 import { FormField, Input } from '../../components/shared/FormField';
-import { HomeIcon, CalculatorIcon, CogIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import { CalculatorIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 
 type DuctShape = 'rectangular' | 'round';
 type Units = 'imperial' | 'metric';
@@ -171,12 +171,7 @@ export function DuctSizer() {
     }, 1000);
   }, [state, validateInputs]);
 
-  // Navigation items for the sidebar
-  const navigationItems = [
-    { name: 'Dashboard', href: '/', icon: HomeIcon },
-    { name: 'Duct Sizer', href: '/duct-sizer', icon: CalculatorIcon, current: true },
-    { name: 'Settings', href: '/settings', icon: CogIcon },
-  ];
+  // Navigation items removed - not used in this component
 
   return (
     <div className="space-y-6">
