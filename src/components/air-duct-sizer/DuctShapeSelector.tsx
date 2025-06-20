@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { DuctShape } from '../../tools/air-duct-sizer/logic';
+import { DuctShape } from '../../tools/duct-sizer/logic';
 
 interface DuctShapeSelectorProps {
   selectedShape: DuctShape;

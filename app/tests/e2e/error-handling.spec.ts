@@ -152,7 +152,7 @@ test.describe('Error Handling and Edge Cases', () => {
 
   test('should handle form validation edge cases', async ({ page }) => {
     // Navigate to a form page (Air Duct Sizer)
-    await page.goto('/air-duct-sizer');
+    await page.goto('/duct-sizer');
     
     // Test with various invalid inputs
     const testCases = [
@@ -187,7 +187,7 @@ test.describe('Error Handling and Edge Cases', () => {
           const currentUrl = page.url();
           
           // Form should either show validation or not proceed
-          expect(hasValidation || currentUrl.includes('air-duct-sizer')).toBeTruthy();
+          expect(hasValidation || currentUrl.includes('duct-sizer')).toBeTruthy();
         }
       }
     }
@@ -218,7 +218,7 @@ test.describe('Error Handling and Edge Cases', () => {
 
     // Page should be in a valid state
     const currentUrl = page.url();
-    expect(currentUrl).toMatch(/\/(|tools|air-duct-sizer)$/);
+    expect(currentUrl).toMatch(/\/(|tools|duct-sizer)$/);
 
     // Content should be visible
     const body = page.locator('body');

@@ -61,8 +61,8 @@ class ToolRegistry {
         // Create a lazy component for each tool
         const LazyComponent = React.lazy(() => {
           switch (toolConfig.id) {
-            case 'air-duct-sizer':
-              return import('@/tools/air-duct-sizer');
+            case 'duct-sizer':
+              return import('@/tools/duct-sizer');
             default:
               return Promise.reject(new Error(`Unknown tool: ${toolConfig.id}`));
           }

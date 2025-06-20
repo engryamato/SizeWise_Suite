@@ -33,7 +33,7 @@ test.describe('Navigation', () => {
 
     // Click on Air Duct Sizer card
     await homePage.clickAirDuctSizer();
-    await expect(page).toHaveURL('/air-duct-sizer');
+    await expect(page).toHaveURL('/duct-sizer');
     await airDuctSizerPage.expectToBeVisible();
   });
 

@@ -40,7 +40,7 @@ export class AirDuctSizerPage {
   }
 
   async goto() {
-    await this.page.goto('/air-duct-sizer');
+    await this.page.goto('/duct-sizer');
   }
 
   async fillFlowRate(value: string) {

@@ -28,7 +28,7 @@ Professional HVAC duct sizing tool with SMACNA compliance and enhanced calculati
 ## 🏗️ File Structure
 
 ```
-app/tools/air-duct-sizer/
+app/tools/duct-sizer/
 ├── index.ts              # Main exports and interfaces
 ├── logic.ts              # Core calculation engine
 ├── validators.ts         # SMACNA validation rules
@@ -110,7 +110,7 @@ Where:
 
 Run the test suite:
 ```bash
-npm test air-duct-sizer
+npm test duct-sizer
 ```
 
 ### Test Coverage

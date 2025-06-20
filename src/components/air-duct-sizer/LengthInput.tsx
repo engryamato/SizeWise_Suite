@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback } from 'react';
-import { Units } from '../../tools/air-duct-sizer/logic';
+import { Units } from '../../tools/duct-sizer/logic';
 
 interface LengthInputProps {
   length: string | number;

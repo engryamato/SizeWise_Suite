@@ -54,19 +54,19 @@ Objective: Launch first tool for sizing conditioned air ducts.
 Task
 Folder/File
 Tool Folder
-/tools/air-duct-sizer/
+/tools/duct-sizer/
 Logic/UI/Events
 logic.js, ui.js, events.js
 Validators (shared use)
 /core/validators/gauge.js, joint.js, hanger.js
 Rule Files (SMACNA)
-/tools/air-duct-sizer/rules/
+/tools/duct-sizer/rules/
 Template
-/templates/air-duct-sizer.html
+/templates/duct-sizer.html
 Tool Settings (if needed)
-/tools/air-duct-sizer/toolConfig.json
+/tools/duct-sizer/toolConfig.json
 Unit Tests
-/tools/air-duct-sizer/tests/
+/tools/duct-sizer/tests/
 
 🔥 Phase 0.2 – GreaseDuctSizer (formerly GreaseSizer)
 
@@ -279,19 +279,19 @@ Objective: Launch first tool for sizing conditioned air ducts.
 Task
 Folder/File
 Tool Folder
-/tools/air-duct-sizer/
+/tools/duct-sizer/
 Logic/UI/Events
 logic.js, ui.js, events.js
 Validators (shared use)
 /core/validators/gauge.js, joint.js, hanger.js
 Rule Files (SMACNA)
-/tools/air-duct-sizer/rules/
+/tools/duct-sizer/rules/
 Template
-/templates/air-duct-sizer.html
+/templates/duct-sizer.html
 Tool Settings (if needed)
-/tools/air-duct-sizer/toolConfig.json
+/tools/duct-sizer/toolConfig.json
 Unit Tests
-/tools/air-duct-sizer/tests/
+/tools/duct-sizer/tests/
 
 🔥 Phase 0.2 – GreaseDuctSizer (formerly GreaseSizer)
 
@@ -609,7 +609,7 @@ Validate rule and config files on boot
 
 🌬️ Phase 0.1 – AirDuctSizer
 ✅ Objectives: • Build the primary air duct calculator • Comply with SMACNA Tables 1-3 for gauge, joint, seam, and hanger selection
-📦 Deliverables: • Inputs: width, height, CFM, duct type, unit system • Outputs: velocity, pressure drop, gauge, hanger spacing, SMACNA warnings • Tool folder: /tools/air-duct-sizer/ • UI Template: /templates/air-duct-sizer.html • Logic: /tools/air-duct-sizer/logic.js • Real-time validation using shared engine • Snap summary (e.g., “24x12 Rect, 800 CFM – OK”)
+📦 Deliverables: • Inputs: width, height, CFM, duct type, unit system • Outputs: velocity, pressure drop, gauge, hanger spacing, SMACNA warnings • Tool folder: /tools/duct-sizer/ • UI Template: /templates/duct-sizer.html • Logic: /tools/duct-sizer/logic.js • Real-time validation using shared engine • Snap summary (e.g., “24x12 Rect, 800 CFM – OK”)
 ✅ Validation Checklist:
 • 
 🔄 Shared Logic:
@@ -625,7 +625,7 @@ Validate rule and config files on boot
 • Feature flag: enable_airduct_calculator_v1
 • DB migrations are idempotent
 📚 Docs:
-• /docs/air-duct-sizer.md
+• /docs/duct-sizer.md
 🧩 Dependencies: Phase 0.0 ⏱️ Estimate: 3–4 sprints
 ⸻
 🔥 Phase 0.2 – GreaseDuctSizer
