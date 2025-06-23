@@ -6,7 +6,7 @@ import DuctSizerPage from '../DuctSizerPage';
 
 const renderWithProviders = (component: React.ReactElement) => {
   return render(
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ThemeProvider>{component}</ThemeProvider>
     </BrowserRouter>
   );

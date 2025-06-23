@@ -10,6 +10,9 @@ export class HomePage {
   readonly navigation: Locator;
   readonly homeLink: Locator;
   readonly toolsLink: Locator;
+  readonly mobileMenuButton: Locator;
+  readonly mobileMenu: Locator;
+  readonly mobileToolsLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -21,6 +24,9 @@ export class HomePage {
     this.navigation = page.locator('nav');
     this.homeLink = page.getByRole('link', { name: 'SizeWise Suite' });
     this.toolsLink = page.getByRole('link', { name: 'Tools' });
+    this.mobileMenuButton = page.locator('button[aria-controls="mobile-menu"]');
+    this.mobileMenu = page.locator('#mobile-menu');
+    this.mobileToolsLink = page.locator('#mobile-menu a[href="/tools"]');
   }
 
   async goto() {
@@ -36,7 +42,18 @@ export class HomePage {
   }
 
   async navigateToTools() {
-    await this.toolsLink.click();
+    // Check viewport width to determine if we need to use mobile menu
+    const viewportSize = this.page.viewportSize();
+    const isSmallViewport = viewportSize && viewportSize.width < 640; // sm breakpoint is 640px
+
+    if (isSmallViewport) {
+      // On mobile, open the mobile menu first
+      await this.mobileMenuButton.click();
+      await this.mobileToolsLink.click();
+    } else {
+      // On desktop, use the regular tools link
+      await this.toolsLink.click();
+    }
   }
 
   async expectToBeVisible() {
@@ -57,9 +74,9 @@ export class HomePage {
     const isSmallViewport = viewportSize && viewportSize.width < 640; // sm breakpoint is 640px
 
     if (isSmallViewport) {
-      // On small viewports, navigation links are hidden (responsive design)
-      // Just check that the main navigation container is visible
-      await expect(this.navigation).toBeVisible();
+      // On small viewports, check mobile menu button is visible
+      await expect(this.mobileMenuButton).toBeVisible();
+      await expect(this.homeLink).toBeVisible(); // Logo/home link should always be visible
     } else {
       // On larger viewports, navigation links should be visible
       await expect(this.homeLink).toBeVisible();
