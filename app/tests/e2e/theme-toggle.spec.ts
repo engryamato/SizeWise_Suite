@@ -13,13 +13,11 @@ test.describe('Theme Toggle Functionality', () => {
     // Find theme toggle button (it might have different selectors)
     const themeToggle = page.locator('button[aria-label*="theme" i]')
       .or(page.locator('[data-testid="theme-toggle"]'))
-      .or(page.locator('button:has-text("theme")'))
+      .or(page.locator('button:has-text(/theme/i)'))
       .or(page.locator('button:has([class*="sun"])'))
       .or(page.locator('button:has([class*="moon"])'));
 
-    if (await themeToggle.count() === 0) {
-      test.skip('Theme toggle not found - skipping theme tests');
-    }
+    await expect(themeToggle).toHaveCount(1);
 
     await expect(themeToggle).toBeVisible();
     await expect(themeToggle).toBeEnabled();
@@ -52,13 +50,11 @@ test.describe('Theme Toggle Functionality', () => {
   test('should persist theme preference across page reloads', async ({ page }) => {
     const themeToggle = page.locator('button[aria-label*="theme" i]')
       .or(page.locator('[data-testid="theme-toggle"]'))
-      .or(page.locator('button:has-text("theme")'))
+      .or(page.locator('button:has-text(/theme/i)'))
       .or(page.locator('button:has([class*="sun"])'))
       .or(page.locator('button:has([class*="moon"])'));
 
-    if (await themeToggle.count() === 0) {
-      test.skip('Theme toggle not found - skipping theme persistence test');
-    }
+    await expect(themeToggle).toHaveCount(1);
 
     // Toggle theme
     await themeToggle.click();
@@ -83,13 +79,11 @@ test.describe('Theme Toggle Functionality', () => {
   test('should persist theme across different pages', async ({ page }) => {
     const themeToggle = page.locator('button[aria-label*="theme" i]')
       .or(page.locator('[data-testid="theme-toggle"]'))
-      .or(page.locator('button:has-text("theme")'))
+      .or(page.locator('button:has-text(/theme/i)'))
       .or(page.locator('button:has([class*="sun"])'))
       .or(page.locator('button:has([class*="moon"])'));
 
-    if (await themeToggle.count() === 0) {
-      test.skip('Theme toggle not found - skipping cross-page theme test');
-    }
+    await expect(themeToggle).toHaveCount(1);
 
     // Toggle theme on home page
     await themeToggle.click();
@@ -113,13 +107,11 @@ test.describe('Theme Toggle Functionality', () => {
   test('should update theme toggle icon/text when theme changes', async ({ page }) => {
     const themeToggle = page.locator('button[aria-label*="theme" i]')
       .or(page.locator('[data-testid="theme-toggle"]'))
-      .or(page.locator('button:has-text("theme")'))
+      .or(page.locator('button:has-text(/theme/i)'))
       .or(page.locator('button:has([class*="sun"])'))
       .or(page.locator('button:has([class*="moon"])'));
 
-    if (await themeToggle.count() === 0) {
-      test.skip('Theme toggle not found - skipping icon update test');
-    }
+    await expect(themeToggle).toHaveCount(1);
 
     // Get initial button content/attributes
     const initialAriaLabel = await themeToggle.getAttribute('aria-label') || '';
@@ -146,11 +138,8 @@ test.describe('Theme Toggle Functionality', () => {
     const darkContext = await context.browser()?.newContext({
       colorScheme: 'dark'
     });
-    
-    if (!darkContext) {
-      test.skip('Could not create dark context');
-      return;
-    }
+
+    expect(darkContext).toBeDefined();
     
     const darkPage = await darkContext.newPage();
     const darkHomePage = new HomePage(darkPage);
@@ -181,13 +170,11 @@ test.describe('Theme Toggle Functionality', () => {
   test('should maintain theme during navigation and form interactions', async ({ page }) => {
     const themeToggle = page.locator('button[aria-label*="theme" i]')
       .or(page.locator('[data-testid="theme-toggle"]'))
-      .or(page.locator('button:has-text("theme")'))
+      .or(page.locator('button:has-text(/theme/i)'))
       .or(page.locator('button:has([class*="sun"])'))
       .or(page.locator('button:has([class*="moon"])'));
 
-    if (await themeToggle.count() === 0) {
-      test.skip('Theme toggle not found - skipping interaction test');
-    }
+    await expect(themeToggle).toHaveCount(1);
 
     // Set dark theme
     await themeToggle.click();
