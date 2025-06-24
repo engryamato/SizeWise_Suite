@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - GitHub Actions workflow to run Playwright E2E tests on every push and pull request
+- StarBorder UI component with animated border effect
 ## [0.2.0] - 2024-06-01 - Phase 0.0 Estimating Core Setup
 ### Added
 - Estimating App scaffolding with schemas and tests
