@@ -91,6 +91,20 @@ export default {
       borderRadius: {
         '2xl': '1rem',
       },
+      keyframes: {
+        'star-movement-top': {
+          '0%': { transform: 'translateX(-20%)' },
+          '100%': { transform: 'translateX(120%)' },
+        },
+        'star-movement-bottom': {
+          '0%': { transform: 'translateX(120%)' },
+          '100%': { transform: 'translateX(-20%)' },
+        },
+      },
+      animation: {
+        'star-movement-top': 'star-movement-top 6s linear infinite',
+        'star-movement-bottom': 'star-movement-bottom 6s linear infinite',
+      },
     },
   },
   plugins: [],
