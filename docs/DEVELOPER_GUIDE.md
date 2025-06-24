@@ -7,6 +7,7 @@ This guide provides detailed information for developers working on the SizeWise 
 - [Tool Development](#tool-development)
 - [State Management](#state-management)
 - [Styling](#styling)
+- [StarBorder Component](#starborder-component)
 - [Testing](#testing)
 - [Performance](#performance)
 - [Troubleshooting](#troubleshooting)
@@ -105,6 +106,32 @@ export default YourToolUI;
 ### CSS Modules
 - Use CSS Modules for complex component styles
 - Follow BEM naming convention for class names
+
+### Tailwind Animations
+- Install the `tailwindcss-animate` plugin for common animation utilities:
+  ```bash
+  npm install -D tailwindcss-animate
+  ```
+- Add the plugin to `tailwind.config.js`:
+  ```js
+  export default {
+    // ...existing config
+    plugins: [require('tailwindcss-animate')],
+  };
+  ```
+- Define custom `keyframes` and `animation` values under `theme.extend` as needed
+for project-specific motion effects.
+
+## StarBorder Component
+
+`StarBorder` is a simple React component that renders an outlined star icon.
+Use it anywhere a rating indicator or decorative star is required.
+
+**Props**
+
+- `size` *(number | string)* — Width and height of the icon. Defaults to `24`.
+- `className` *(string)* — Additional CSS classes for styling.
+- `color` *(string)* — Stroke color when using the SVG version.
 
 ## Testing
 
