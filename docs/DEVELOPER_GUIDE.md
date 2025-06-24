@@ -118,6 +118,20 @@ export default YourToolUI;
 - Mock external dependencies
 - Test error states and edge cases
 
+### End-to-End Tests
+- Ensure Playwright is installed (`npx playwright install` on first run)
+- Run E2E tests with:
+  ```bash
+  npm run test:e2e
+  ```
+- The command automatically launches the Vite dev server defined in
+  `playwright.config.ts`. The server should be available at
+  `http://localhost:3000`.
+- If you see a timeout error, verify that the `webServer.url` and
+  `use.baseURL` values in `playwright.config.ts` match the port defined in
+  `vite.config.ts` (3000 by default).
+- Test reports are written to the `playwright-report/` directory.
+
 ## Performance
 
 ### Code Splitting
