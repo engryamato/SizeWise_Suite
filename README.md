@@ -188,6 +188,9 @@ npm test
 
 # Run tests with coverage
 npm test -- --coverage
+
+# Run Playwright E2E tests
+npm run test:e2e
 ```
 
 ## 🤝 Contributing
@@ -322,7 +325,8 @@ npm test -- --coverage
 - `npm run dev` — Start development server
 - `npm run build` — Build for production
 - `npm run preview` — Preview production build
-- `npm test` — Run tests
+- `npm test` — Run unit tests
+- `npm run test:e2e` — Run Playwright end-to-end tests
 - `npm run lint` — Run ESLint
 - `npm run storybook` — Start Storybook (coming soon)
 - `npm run lint:fix` — Auto-fix lint issues
