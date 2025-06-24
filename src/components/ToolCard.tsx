@@ -10,14 +10,7 @@ interface ToolCardProps {
   version: string;
 }
 
-const ToolCard: React.FC<ToolCardProps> = ({
-  id,
-  name,
-  description,
-  icon,
-  category,
-  version,
-}) => {
+const ToolCard: React.FC<ToolCardProps> = ({ id, name, description, icon, category, version }) => {
   return (
     <Link
       to={`/${id}`}

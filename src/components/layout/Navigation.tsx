@@ -16,7 +16,7 @@ interface NavigationProps {
 export function Navigation({ items, className }: NavigationProps) {
   return (
     <nav className={cn('space-y-1', className)}>
-      {items.map((item) => {
+      {items.map(item => {
         const Icon = item.icon;
         return (
           <NavLink
@@ -60,11 +60,9 @@ interface SecondaryNavigationProps {
 export function SecondaryNavigation({ title, items, className }: SecondaryNavigationProps) {
   return (
     <div className={className}>
-      <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-        {title}
-      </h3>
+      <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">{title}</h3>
       <nav className="mt-2 space-y-1">
-        {items.map((item) => (
+        {items.map(item => (
           <NavLink
             key={item.name}
             to={item.href}

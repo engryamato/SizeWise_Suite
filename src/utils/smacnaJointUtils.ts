@@ -1,8 +1,4 @@
-import { 
-  RoundJointTable, 
-  RectangularJointTable,
-  DuctShape
-} from '@/types/smacna';
+import { RoundJointTable, RectangularJointTable, DuctShape } from '@/types/smacna';
 import roundJointData from '@/data/smacna/round-transverse-joint-selection.json';
 import rectangularJointData from '@/data/smacna/rectangular-transverse-joint-selection.json';
 
@@ -29,7 +25,7 @@ export function findDuctJointTypes(
   pressureClassInWg: number = 2
 ): JointResult {
   const table = shape === 'round' ? roundJointTable : rectangularJointTable;
-  
+
   // Find the matching pressure class
   const pressureClass = table.pressure_classes.find(
     pc => pc.pressure_class_in_wg === pressureClassInWg
@@ -41,19 +37,18 @@ export function findDuctJointTypes(
   }
 
   // For round ducts, use diameter. For rectangular, use the larger dimension
-  const size = 'diameter' in dimensions 
-    ? dimensions.diameter 
-    : Math.max(dimensions.width, dimensions.height);
+  const size =
+    'diameter' in dimensions ? dimensions.diameter : Math.max(dimensions.width, dimensions.height);
 
   // Find the matching joint entry
-  const jointEntry = pressureClass.entries.find(entry => 
-    size >= entry.min_size_in && size <= entry.max_size_in
+  const jointEntry = pressureClass.entries.find(
+    entry => size >= entry.min_size_in && size <= entry.max_size_in
   );
 
   return {
     jointTypes: jointEntry ? jointEntry.joint_types : [],
     table: table.table,
-    notes: table.notes
+    notes: table.notes,
   };
 }
 

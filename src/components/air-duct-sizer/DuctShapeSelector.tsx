@@ -25,11 +25,7 @@ export const DuctShapeSelector: React.FC<DuctShapeSelectorProps> = ({
       <span id={labelId} className="block text-sm font-medium text-gray-700">
         Duct Shape
       </span>
-      <div 
-        className="grid grid-cols-2 gap-3 mt-1" 
-        role="radiogroup"
-        aria-labelledby={labelId}
-      >
+      <div className="grid grid-cols-2 gap-3 mt-1" role="radiogroup" aria-labelledby={labelId}>
         <div>
           <input
             type="radio"
@@ -40,21 +36,33 @@ export const DuctShapeSelector: React.FC<DuctShapeSelectorProps> = ({
             onChange={() => onShapeChange('rectangular')}
             aria-label="Rectangular duct"
           />
-          <label 
-            htmlFor={rectangularId} 
+          <label
+            htmlFor={rectangularId}
             className={`flex flex-col items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-              isRectangular 
-                ? 'border-blue-500 bg-blue-50' 
+              isRectangular
+                ? 'border-blue-500 bg-blue-50'
                 : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
             }`}
           >
             <span className="sr-only">Rectangular duct</span>
-            <div className={`w-6 h-6 rounded-sm mb-2 flex items-center justify-center ${
-              isRectangular ? 'bg-blue-500' : 'bg-gray-200'
-            }`}>
+            <div
+              className={`w-6 h-6 rounded-sm mb-2 flex items-center justify-center ${
+                isRectangular ? 'bg-blue-500' : 'bg-gray-200'
+              }`}
+            >
               {isRectangular && (
-                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               )}
             </div>
@@ -71,21 +79,33 @@ export const DuctShapeSelector: React.FC<DuctShapeSelectorProps> = ({
             onChange={() => onShapeChange('round')}
             aria-label="Round duct"
           />
-          <label 
-            htmlFor={roundId} 
+          <label
+            htmlFor={roundId}
             className={`flex flex-col items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
-              isRound 
-                ? 'border-blue-500 bg-blue-50' 
+              isRound
+                ? 'border-blue-500 bg-blue-50'
                 : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
             }`}
           >
             <span className="sr-only">Round duct</span>
-            <div className={`w-6 h-6 rounded-full mb-2 flex items-center justify-center ${
-              isRound ? 'bg-blue-500' : 'bg-gray-200'
-            }`}>
+            <div
+              className={`w-6 h-6 rounded-full mb-2 flex items-center justify-center ${
+                isRound ? 'bg-blue-500' : 'bg-gray-200'
+              }`}
+            >
               {isRound && (
-                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                <svg
+                  className="w-3 h-3 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               )}
             </div>

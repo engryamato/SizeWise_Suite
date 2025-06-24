@@ -1,9 +1,9 @@
-import { 
-  RoundHangerTable, 
+import {
+  RoundHangerTable,
   RectangularHangerTable,
   DuctShape,
   RoundHangerEntry,
-  RectangularHangerEntry
+  RectangularHangerEntry,
 } from '@/types/smacna';
 import roundHangerData from '@/data/smacna/round-hanger-spacing.json';
 import rectangularHangerData from '@/data/smacna/rectangular-hanger-spacing.json';
@@ -32,36 +32,34 @@ export function findDuctHangerSpacing(
   shape: DuctShape = 'round'
 ): HangerResult {
   const table = shape === 'round' ? roundHangerTable : rectangularHangerTable;
-  const size = 'diameter' in dimensions 
-    ? dimensions.diameter 
-    : Math.max(dimensions.width, dimensions.height);
+  const size =
+    'diameter' in dimensions ? dimensions.diameter : Math.max(dimensions.width, dimensions.height);
 
   // Find the matching entry based on size and gauge
   let matchingEntry: (RoundHangerEntry | RectangularHangerEntry) | undefined;
-  
+
   if (shape === 'round') {
     const roundTable = table as RoundHangerTable;
-    matchingEntry = roundTable.entries.find(entry => 
-      size >= entry.min_diameter_in && 
-      size <= entry.max_diameter_in &&
-      gauge >= entry.min_gauge
+    matchingEntry = roundTable.entries.find(
+      entry =>
+        size >= entry.min_diameter_in && size <= entry.max_diameter_in && gauge >= entry.min_gauge
     );
   } else {
     const rectTable = table as RectangularHangerTable;
-    matchingEntry = rectTable.entries.find(entry => 
-      size >= entry.min_size_in && 
-      size <= entry.max_size_in &&
-      gauge >= entry.min_gauge
+    matchingEntry = rectTable.entries.find(
+      entry => size >= entry.min_size_in && size <= entry.max_size_in && gauge >= entry.min_gauge
     );
   }
 
   if (!matchingEntry) {
-    console.warn(`No hanger spacing data found for the specified size and gauge. Size: ${size}", Gauge: ${gauge}`);
-    return { 
-      maxSpacingFt: 0, 
-      minGauge: 0, 
-      table: table.table, 
-      notes: [...table.notes, 'No matching data found for the specified size and gauge.'] 
+    console.warn(
+      `No hanger spacing data found for the specified size and gauge. Size: ${size}", Gauge: ${gauge}`
+    );
+    return {
+      maxSpacingFt: 0,
+      minGauge: 0,
+      table: table.table,
+      notes: [...table.notes, 'No matching data found for the specified size and gauge.'],
     };
   }
 
@@ -69,7 +67,7 @@ export function findDuctHangerSpacing(
     maxSpacingFt: matchingEntry.max_spacing_ft,
     minGauge: matchingEntry.min_gauge,
     table: table.table,
-    notes: table.notes
+    notes: table.notes,
   };
 }
 

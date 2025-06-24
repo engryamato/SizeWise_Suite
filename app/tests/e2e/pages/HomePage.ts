@@ -20,7 +20,10 @@ export class HomePage {
     this.subtitle = page.getByText('Your professional HVAC engineering toolkit');
     this.toolCards = page.locator('a.block.p-6.bg-white.rounded-lg'); // Tool card links
     this.airDuctSizerCard = page.locator('a[href="/duct-sizer"]');
-    this.themeToggle = page.locator('button').filter({ hasText: /theme|dark|light/i }).or(page.locator('[aria-label*="theme" i]'));
+    this.themeToggle = page
+      .locator('button')
+      .filter({ hasText: /theme|dark|light/i })
+      .or(page.locator('[aria-label*="theme" i]'));
     this.navigation = page.locator('nav');
     this.homeLink = page.getByRole('link', { name: 'SizeWise Suite' });
     this.toolsLink = page.getByRole('link', { name: 'Tools' });

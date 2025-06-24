@@ -9,12 +9,7 @@ interface AppLayoutProps {
   className?: string;
 }
 
-export function AppLayout({
-  children,
-  sidebarContent,
-  headerContent,
-  className,
-}: AppLayoutProps) {
+export function AppLayout({ children, sidebarContent, headerContent, className }: AppLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -62,20 +57,16 @@ export function AppLayout({
             <span className="sr-only">Open sidebar</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-          
+
           {/* Separator */}
           <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
-          
+
           {/* Header content */}
-          <div className="flex-1">
-            {headerContent}
-          </div>
+          <div className="flex-1">{headerContent}</div>
         </div>
 
         {/* Page content */}
-        <main className={cn('py-6 px-4 sm:px-6 lg:px-8', className)}>
-          {children}
-        </main>
+        <main className={cn('py-6 px-4 sm:px-6 lg:px-8', className)}>{children}</main>
       </div>
     </div>
   );

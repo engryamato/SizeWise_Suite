@@ -1,4 +1,9 @@
-import { formatVelocity, formatPressureLoss, calculateEquivalentDiameter, convertDuctShape } from '../utils';
+import {
+  formatVelocity,
+  formatPressureLoss,
+  calculateEquivalentDiameter,
+  convertDuctShape,
+} from '../utils';
 
 describe('formatVelocity', () => {
   test('returns optimal status for supply air', () => {

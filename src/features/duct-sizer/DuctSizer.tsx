@@ -68,7 +68,7 @@ export function DuctSizer() {
 
   const handleInputChange = useCallback(
     (field: string, value: string | number | Dimensions) => {
-      setState((prev) => {
+      setState(prev => {
         if (field === 'dimensions' && typeof value === 'object') {
           return { ...prev, dimensions: value as Dimensions };
         }
@@ -77,7 +77,7 @@ export function DuctSizer() {
 
       // Clear error when user starts typing
       if (errors[field]) {
-        setErrors((prev) => {
+        setErrors(prev => {
           const newErrors = { ...prev };
           delete newErrors[field];
           return newErrors;
@@ -111,7 +111,10 @@ export function DuctSizer() {
     } else {
       if (!state.dimensions.diameter) {
         newErrors['dimensions.diameter'] = 'Diameter is required';
-      } else if (isNaN(Number(state.dimensions.diameter)) || Number(state.dimensions.diameter) <= 0) {
+      } else if (
+        isNaN(Number(state.dimensions.diameter)) ||
+        Number(state.dimensions.diameter) <= 0
+      ) {
         newErrors['dimensions.diameter'] = 'Please enter a valid diameter';
       }
     }
@@ -188,16 +191,12 @@ export function DuctSizer() {
           <Card title="Duct Specifications" className="overflow-visible">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Duct Shape */}
-              <FormField
-                label="Duct Shape"
-                htmlFor="shape"
-                error={errors.shape}
-              >
+              <FormField label="Duct Shape" htmlFor="shape" error={errors.shape}>
                 <select
                   id="shape"
                   className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   value={state.shape}
-                  onChange={(e) => handleInputChange('shape', e.target.value as DuctShape)}
+                  onChange={e => handleInputChange('shape', e.target.value as DuctShape)}
                 >
                   <option value="rectangular">Rectangular</option>
                   <option value="round">Round</option>
@@ -205,16 +204,12 @@ export function DuctSizer() {
               </FormField>
 
               {/* Units */}
-              <FormField
-                label="Units"
-                htmlFor="units"
-                error={errors.units}
-              >
+              <FormField label="Units" htmlFor="units" error={errors.units}>
                 <select
                   id="units"
                   className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   value={state.units}
-                  onChange={(e) => handleInputChange('units', e.target.value as Units)}
+                  onChange={e => handleInputChange('units', e.target.value as Units)}
                 >
                   <option value="imperial">Imperial (in, ft, CFM)</option>
                   <option value="metric">Metric (mm, m, m³/h)</option>
@@ -234,7 +229,7 @@ export function DuctSizer() {
                   min="0.1"
                   step="0.1"
                   value={state.flowRate}
-                  onChange={(e) => handleInputChange('flowRate', e.target.value)}
+                  onChange={e => handleInputChange('flowRate', e.target.value)}
                   placeholder={state.units === 'imperial' ? 'e.g. 1000' : 'e.g. 500'}
                 />
               </FormField>
@@ -253,7 +248,7 @@ export function DuctSizer() {
                       min="0.1"
                       step="0.1"
                       value={state.dimensions.width}
-                      onChange={(e) =>
+                      onChange={e =>
                         handleInputChange('dimensions', {
                           ...state.dimensions,
                           width: e.target.value,
@@ -274,7 +269,7 @@ export function DuctSizer() {
                       min="0.1"
                       step="0.1"
                       value={state.dimensions.height}
-                      onChange={(e) =>
+                      onChange={e =>
                         handleInputChange('dimensions', {
                           ...state.dimensions,
                           height: e.target.value,
@@ -296,7 +291,7 @@ export function DuctSizer() {
                     min="0.1"
                     step="0.1"
                     value={state.dimensions.diameter}
-                    onChange={(e) =>
+                    onChange={e =>
                       handleInputChange('dimensions', {
                         ...state.dimensions,
                         diameter: e.target.value,
@@ -319,24 +314,20 @@ export function DuctSizer() {
                   min="0.1"
                   step="0.1"
                   value={state.length}
-                  onChange={(e) => handleInputChange('length', e.target.value)}
+                  onChange={e => handleInputChange('length', e.target.value)}
                   placeholder={state.units === 'imperial' ? 'e.g. 10' : 'e.g. 3'}
                 />
               </FormField>
 
               {/* Material */}
-              <FormField
-                label="Material"
-                htmlFor="material"
-                error={errors.material}
-              >
+              <FormField label="Material" htmlFor="material" error={errors.material}>
                 <select
                   id="material"
                   className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   value={state.material}
-                  onChange={(e) => handleInputChange('material', e.target.value as Material)}
+                  onChange={e => handleInputChange('material', e.target.value as Material)}
                 >
-                  {materialOptions.map((option) => (
+                  {materialOptions.map(option => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
@@ -345,18 +336,14 @@ export function DuctSizer() {
               </FormField>
 
               {/* Application */}
-              <FormField
-                label="Application"
-                htmlFor="application"
-                error={errors.application}
-              >
+              <FormField label="Application" htmlFor="application" error={errors.application}>
                 <select
                   id="application"
                   className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   value={state.application}
-                  onChange={(e) => handleInputChange('application', e.target.value as Application)}
+                  onChange={e => handleInputChange('application', e.target.value as Application)}
                 >
-                  {applicationOptions.map((option) => (
+                  {applicationOptions.map(option => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
@@ -374,9 +361,11 @@ export function DuctSizer() {
                   id="pressureClass"
                   className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   value={state.pressureClass}
-                  onChange={(e) => handleInputChange('pressureClass', e.target.value as PressureClass)}
+                  onChange={e =>
+                    handleInputChange('pressureClass', e.target.value as PressureClass)
+                  }
                 >
-                  {pressureClassOptions.map((option) => (
+                  {pressureClassOptions.map(option => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
@@ -386,11 +375,7 @@ export function DuctSizer() {
             </div>
 
             <div className="mt-6 flex justify-end">
-              <Button
-                onClick={calculateResults}
-                isLoading={isLoading}
-                className="w-full sm:w-auto"
-              >
+              <Button onClick={calculateResults} isLoading={isLoading} className="w-full sm:w-auto">
                 {isLoading ? 'Calculating...' : 'Calculate'}
               </Button>
             </div>
@@ -409,14 +394,16 @@ export function DuctSizer() {
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h3 className="text-sm font-medium text-blue-800">Air Velocity</h3>
                   <p className="mt-1 text-2xl font-semibold text-blue-600">
-                    {results.velocity} <span className="text-sm font-normal">{results.velocityUnits}</span>
+                    {results.velocity}{' '}
+                    <span className="text-sm font-normal">{results.velocityUnits}</span>
                   </p>
                 </div>
 
                 <div className="bg-green-50 p-4 rounded-lg">
                   <h3 className="text-sm font-medium text-green-800">Pressure Drop</h3>
                   <p className="mt-1 text-2xl font-semibold text-green-600">
-                    {results.pressureDrop} <span className="text-sm font-normal">{results.pressureDropUnits}</span>
+                    {results.pressureDrop}{' '}
+                    <span className="text-sm font-normal">{results.pressureDropUnits}</span>
                   </p>
                 </div>
 
@@ -430,7 +417,8 @@ export function DuctSizer() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h3 className="text-sm font-medium text-gray-800">Hydraulic Diameter</h3>
                   <p className="mt-1 text-xl font-semibold text-gray-700">
-                    {results.hydraulicDiameter} <span className="text-sm font-normal">{results.hydraulicDiameterUnits}</span>
+                    {results.hydraulicDiameter}{' '}
+                    <span className="text-sm font-normal">{results.hydraulicDiameterUnits}</span>
                   </p>
                 </div>
               </div>
@@ -438,7 +426,9 @@ export function DuctSizer() {
               <div className="text-center py-12">
                 <CalculatorIcon className="mx-auto h-12 w-12 text-gray-400" />
                 <h3 className="mt-2 text-sm font-medium text-gray-900">No results yet</h3>
-                <p className="mt-1 text-sm text-gray-500">Enter your duct specifications and click Calculate to see results.</p>
+                <p className="mt-1 text-sm text-gray-500">
+                  Enter your duct specifications and click Calculate to see results.
+                </p>
               </div>
             )}
           </Card>

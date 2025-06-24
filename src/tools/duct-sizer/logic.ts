@@ -11,22 +11,27 @@ interface DuctDimensions {
 }
 
 interface DuctCalculationResult {
-  velocity: number;           // fpm or m/s
+  velocity: number; // fpm or m/s
   velocityStatus: 'low' | 'good' | 'high' | 'critical';
-  pressureLoss: number;       // in wg/100ft or Pa/m
+  pressureLoss: number; // in wg/100ft or Pa/m
   pressureLossStatus: 'good' | 'high' | 'critical';
-  gauge: number;              // gauge number
-  hangerSpacing: number;      // feet or meters
+  gauge: number; // gauge number
+  hangerSpacing: number; // feet or meters
   warnings: string[];
 }
 
 export class AirDuctSizer {
   private shape: DuctShape;
   private dimensions: DuctDimensions;
-  private flowRate: number;  // CFM or m³/s
+  private flowRate: number; // CFM or m³/s
   private units: Units;
 
-  constructor(shape: DuctShape, dimensions: DuctDimensions, flowRate: number, units: Units = 'imperial') {
+  constructor(
+    shape: DuctShape,
+    dimensions: DuctDimensions,
+    flowRate: number,
+    units: Units = 'imperial'
+  ) {
     this.shape = shape;
     this.dimensions = dimensions;
     this.flowRate = flowRate;
@@ -39,7 +44,7 @@ export class AirDuctSizer {
     const pressureLoss = this.calculatePressureLoss(velocity, area);
     const gauge = this.calculateGauge();
     const hangerSpacing = this.calculateHangerSpacing();
-    
+
     // Convert to consistent units for the result
     const result: DuctCalculationResult = {
       // Velocity is already in correct units (fpm for imperial, m/s for metric)
@@ -51,7 +56,7 @@ export class AirDuctSizer {
       gauge,
       // Hanger spacing is calculated in feet, convert to meters if metric
       hangerSpacing: this.units === 'imperial' ? hangerSpacing : hangerSpacing * 0.3048, // ft to m
-      warnings: []
+      warnings: [],
     };
 
     this.addWarnings(result);
@@ -84,26 +89,26 @@ export class AirDuctSizer {
   private calculatePressureLoss(velocity: number, area: number): number {
     // Using a more realistic approach with standard duct friction loss
     const hydraulicDiameter = this.calculateHydraulicDiameter(area); // in or mm
-    
+
     // Standard air properties at sea level
     // Air density: 0.075 lb/ft³
     // Standard pressure drop: 0.1 in wg/100ft at 4000 fpm in a 12" round duct
-    
+
     // Convert to equivalent round diameter
     let equivalentDiameter: number;
-    
+
     if (this.shape === 'round') {
       equivalentDiameter = hydraulicDiameter; // Already in inches
     } else {
       // For rectangular ducts, calculate equivalent diameter
       const a = this.dimensions.width || 0; // in
       const b = this.dimensions.height || 0; // in
-      equivalentDiameter = 1.3 * Math.pow((a * b), 0.625) / Math.pow((a + b), 0.25);
+      equivalentDiameter = (1.3 * Math.pow(a * b, 0.625)) / Math.pow(a + b, 0.25);
     }
-    
+
     // Standard air velocity for 0.1 in wg/100ft pressure drop
     const standardVelocity = 4000; // fpm
-    
+
     // Calculate pressure drop using the square law
     // ΔP = (V / V₀)² * ΔP₀ * (D₀ / D) * (L / 100)
     // Where:
@@ -113,21 +118,22 @@ export class AirDuctSizer {
     // D₀ = standard diameter (1 ft = 12 in)
     // D = actual diameter (in)
     // L = actual length (ft)
-    
+
     const standardPressureDrop = 0.1; // in wg/100ft
     const standardDiameter = 12; // inches
-    
+
     // Calculate pressure drop in in wg/100ft
-    let pressureLoss = Math.pow(velocity / standardVelocity, 2) * 
-                      standardPressureDrop * 
-                      (standardDiameter / equivalentDiameter) * 
-                      (this.dimensions.length / 100);
-    
+    let pressureLoss =
+      Math.pow(velocity / standardVelocity, 2) *
+      standardPressureDrop *
+      (standardDiameter / equivalentDiameter) *
+      (this.dimensions.length / 100);
+
     // Apply reasonable bounds to the pressure drop
     // Minimum: 0.02 in wg/100ft (very low friction)
     // Maximum: 0.3 in wg/100ft (high friction, may need resizing)
     pressureLoss = Math.max(0.02, Math.min(0.3, pressureLoss));
-    
+
     return parseFloat(pressureLoss.toFixed(4)); // Round to 4 decimal places
   }
 
@@ -142,31 +148,35 @@ export class AirDuctSizer {
 
   private calculateGauge(): number {
     const gaugeRules = smacnaRules.gaugeThickness[this.shape];
-    const dimension = this.shape === 'round' 
-      ? (this.dimensions.diameter ?? 0)
-      : Math.max(this.dimensions.width ?? 0, this.dimensions.height ?? 0);
-    
+    const dimension =
+      this.shape === 'round'
+        ? (this.dimensions.diameter ?? 0)
+        : Math.max(this.dimensions.width ?? 0, this.dimensions.height ?? 0);
+
     // Find the first rule where dimension is less than or equal to maxDimension/maxDiameter
-    const rule = gaugeRules.find(r => {
-      const maxDim = 'maxDimension' in r ? r.maxDimension : r.maxDiameter;
-      return dimension <= maxDim;
-    }) || gaugeRules[gaugeRules.length - 1];
-    
+    const rule =
+      gaugeRules.find(r => {
+        const maxDim = 'maxDimension' in r ? r.maxDimension : r.maxDiameter;
+        return dimension <= maxDim;
+      }) || gaugeRules[gaugeRules.length - 1];
+
     return rule.gauge;
   }
 
   private calculateHangerSpacing(): number {
     const spacingRules = smacnaRules.hangerSpacing[this.shape];
-    const dimension = this.shape === 'round' 
-      ? (this.dimensions.diameter ?? 0)
-      : Math.max(this.dimensions.width ?? 0, this.dimensions.height ?? 0);
-    
+    const dimension =
+      this.shape === 'round'
+        ? (this.dimensions.diameter ?? 0)
+        : Math.max(this.dimensions.width ?? 0, this.dimensions.height ?? 0);
+
     // Find the first rule where dimension is less than or equal to maxDimension/maxDiameter
-    const rule = spacingRules.find(r => {
-      const maxDim = 'maxDimension' in r ? r.maxDimension : r.maxDiameter;
-      return dimension <= maxDim;
-    }) || spacingRules[spacingRules.length - 1];
-    
+    const rule =
+      spacingRules.find(r => {
+        const maxDim = 'maxDimension' in r ? r.maxDimension : r.maxDiameter;
+        return dimension <= maxDim;
+      }) || spacingRules[spacingRules.length - 1];
+
     return rule.spacing; // feet
   }
 
@@ -193,7 +203,9 @@ export class AirDuctSizer {
     }
 
     if (result.pressureLossStatus === 'high') {
-      result.warnings.push('Pressure loss is higher than recommended. Consider increasing duct size.');
+      result.warnings.push(
+        'Pressure loss is higher than recommended. Consider increasing duct size.'
+      );
     } else if (result.pressureLossStatus === 'critical') {
       result.warnings.push('Pressure loss is critically high! Redesign the duct system.');
     }

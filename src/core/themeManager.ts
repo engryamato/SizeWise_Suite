@@ -20,7 +20,9 @@ export class ThemeManager {
     ThemeManager.currentTheme = theme;
     localStorage.setItem(ThemeManager.STORAGE_KEY, theme);
     const root = document.documentElement;
-    const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark =
+      theme === 'dark' ||
+      (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     root.setAttribute('data-theme', isDark ? 'dark' : 'light');
   }
 
@@ -29,8 +31,6 @@ export class ThemeManager {
   }
 
   static toggleTheme(): void {
-    ThemeManager.setTheme(
-      ThemeManager.currentTheme === 'dark' ? 'light' : 'dark'
-    );
+    ThemeManager.setTheme(ThemeManager.currentTheme === 'dark' ? 'light' : 'dark');
   }
 }

@@ -24,7 +24,9 @@ describe('StatusIndicator', () => {
   });
 
   test('renders only dot when both showIcon and showText are false', () => {
-    const { container } = render(<StatusIndicator status="compliant" showIcon={false} showText={false} />);
+    const { container } = render(
+      <StatusIndicator status="compliant" showIcon={false} showText={false} />
+    );
     expect(container.firstChild).toHaveClass('w-3', 'h-3', 'rounded-full');
   });
 });

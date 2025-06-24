@@ -2,7 +2,12 @@ import React from 'react';
 import { ResultsTableProps } from '@/types/ductResults';
 import { getStatusColor, getStatusIcon, exportToCsv } from '@/utils/ductResults';
 
-const ResultsTable: React.FC<ResultsTableProps> = ({ results, summary, onExport, className = '' }) => {
+const ResultsTable: React.FC<ResultsTableProps> = ({
+  results,
+  summary,
+  onExport,
+  className = '',
+}) => {
   const handleExport = (format: 'pdf' | 'csv') => {
     if (format === 'csv') {
       const csvContent = exportToCsv(results);
@@ -26,9 +31,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, summary, onExport,
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">Duct Sizing Results</h2>
-            <p className="text-sm text-gray-500">
-              Generated on {new Date().toLocaleString()}
-            </p>
+            <p className="text-sm text-gray-500">Generated on {new Date().toLocaleString()}</p>
           </div>
           <div className="flex space-x-2">
             <button
@@ -52,9 +55,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, summary, onExport,
       {/* Summary */}
       <div className={`p-4 ${getStatusColor(summary.status)}`}>
         <div className="flex items-start">
-          <div className="flex-shrink-0">
-            {getStatusIcon(summary.status)}
-          </div>
+          <div className="flex-shrink-0">{getStatusIcon(summary.status)}</div>
           <div className="ml-3">
             <h3 className="text-sm font-medium">{summary.message}</h3>
             {summary.issues.length > 0 && (
@@ -75,22 +76,40 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, summary, onExport,
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Parameter
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Value
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Limit / Standard
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Status
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Reference
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Advice / Warning
               </th>
             </tr>
@@ -103,42 +122,55 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, summary, onExport,
                   item.status === 'error'
                     ? 'bg-red-50'
                     : item.status === 'warning'
-                    ? 'bg-yellow-50'
-                    : item.status === 'success'
-                    ? 'bg-green-50'
-                    : ''
+                      ? 'bg-yellow-50'
+                      : item.status === 'success'
+                        ? 'bg-green-50'
+                        : ''
                 }
                 aria-label={item.parameter + ' result row'}
               >
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {item.parameter}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {item.value}
-                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.value}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {item.limit || '—'}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
-                    {getStatusIcon(item.status)} {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}
+                  >
+                    {getStatusIcon(item.status)}{' '}
+                    {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <span className="inline-flex items-center">
                     {item.reference}
                     {item.description && (
-                      <span className="ml-1" tabIndex={0} role="img" aria-label="Info" title={item.description}>
-                        <svg className="w-4 h-4 text-blue-400 inline" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-8-4a1 1 0 100 2 1 1 0 000-2zm2 8a1 1 0 10-2 0v-4a1 1 0 112 0v4z" clipRule="evenodd" />
+                      <span
+                        className="ml-1"
+                        tabIndex={0}
+                        role="img"
+                        aria-label="Info"
+                        title={item.description}
+                      >
+                        <svg
+                          className="w-4 h-4 text-blue-400 inline"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-8-4a1 1 0 100 2 1 1 0 000-2zm2 8a1 1 0 10-2 0v-4a1 1 0 112 0v4z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </span>
                     )}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {item.advice}
-                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.advice}</td>
               </tr>
             ))}
           </tbody>
@@ -147,7 +179,10 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, summary, onExport,
 
       {/* Footer with notes */}
       <div className="bg-gray-50 px-6 py-4 text-xs text-gray-500 border-t border-gray-200">
-        <p>For full compliance, verify all results against the latest SMACNA Duct Construction Standards and local codes.</p>
+        <p>
+          For full compliance, verify all results against the latest SMACNA Duct Construction
+          Standards and local codes.
+        </p>
       </div>
     </div>
   );

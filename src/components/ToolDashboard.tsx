@@ -4,14 +4,16 @@ import ToolCard from './ToolCard';
 import ToolRegistry from '@/core/toolRegistrar';
 
 const ToolDashboard: React.FC = () => {
-  const [tools, setTools] = useState<Array<{
-    id: string;
-    name: string;
-    description: string;
-    icon: string;
-    category: string;
-    version: string;
-  }>>([]);
+  const [tools, setTools] = useState<
+    Array<{
+      id: string;
+      name: string;
+      description: string;
+      icon: string;
+      category: string;
+      version: string;
+    }>
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,7 +23,7 @@ const ToolDashboard: React.FC = () => {
         const registry = ToolRegistry.getInstance();
         await registry.initialize();
         const allTools = registry.getAllTools();
-        
+
         // Map to the expected format for ToolCard
         const formattedTools = allTools.map(tool => ({
           id: tool.id,
@@ -31,7 +33,7 @@ const ToolDashboard: React.FC = () => {
           category: tool.category,
           version: tool.version,
         }));
-        
+
         setTools(formattedTools);
       } catch (err) {
         console.error('Failed to load tools:', err);
@@ -58,7 +60,11 @@ const ToolDashboard: React.FC = () => {
         <div className="flex">
           <div className="flex-shrink-0">
             <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                clipRule="evenodd"
+              />
             </svg>
           </div>
           <div className="ml-3">
@@ -74,7 +80,7 @@ const ToolDashboard: React.FC = () => {
       <h1 className="text-2xl font-bold text-gray-900 mb-8">Tools Dashboard</h1>
 
       <div data-testid="tool-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tools.map((tool) => (
+        {tools.map(tool => (
           <ToolCard key={tool.id} {...tool} />
         ))}
       </div>

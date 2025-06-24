@@ -32,9 +32,19 @@ export class AirDuctSizerPage {
     this.lengthInput = page.locator('#length');
     this.unitsSelector = page.locator('#units');
     this.calculateButton = page.locator('button[type="submit"]');
-    this.resultsSection = page.locator('.space-y-5.p-6.bg-white.border').filter({ hasText: 'Duct Sizing Results' });
-    this.velocityResult = page.locator('text=Air Velocity').locator('..').locator('.text-right span.text-sm.font-semibold.text-blue-700').first();
-    this.pressureLossResult = page.locator('text=Pressure Loss').locator('..').locator('.text-right span.text-sm.font-semibold.text-blue-700').first();
+    this.resultsSection = page
+      .locator('.space-y-5.p-6.bg-white.border')
+      .filter({ hasText: 'Duct Sizing Results' });
+    this.velocityResult = page
+      .locator('text=Air Velocity')
+      .locator('..')
+      .locator('.text-right span.text-sm.font-semibold.text-blue-700')
+      .first();
+    this.pressureLossResult = page
+      .locator('text=Pressure Loss')
+      .locator('..')
+      .locator('.text-right span.text-sm.font-semibold.text-blue-700')
+      .first();
     this.errorMessage = page.locator('.text-red-600');
     this.loadingSpinner = page.locator('.animate-spin');
   }

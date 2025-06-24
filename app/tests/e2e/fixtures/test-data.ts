@@ -128,13 +128,7 @@ export const navigationTestData = {
     { path: '/tools', name: 'Tools Dashboard', expectedTitle: 'Tools' },
     { path: '/duct-sizer', name: 'Air Duct Sizer', expectedTitle: 'Air Duct Sizer' },
   ],
-  invalidRoutes: [
-    '/nonexistent',
-    '/tools/invalid',
-    '/duct-sizer/invalid',
-    '/admin',
-    '/api',
-  ],
+  invalidRoutes: ['/nonexistent', '/tools/invalid', '/duct-sizer/invalid', '/admin', '/api'],
 };
 
 export const themeTestData = {
@@ -177,13 +171,13 @@ export const performanceTestData = {
   },
   networkConditions: {
     fast3G: {
-      downloadThroughput: 1.5 * 1024 * 1024 / 8, // 1.5 Mbps
-      uploadThroughput: 750 * 1024 / 8, // 750 Kbps
+      downloadThroughput: (1.5 * 1024 * 1024) / 8, // 1.5 Mbps
+      uploadThroughput: (750 * 1024) / 8, // 750 Kbps
       latency: 40, // 40ms
     },
     slow3G: {
-      downloadThroughput: 500 * 1024 / 8, // 500 Kbps
-      uploadThroughput: 500 * 1024 / 8, // 500 Kbps
+      downloadThroughput: (500 * 1024) / 8, // 500 Kbps
+      uploadThroughput: (500 * 1024) / 8, // 500 Kbps
       latency: 400, // 400ms
     },
   },

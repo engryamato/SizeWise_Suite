@@ -46,14 +46,14 @@ const HomePage: React.FC = () => {
           Professional HVAC Engineering Tools
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Accurate, standards-compliant calculations for duct sizing, pressure loss analysis, 
-          and HVAC system design. Built by engineers, for engineers.
+          Accurate, standards-compliant calculations for duct sizing, pressure loss analysis, and
+          HVAC system design. Built by engineers, for engineers.
         </p>
       </div>
 
       {/* Tools Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-12">
-        {tools.map((tool) => {
+        {tools.map(tool => {
           const Icon = tool.icon;
           return (
             <div
@@ -68,9 +68,7 @@ const HomePage: React.FC = () => {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     {tool.name}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {tool.description}
-                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{tool.description}</p>
                   {tool.available ? (
                     <Link
                       to={tool.href}
@@ -110,15 +108,15 @@ const HomePage: React.FC = () => {
               Real-time Validation
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Instant feedback and validation as you input data, preventing errors before they happen.
+              Instant feedback and validation as you input data, preventing errors before they
+              happen.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              Offline Ready
-            </h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Offline Ready</h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Works seamlessly offline for field use, with optional cloud sync for team collaboration.
+              Works seamlessly offline for field use, with optional cloud sync for team
+              collaboration.
             </p>
           </div>
         </div>

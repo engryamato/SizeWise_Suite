@@ -37,11 +37,7 @@ const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
     const showHelpText = Boolean(helpText && !hasError);
 
     return (
-      <div
-        ref={ref}
-        className={cn('space-y-1.5', disabled && 'opacity-60', className)}
-        {...props}
-      >
+      <div ref={ref} className={cn('space-y-1.5', disabled && 'opacity-60', className)} {...props}>
         {label && (
           <label
             htmlFor={htmlFor}
@@ -71,10 +67,7 @@ const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
 
         {hasError && (
           <p
-            className={cn(
-              'mt-1 text-sm text-red-600 flex items-center',
-              errorClassName
-            )}
+            className={cn('mt-1 text-sm text-red-600 flex items-center', errorClassName)}
             role="alert"
           >
             <ExclamationCircleIcon className="h-4 w-4 mr-1 flex-shrink-0" />
@@ -117,9 +110,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {rightIcon && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-            {rightIcon}
-          </div>
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center">{rightIcon}</div>
         )}
       </div>
     );

@@ -130,19 +130,19 @@ const AirDuctSizerUI: React.FC = () => {
 
   const parseInputValues = () => {
     const width = parseFloat(state.dimensions.width);
-    const height = state.shape === 'rectangular' 
-      ? parseFloat(state.dimensions.height) 
-      : undefined;
-    const diameter = state.shape === 'round' 
-      ? parseFloat(state.dimensions.diameter) 
-      : undefined;
+    const height = state.shape === 'rectangular' ? parseFloat(state.dimensions.height) : undefined;
+    const diameter = state.shape === 'round' ? parseFloat(state.dimensions.diameter) : undefined;
     const length = parseFloat(state.length);
     const flowRate = parseFloat(state.flowRate);
-    
+
     return { width, height, diameter, length, flowRate };
   };
 
-  const calculateDuctArea = (width: number, height: number | undefined, diameter: number | undefined) => {
+  const calculateDuctArea = (
+    width: number,
+    height: number | undefined,
+    diameter: number | undefined
+  ) => {
     if (state.shape === 'rectangular' && height !== undefined) {
       return (width * height) / (state.units === 'imperial' ? 144 : 1);
     }
@@ -157,7 +157,12 @@ const AirDuctSizerUI: React.FC = () => {
     return parseFloat(num.toFixed(2));
   };
 
-  const formatResult = (result: any, width: number, height?: number, diameter?: number): CalculationResult => {
+  const formatResult = (
+    result: any,
+    width: number,
+    height?: number,
+    diameter?: number
+  ): CalculationResult => {
     const area = calculateDuctArea(width, height, diameter);
     const unitSuffix = state.units === 'imperial' ? 'ft' : 'm';
     const areaUnit = state.units === 'imperial' ? 'ft²' : 'm²';
@@ -188,7 +193,7 @@ const AirDuctSizerUI: React.FC = () => {
 
     try {
       const { width, height, diameter, length, flowRate } = parseInputValues();
-      
+
       const ductSizer = createAirDuctSizer(
         state.shape,
         { width, height, diameter, length },
@@ -203,7 +208,7 @@ const AirDuctSizerUI: React.FC = () => {
       console.error('Calculation error:', error);
       setErrors(prev => ({
         ...prev,
-        calculation: 'An error occurred during calculation. Please check your inputs.'
+        calculation: 'An error occurred during calculation. Please check your inputs.',
       }));
     } finally {
       setIsLoading(false);
@@ -246,7 +251,11 @@ const AirDuctSizerUI: React.FC = () => {
             <div className="flex">
               <div className="flex-shrink-0">
                 <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
               <div className="ml-3">
@@ -627,52 +636,75 @@ const AirDuctSizerUI: React.FC = () => {
 
                   {results && !isLoading && (
                     <div className="space-y-5 p-6 bg-white border border-gray-100 rounded-xl shadow-sm">
-                      <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">Duct Sizing Results</h3>
+                      <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">
+                        Duct Sizing Results
+                      </h3>
 
                       <div className="space-y-3.5">
                         <div className="flex justify-between items-center py-1.5">
                           <span className="text-sm font-medium text-gray-700">Flow Area</span>
                           <div className="text-right">
                             <span className="text-sm font-semibold text-blue-700">
-                              {results.area.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+                              {results.area.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              })}
                             </span>
                             <span className="text-sm text-gray-500 ml-1">{results.areaUnit}</span>
                           </div>
                         </div>
-                        
+
                         <div className="flex justify-between items-center py-1.5">
                           <span className="text-sm font-medium text-gray-700">Air Velocity</span>
                           <div className="text-right">
                             <span className="text-sm font-semibold text-blue-700">
-                              {results.velocity.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                              {results.velocity.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              })}
                             </span>
-                            <span className="text-sm text-gray-500 ml-1">{results.velocityUnit}</span>
+                            <span className="text-sm text-gray-500 ml-1">
+                              {results.velocityUnit}
+                            </span>
                           </div>
                         </div>
-                        
+
                         <div className="flex justify-between items-center py-1.5">
                           <span className="text-sm font-medium text-gray-700">Pressure Loss</span>
                           <div className="text-right">
                             <span className="text-sm font-semibold text-blue-700">
-                              {results.pressureLoss.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                              {results.pressureLoss.toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              })}
                             </span>
-                            <span className="text-sm text-gray-500 ml-1">{results.pressureLossUnit}</span>
+                            <span className="text-sm text-gray-500 ml-1">
+                              {results.pressureLossUnit}
+                            </span>
                           </div>
                         </div>
-                        
+
                         <div className="flex justify-between items-center py-1.5">
-                          <span className="text-sm font-medium text-gray-700">Recommended Gauge</span>
-                          <span className="text-sm font-semibold text-blue-700">{results.gauge} gauge</span>
+                          <span className="text-sm font-medium text-gray-700">
+                            Recommended Gauge
+                          </span>
+                          <span className="text-sm font-semibold text-blue-700">
+                            {results.gauge} gauge
+                          </span>
                         </div>
-                        
+
                         <div className="flex justify-between items-center py-1.5">
                           <span className="text-sm font-medium text-gray-700">Joint Spacing</span>
-                          <span className="text-sm font-semibold text-blue-700">{results.jointSpacing}</span>
+                          <span className="text-sm font-semibold text-blue-700">
+                            {results.jointSpacing}
+                          </span>
                         </div>
-                        
+
                         <div className="flex justify-between items-center py-1.5">
                           <span className="text-sm font-medium text-gray-700">Hanger Spacing</span>
-                          <span className="text-sm font-semibold text-blue-700">{results.hangerSpacing}</span>
+                          <span className="text-sm font-semibold text-blue-700">
+                            {results.hangerSpacing}
+                          </span>
                         </div>
                       </div>
 
