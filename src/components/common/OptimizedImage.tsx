@@ -25,9 +25,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      {isLoading && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded" />
-      )}
+      {isLoading && <div className="absolute inset-0 bg-gray-200 animate-pulse rounded" />}
       <img
         src={imageSrc}
         alt={alt}

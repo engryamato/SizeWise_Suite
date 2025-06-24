@@ -37,7 +37,7 @@ class ToolRegistry {
   register(tool: ToolMetadata): void {
     this.tools.set(tool.id, {
       ...tool,
-      path: tool.path || `/${tool.id}`
+      path: tool.path || `/${tool.id}`,
     });
   }
 
@@ -54,7 +54,7 @@ class ToolRegistry {
 
     try {
       // Import the tool configuration
-      const { tools } = await import('@/config/toolConfig.json') as { tools: ToolConfig[] };
+      const { tools } = (await import('@/config/toolConfig.json')) as { tools: ToolConfig[] };
 
       // Register each tool using React.lazy for proper component loading
       for (const toolConfig of tools) {
@@ -71,7 +71,7 @@ class ToolRegistry {
         this.register({
           ...toolConfig,
           component: LazyComponent,
-          path: `/${toolConfig.id}`
+          path: `/${toolConfig.id}`,
         });
       }
 

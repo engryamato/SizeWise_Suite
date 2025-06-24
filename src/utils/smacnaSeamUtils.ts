@@ -1,8 +1,4 @@
-import { 
-  RoundSeamTable, 
-  RectangularSeamTable,
-  DuctShape
-} from '@/types/smacna';
+import { RoundSeamTable, RectangularSeamTable, DuctShape } from '@/types/smacna';
 import roundSeamData from '@/data/smacna/round-longitudinal-seam-selection.json';
 import rectangularSeamData from '@/data/smacna/rectangular-longitudinal-seam-selection.json';
 
@@ -29,7 +25,7 @@ export function findDuctSeamTypes(
   pressureClassInWg: number = 2
 ): SeamResult {
   const table = shape === 'round' ? roundSeamTable : rectangularSeamTable;
-  
+
   // Find the matching pressure class
   const pressureClass = table.pressure_classes.find(
     pc => pc.pressure_class_in_wg === pressureClassInWg
@@ -41,22 +37,27 @@ export function findDuctSeamTypes(
   }
 
   // For round ducts, use diameter. For rectangular, use the larger dimension
-  const size = 'diameter' in dimensions 
-    ? dimensions.diameter 
-    : Math.max(dimensions.width, dimensions.height);
+  const size =
+    'diameter' in dimensions ? dimensions.diameter : Math.max(dimensions.width, dimensions.height);
 
   // Find the matching seam entry
   const sizeKey = 'diameter' in dimensions ? 'min_diameter_in' : 'min_size_in';
   const seamEntry = pressureClass.entries.find(entry => {
     const min = entry[sizeKey as keyof typeof entry];
     const max = entry[sizeKey.replace('min_', 'max_') as keyof typeof entry];
-    return typeof min === 'number' && typeof max === 'number' && typeof size === 'number' && size >= min && size <= max;
+    return (
+      typeof min === 'number' &&
+      typeof max === 'number' &&
+      typeof size === 'number' &&
+      size >= min &&
+      size <= max
+    );
   });
 
   return {
     seamTypes: seamEntry ? seamEntry.seam_types : [],
     table: table.table,
-    notes: table.notes
+    notes: table.notes,
   };
 }
 

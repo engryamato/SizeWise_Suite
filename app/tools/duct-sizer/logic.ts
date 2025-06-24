@@ -18,7 +18,7 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
   if (isNaN(cfm) || cfm <= 0) {
     throw new Error('CFM must be a number greater than 0');
   }
-  
+
   const inputLength = typeof inputs.length === 'string' ? parseFloat(inputs.length) : inputs.length;
   if (isNaN(inputLength) || inputLength <= 0) {
     throw new Error('Length must be a number greater than 0');
@@ -46,35 +46,33 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
     length,
     cfm,
   } as const;
-  
+
   const { area, perimeter } = calculateGeometry(geometryInputs);
-  
+
   // Calculate hydraulic diameter
   const hydraulicDiameter = calculateHydraulicDiameter(area, perimeter);
-  
+
   // Calculate air velocity with parsed CFM
   const velocity = calculateVelocity(cfm, area);
-  
+
   // Calculate pressure loss using SMACNA methods with parsed length
-  const pressureLoss = calculatePressureLoss(velocity, hydraulicDiameter, length, inputs.material || 'galvanized');
+  const pressureLoss = calculatePressureLoss(
+    velocity,
+    hydraulicDiameter,
+    length,
+    inputs.material || 'galvanized'
+  );
 
   // Calculate the largest duct dimension for gauge selection
-  const ductSize = inputs.shape === 'rectangular'
-    ? Math.max(width, height)
-    : diameter;
+  const ductSize = inputs.shape === 'rectangular' ? Math.max(width, height) : diameter;
 
   // Determine material gauge based on pressure, size, and application
-  const gauge = determineGauge(
-    pressureLoss,
-    inputs.pressureClass,
-    ductSize,
-    inputs.application
-  );
-  
+  const gauge = determineGauge(pressureLoss, inputs.pressureClass, ductSize, inputs.application);
+
   // Calculate joint and hanger spacing per SMACNA
   const jointSpacing = calculateJointSpacing(velocity, inputs.shape);
   const hangerSpacing = calculateHangerSpacing(inputs.shape, gauge);
-  
+
   // SMACNA validation with proper application fallback
   const validation = validateSMACNA({
     velocity,
@@ -82,7 +80,7 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
     gauge,
     jointSpacing,
     hangerSpacing,
-    application: inputs.application || 'supply' as const
+    application: inputs.application || ('supply' as const),
   });
 
   const results: DuctResults = {
@@ -105,8 +103,8 @@ export function calculateDuctSizing(inputs: DuctInputs): DuctResults {
       area: Math.round(area * 1000) / 1000,
       perimeter: Math.round(perimeter * 100) / 100,
       warnings: validation.warnings,
-      snapSummary: ''
-    })
+      snapSummary: '',
+    }),
   };
 
   return results;
@@ -120,34 +118,35 @@ function calculateGeometry(inputs: DuctInputs): { area: number; perimeter: numbe
     if (!inputs.width || !inputs.height) {
       throw new Error('Width and height required for rectangular ducts');
     }
-    
+
     // Ensure width and height are numbers
     const width = typeof inputs.width === 'string' ? parseFloat(inputs.width) : inputs.width;
     const height = typeof inputs.height === 'string' ? parseFloat(inputs.height) : inputs.height;
-    
+
     if (isNaN(width) || isNaN(height)) {
       throw new Error('Width and height must be valid numbers');
     }
-    
+
     const area = (width * height) / 144; // Convert sq inches to sq feet
-    const perimeter = 2 * (width + height) / 12; // Convert inches to feet
-    
+    const perimeter = (2 * (width + height)) / 12; // Convert inches to feet
+
     return { area, perimeter };
   } else {
     if (!inputs.diameter) {
       throw new Error('Diameter required for circular ducts');
     }
-    
+
     // Ensure diameter is a number
-    const diameter = typeof inputs.diameter === 'string' ? parseFloat(inputs.diameter) : inputs.diameter;
-    
+    const diameter =
+      typeof inputs.diameter === 'string' ? parseFloat(inputs.diameter) : inputs.diameter;
+
     if (isNaN(diameter)) {
       throw new Error('Diameter must be a valid number');
     }
-    
+
     const area = (Math.PI * Math.pow(diameter, 2)) / (4 * 144); // Convert sq inches to sq feet
     const perimeter = (Math.PI * diameter) / 12; // Convert inches to feet
-    
+
     return { area, perimeter };
   }
 }
@@ -157,7 +156,7 @@ function calculateGeometry(inputs: DuctInputs): { area: number; perimeter: numbe
  * Dh = 4 * Area / Perimeter
  */
 function calculateHydraulicDiameter(area: number, perimeter: number): number {
-  return (4 * area) / perimeter * 12; // Convert back to inches
+  return ((4 * area) / perimeter) * 12; // Convert back to inches
 }
 
 /**
@@ -188,27 +187,29 @@ function calculatePressureLoss(
   const ROUGHNESS_FACTORS = {
     galvanized: 0.0003, // ft
     stainless: 0.00015, // ft
-    aluminum: 0.00015  // ft
+    aluminum: 0.00015, // ft
   } as const;
 
   // Input validation
   if (!(material in ROUGHNESS_FACTORS)) {
-    throw new Error(`Invalid material: ${material}. Must be one of: ${Object.keys(ROUGHNESS_FACTORS).join(', ')}`);
+    throw new Error(
+      `Invalid material: ${material}. Must be one of: ${Object.keys(ROUGHNESS_FACTORS).join(', ')}`
+    );
   }
-  
+
   const roughness = ROUGHNESS_FACTORS[material];
-  
+
   // Convert units
   const velocityFps = velocity / 60; // ft/s
   const hydraulicDiameterFt = hydraulicDiameter / 12; // Convert inches to feet
-  
+
   // Reynolds number (dimensionless)
   const reynolds = (velocityFps * hydraulicDiameterFt) / STANDARD_KINEMATIC_VISCOSITY;
-  
+
   // Friction factor calculation using Swamee-Jain approximation
   // Valid for 5000 < Re < 10^8 and 10^-6 < ε/D < 10^-2
   let frictionFactor: number;
-  
+
   if (reynolds < 2300) {
     // Laminar flow (Hagen-Poiseuille equation)
     frictionFactor = 64 / Math.max(reynolds, 1); // Prevent division by zero
@@ -217,10 +218,10 @@ function calculatePressureLoss(
     const relativeRoughness = roughness / hydraulicDiameterFt;
     const term1 = relativeRoughness / 3.7;
     const term2 = 5.74 / Math.pow(reynolds, 0.9);
-    
+
     frictionFactor = 0.25 / Math.pow(Math.log10(term1 + term2), 2);
   }
-  
+
   // Darcy-Weisbach equation: ΔP = (f * L/D) * (ρ * V²) / (2 * g_c)
   // Where:
   // ΔP = pressure drop (lb/ft²)
@@ -230,11 +231,14 @@ function calculatePressureLoss(
   // ρ = fluid density (lb/ft³)
   // V = velocity (ft/s)
   // g_c = gravitational constant (32.2 lbm·ft/lbf·s²)
-  
+
   // Convert to inches of water column (1 lb/ft² = 0.1922 in. w.g.)
-  const pressureDropPsi = (frictionFactor * (length / hydraulicDiameterFt) * 
-    (STANDARD_AIR_DENSITY * velocityFps * velocityFps)) / (2 * GRAVITY);
-  
+  const pressureDropPsi =
+    (frictionFactor *
+      (length / hydraulicDiameterFt) *
+      (STANDARD_AIR_DENSITY * velocityFps * velocityFps)) /
+    (2 * GRAVITY);
+
   const pressureLossInWC = pressureDropPsi * INCHES_OF_WATER_PER_PSI;
 
   return Math.max(0, pressureLossInWC); // Ensure non-negative value
@@ -253,7 +257,7 @@ const SMACNA_GAUGE_TABLE = {
     { maxDimension: 60, gauge: 16 },
     { maxDimension: 84, gauge: 14 },
     { maxDimension: 120, gauge: 12 },
-    { maxDimension: Infinity, gauge: 10 }
+    { maxDimension: Infinity, gauge: 10 },
   ],
   // Medium Pressure (2-6" w.g.)
   medium: [
@@ -265,7 +269,7 @@ const SMACNA_GAUGE_TABLE = {
     { maxDimension: 60, gauge: 14 },
     { maxDimension: 84, gauge: 12 },
     { maxDimension: 120, gauge: 10 },
-    { maxDimension: Infinity, gauge: 8 }
+    { maxDimension: Infinity, gauge: 8 },
   ],
   // High Pressure (6-10" w.g.)
   high: [
@@ -277,8 +281,8 @@ const SMACNA_GAUGE_TABLE = {
     { maxDimension: 60, gauge: 12 },
     { maxDimension: 84, gauge: 10 },
     { maxDimension: 120, gauge: 8 },
-    { maxDimension: Infinity, gauge: 6 }
-  ]
+    { maxDimension: Infinity, gauge: 6 },
+  ],
 } as const;
 
 type PressureClass = keyof typeof SMACNA_GAUGE_TABLE;
@@ -339,10 +343,8 @@ function determineGauge(
     throw new Error('Application type is required');
   }
   // Convert to number if needed
-  const dimension = typeof ductSize === 'string' 
-    ? parseFloat(ductSize) || 0 
-    : ductSize;
-  
+  const dimension = typeof ductSize === 'string' ? parseFloat(ductSize) || 0 : ductSize;
+
   // Normalize pressure class
   let normalizedPressureClass: PressureClass = 'low';
   if (pressureClass === 'medium') {
@@ -353,11 +355,11 @@ function determineGauge(
 
   // Get base gauge from SMACNA table
   const baseGauge = getSmacnaGauge(dimension, normalizedPressureClass);
-  
+
   // Apply application-specific adjustments
   const adjustment = getApplicationGaugeAdjustment(application);
   const adjustedGauge = Math.min(26, Math.max(18, baseGauge - adjustment));
-  
+
   return adjustedGauge.toString();
 }
 
@@ -383,7 +385,7 @@ function calculateJointSpacing(velocity: number, shape: string): number {
  */
 function calculateHangerSpacing(_shape: string, gauge: string): number {
   const gaugeNum = parseInt(gauge);
-  
+
   // Hanger spacing is the same for both rectangular and circular ducts
   // based on the gauge of the material
   if (gaugeNum >= 24) return 8; // feet

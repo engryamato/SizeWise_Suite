@@ -58,23 +58,23 @@ test.describe('Debug Tests', () => {
 
   test('should check what is on the home page', async ({ page }) => {
     await page.goto('/');
-    
+
     // Wait for page to load
     await page.waitForTimeout(2000);
-    
+
     // Get page title
     const title = await page.title();
     console.log('Home page title:', title);
-    
+
     // Check for tool cards
     const toolCards = await page.locator('a[href="/duct-sizer"]').all();
     console.log('Tool cards found:', toolCards.length);
-    
+
     for (const card of toolCards) {
       const cardText = await card.textContent();
       console.log('Tool card text:', cardText);
     }
-    
+
     // Take a screenshot
     await page.screenshot({ path: 'debug-home.png', fullPage: true });
   });

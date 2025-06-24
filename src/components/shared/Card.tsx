@@ -26,11 +26,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
           </div>
         )}
         <div className={cn(noPadding ? 'p-0' : 'p-6')}>{children}</div>
-        {footer && (
-          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-            {footer}
-          </div>
-        )}
+        {footer && <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">{footer}</div>}
       </div>
     );
   }

@@ -5,10 +5,7 @@ import virtualTools from './src/plugins/virtual-tools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    virtualTools(),
-  ],
+  plugins: [react(), virtualTools()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

@@ -17,7 +17,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const results = calculateDuctSizing(inputs);
@@ -39,15 +39,19 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'medium'
+        pressureClass: 'medium',
       };
 
       const results = calculateDuctSizing(inputs);
 
       expect(results.velocity).toBeGreaterThan(2500);
-      expect(results.warnings.some(warning =>
-        warning.includes('Velocity 15000 ft/min exceeds SMACNA maximum of 2500 ft/min for supply air')
-      )).toBe(true);
+      expect(
+        results.warnings.some(warning =>
+          warning.includes(
+            'Velocity 15000 ft/min exceeds SMACNA maximum of 2500 ft/min for supply air'
+          )
+        )
+      ).toBe(true);
     });
 
     test('validates low velocity warnings', () => {
@@ -59,15 +63,19 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const results = calculateDuctSizing(inputs);
 
       expect(results.velocity).toBeLessThan(800);
-      expect(results.warnings.some(warning =>
-        warning.includes('Velocity 90 ft/min is below SMACNA minimum of 800 ft/min for supply air')
-      )).toBe(true);
+      expect(
+        results.warnings.some(warning =>
+          warning.includes(
+            'Velocity 90 ft/min is below SMACNA minimum of 800 ft/min for supply air'
+          )
+        )
+      ).toBe(true);
     });
   });
 
@@ -80,7 +88,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const results = calculateDuctSizing(inputs);
@@ -97,20 +105,20 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized' as const,
         application: 'supply' as const,
-        pressureClass: 'low' as const
+        pressureClass: 'low' as const,
       };
 
       const rectangularInputs: DuctInputs = {
         ...baseInputs,
         shape: 'rectangular',
         width: 12,
-        height: 8
+        height: 8,
       };
 
       const circularInputs: DuctInputs = {
         ...baseInputs,
         shape: 'circular',
-        diameter: 12
+        diameter: 12,
       };
 
       const rectResults = calculateDuctSizing(rectangularInputs);
@@ -130,17 +138,17 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         height: 8,
         length: 100,
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const galvanizedResults = calculateDuctSizing({
         ...baseInputs,
-        material: 'galvanized'
+        material: 'galvanized',
       });
 
       const stainlessResults = calculateDuctSizing({
         ...baseInputs,
-        material: 'stainless'
+        material: 'stainless',
       });
 
       expect(stainlessResults.pressureLoss).toBeLessThan(galvanizedResults.pressureLoss);
@@ -154,17 +162,17 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         height: 8,
         length: 100,
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const galvanizedResults = calculateDuctSizing({
         ...baseInputs,
-        material: 'galvanized'
+        material: 'galvanized',
       });
 
       const aluminumResults = calculateDuctSizing({
         ...baseInputs,
-        material: 'aluminum'
+        material: 'aluminum',
       });
 
       expect(aluminumResults.pressureLoss).toBeLessThan(galvanizedResults.pressureLoss);
@@ -181,7 +189,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 50,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const highPressureInputs: DuctInputs = {
@@ -192,7 +200,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 200,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'high'
+        pressureClass: 'high',
       };
 
       const lowPressureResults = calculateDuctSizing(lowPressureInputs);
@@ -211,7 +219,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const highVelocityInputs: DuctInputs = {
@@ -222,7 +230,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'medium'
+        pressureClass: 'medium',
       };
 
       const lowVelocityResults = calculateDuctSizing(lowVelocityInputs);
@@ -242,7 +250,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       expect(() => calculateDuctSizing(inputs)).toThrow('CFM must be a number greater than 0');
@@ -257,7 +265,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 0,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       expect(() => calculateDuctSizing(inputs)).toThrow('Length must be a number greater than 0');
@@ -270,10 +278,12 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
-      expect(() => calculateDuctSizing(inputs)).toThrow('Width and height required for rectangular ducts');
+      expect(() => calculateDuctSizing(inputs)).toThrow(
+        'Width and height required for rectangular ducts'
+      );
     });
 
     test('throws error for missing circular diameter', () => {
@@ -283,7 +293,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       expect(() => calculateDuctSizing(inputs)).toThrow('Diameter required for circular ducts');
@@ -300,7 +310,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const results = calculateDuctSizing(inputs);
@@ -310,7 +320,7 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
       expect(results.snapSummary).toContain('ft/min');
       expect(results.snapSummary).toContain('" w.g.');
       expect(results.snapSummary).toContain('ga');
-      expect(results.snapSummary).toContain('100\' long');
+      expect(results.snapSummary).toContain("100' long");
     });
 
     test('generates correct snap summary for circular duct', () => {
@@ -321,14 +331,14 @@ describe('Air Duct Sizer Logic - Phase 0.1', () => {
         length: 100,
         material: 'galvanized',
         application: 'supply',
-        pressureClass: 'low'
+        pressureClass: 'low',
       };
 
       const results = calculateDuctSizing(inputs);
 
       expect(results.snapSummary).toContain('1000 CFM');
       expect(results.snapSummary).toContain('12"⌀');
-      expect(results.snapSummary).toContain('100\' long');
+      expect(results.snapSummary).toContain("100' long");
     });
   });
 });

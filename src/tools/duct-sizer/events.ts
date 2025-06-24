@@ -9,12 +9,12 @@ class AirDuctSizerEvents {
   // Subscribe to calculation results
   subscribe(callback: EventCallback): () => void {
     this.subscribers.add(callback);
-    
+
     // Immediately notify with last result if available
     if (this.lastResult) {
       callback(this.lastResult);
     }
-    
+
     // Return unsubscribe function
     return () => this.subscribers.delete(callback);
   }
@@ -46,5 +46,5 @@ export const airDuctSizerEvents = new AirDuctSizerEvents();
 export const AIR_DUCT_EVENTS = {
   CALCULATION: 'calculation',
   RESET: 'reset',
-  ERROR: 'error'
+  ERROR: 'error',
 } as const;

@@ -130,11 +130,7 @@ export const SMACNAResultsTable: React.FC<SMACNAResultsTableProps> = ({
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-center">
                   <div title={row.tooltip} className={row.tooltip ? 'cursor-help' : ''}>
-                    <StatusIndicator
-                      status={row.status}
-                      showIcon
-                      size="sm"
-                    />
+                    <StatusIndicator status={row.status} showIcon size="sm" />
                   </div>
                 </td>
               </tr>
@@ -322,7 +318,11 @@ function getPressureLossLimit(pressureClass?: string): string {
   return '≤ 0.100 in. w.g.';
 }
 
-function getVelocityTooltip(velocity: number, _application: string, pressureClass?: string): string {
+function getVelocityTooltip(
+  velocity: number,
+  _application: string,
+  pressureClass?: string
+): string {
   const limits = pressureClass === 'high' ? 4500 : pressureClass === 'medium' ? 3500 : 2500;
   const minLimit = 800;
 

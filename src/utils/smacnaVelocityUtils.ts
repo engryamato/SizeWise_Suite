@@ -24,7 +24,7 @@ export function getMaxVelocity(
   shape: DuctShape = 'round'
 ): VelocityResult {
   const table = shape === 'round' ? roundVelocityTable : rectangularVelocityTable;
-  
+
   // Find the matching application type (case-insensitive)
   const appType = applicationType.toLowerCase();
   const velocityEntry = table.application_types.find(
@@ -33,11 +33,11 @@ export function getMaxVelocity(
 
   if (!velocityEntry) {
     console.warn(`No velocity data found for application type: ${applicationType}`);
-    return { 
-      maxVelocityFpm: 0, 
+    return {
+      maxVelocityFpm: 0,
       application: applicationType,
-      table: table.table, 
-      notes: [...table.notes, 'No matching data found for the specified application type.'] 
+      table: table.table,
+      notes: [...table.notes, 'No matching data found for the specified application type.'],
     };
   }
 
@@ -45,7 +45,7 @@ export function getMaxVelocity(
     maxVelocityFpm: velocityEntry.max_velocity_fpm,
     application: velocityEntry.application,
     table: table.table,
-    notes: table.notes
+    notes: table.notes,
   };
 }
 
@@ -54,11 +54,13 @@ export function getMaxVelocity(
  * @param shape - The shape of the duct ('round' or 'rectangular')
  * @returns Array of application types with their max velocities
  */
-export function getApplicationTypes(shape: DuctShape = 'round'): Array<{application: string, maxVelocityFpm: number}> {
+export function getApplicationTypes(
+  shape: DuctShape = 'round'
+): Array<{ application: string; maxVelocityFpm: number }> {
   const table = shape === 'round' ? roundVelocityTable : rectangularVelocityTable;
   return table.application_types.map(({ application, max_velocity_fpm }) => ({
     application,
-    maxVelocityFpm: max_velocity_fpm
+    maxVelocityFpm: max_velocity_fpm,
   }));
 }
 
